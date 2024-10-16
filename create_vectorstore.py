@@ -1,52 +1,99 @@
-from openai import OpenAI
-import chromadb
-from chromadb.utils import embedding_functions
-import os
 from dotenv import load_dotenv
-from uuid import uuid4
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-
 load_dotenv()
 
-def split_text(text: str, chunk_size: int = 2000, separators: list[str] = ["\n# ","\n## ","\n### ","\n#### ","\n##### ","\n###### ","\n\n\n","\n\n","\n",".","!","?",",",]):
-    splitter = RecursiveCharacterTextSplitter(
-        separators=separators, chunk_size=chunk_size, chunk_overlap=0
-    )
-    return splitter.split_text(text)
+import os
+import psycopg2
+from pgvector.sqlalchemy import Vector
 
+from openai import OpenAI
+import json
+import time
+from psycopg2 import OperationalError
+
+
+client = OpenAI()
+
+def create_embedding(text):
+    response = client.embeddings.create(input=text, model="text-embedding-3-small")
+    return response.data[0].embedding
+
+# Database connection parameters from environment variables
+DB_NAME = os.getenv('POSTGRES_DB')
+DB_USER = os.getenv('POSTGRES_USER')
+DB_PASSWORD = os.getenv('POSTGRES_PASSWORD')
+DB_HOST = os.getenv('POSTGRES_HOST')
+DB_PORT = os.getenv('POSTGRES_PORT')
+
+# Establish connection to the PostgreSQL database
+conn = psycopg2.connect(
+    dbname=DB_NAME,
+    user=DB_USER,
+    password=DB_PASSWORD,
+    host=DB_HOST,
+    port=DB_PORT
+)
+cursor = conn.cursor()
+
+# # Create a table with a vector column
+# vector_dimension = 1536
+# cursor.execute(f"""
+# DROP TABLE IF EXISTS documents;
+# CREATE TABLE IF NOT EXISTS documents (
+#     id SERIAL PRIMARY KEY,
+#     content TEXT,
+#     embedding VECTOR({vector_dimension})  
+# );
+# """)
+# conn.commit()
+
+# Example: Insert a document with its embedding
+def insert_document(content, embedding):
+    with psycopg2.connect(
+        dbname=DB_NAME,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        host=DB_HOST,
+        port=DB_PORT
+    ) as conn:
+        with conn.cursor() as cursor:
+            cursor.execute("""
+                INSERT INTO documents (content, embedding)
+                VALUES (%s, %s)
+                RETURNING id;
+            """, (content, embedding))
+            doc_id = cursor.fetchone()[0]
+            conn.commit()
+            return doc_id
+
+def wait_for_db(max_retries=5, delay=5):
+    retries = 0
+    while retries < max_retries:
+        try:
+            conn = psycopg2.connect(
+                dbname=DB_NAME,
+                user=DB_USER,
+                password=DB_PASSWORD,
+                host=DB_HOST,
+                port=DB_PORT
+            )
+            conn.close()
+            print("Successfully connected to the database")
+            return
+        except OperationalError as e:
+            print(f"Attempt {retries + 1}/{max_retries}: Unable to connect to the database. Retrying in {delay} seconds...")
+            retries += 1
+            time.sleep(delay)
+    raise Exception("Max retries reached. Unable to connect to the database.")
+
+# Example usage
 if __name__ == "__main__":
+    wait_for_db()  # Add this line before processing the embeddings
     
-    # create collection
-    collection_name="ultimate_rules"
-    embedding_function=embedding_functions.OpenAIEmbeddingFunction(
-        model_name="text-embedding-3-large", 
-        api_key = os.environ.get("OPENAI_API_KEY")
-    )
-    persist_directory="./chroma_ultimate_rules_db"
+    path = "sample_sentence_embeddings.json"
+    with open(path, "r") as f:
+        sentence_embeddings = json.load(f)
 
-    chroma_client = chromadb.PersistentClient(path=persist_directory)
-    collection = chroma_client.get_or_create_collection(
-        name=collection_name, 
-        embedding_function=embedding_function,
-        metadata={"hnsw:space": "cosine"}
-    )
-    print(f"vectorstore created: collection_name = {collection_name}, persist_directory={persist_directory}")
-
-
-    # load rules text
-    files = ["Official-Rules-of-Ultimate-2024-2025.md", "Ultiworld-Ultimate-Glossary.md"]
-    for file in files:
-        print(f"\nloading {file}")
-        with open(f"texts/{file}", encoding="utf8") as f:
-            text = f.read()
-
-        # split into chunks
-        chunks = split_text(text, chunk_size = 1800)
-        
-        # add to chroma
-        collection.add(
-            documents=chunks,
-            metadatas=[{"source": file} for _ in chunks],
-            ids=[str(uuid4()) for _ in chunks]
-        )
-        print(f"{collection.count()} items added")
+    for sentence, embedding in sentence_embeddings.items():
+        doc_id = insert_document(sentence, embedding)
+        print(f"Inserted document with ID: '{doc_id}' for sentence: '{sentence}' ")
+    

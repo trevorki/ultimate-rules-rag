@@ -1,0 +1,12 @@
+pydantic
+openai
+langchain-text-splitters
+python-dotenv
+psycopg2-binary
+pgvector
+sqlalchemy
+
+# # to enable use in jupyter lab 
+# ipykernel
+
+

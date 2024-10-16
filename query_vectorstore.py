@@ -1,37 +1,62 @@
-import chromadb
-from chromadb.utils import embedding_functions
-import os
-import json
 from dotenv import load_dotenv
 load_dotenv()
 
+import os
+import psycopg2
+from pgvector.sqlalchemy import Vector
+from pgvector.psycopg2 import register_vector
 
-COLLECTION_NAME="ultimate_rules"
-PERSIST_DIRECTORY="./chroma_ultimate_rules_db"
-EMBEDDING_MODEL_NAME = "text-embedding-3-large"
-
-
-chroma_client = chromadb.PersistentClient(path=PERSIST_DIRECTORY)
-embedding_function=embedding_functions.OpenAIEmbeddingFunction(
-    model_name=EMBEDDING_MODEL_NAME, 
-    api_key = os.environ.get("OPENAI_API_KEY")
-)
-# load collection
-collection = chroma_client.get_collection(
-    name=COLLECTION_NAME, 
-    embedding_function=embedding_function
-)
-
-question = "what do you do when a pick is called?"
-
-response = collection.query(
-    query_texts = question, 
-    n_results=4, include=["documents", "distances", "metadatas"])
+from openai import OpenAI
+import json
 
 
-print(response)
-docs = response["documents"][0]
-metadatas = response["metadatas"][0]
-distances = response["distances"][0]
-context = [{"distance": distance, "source": metadata["source"], "text": doc} for doc, metadata, distance in zip(docs, metadatas, distances)]
-print("\n", json.dumps(context, indent=2))
+client = OpenAI()
+
+def create_embedding(text):
+    response = client.embeddings.create(input=text, model="text-embedding-3-small")
+    return response.data[0].embedding
+
+# Database connection parameters from environment variables
+DB_NAME = os.getenv('POSTGRES_DB')
+DB_USER = os.getenv('POSTGRES_USER')
+DB_PASSWORD = os.getenv('POSTGRES_PASSWORD')
+DB_HOST = os.getenv('POSTGRES_HOST')
+DB_PORT = os.getenv('POSTGRES_PORT')
+
+# Example: Query documents based on similarity to a given embedding
+def query_similar_documents(query_embedding, limit=5):
+    
+    with psycopg2.connect(
+        dbname=DB_NAME,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        host=DB_HOST,
+        port=DB_PORT
+    ) as conn:
+        register_vector(conn)  # Register the VECTOR type
+        with conn.cursor() as cursor:
+            cursor.execute("SELECT * FROM query_similar_documents(%s::VECTOR, %s);", (query_embedding, limit))
+            return cursor.fetchall()
+    
+
+sentences = [
+    "The morning mist rolled gently across the tranquil lake, reflecting the pink hues of dawn.",
+    "Engineers unveiled a groundbreaking neural interface allowing direct communication between human brains and computers.",
+    "After years of dedicated practice, Maria's violin performance at Carnegie Hall received a standing ovation.",
+]
+
+# Example usage
+if __name__ == "__main__":
+    
+    for sentence in sentences:
+        print(f"\n\nFinding similar docs for: '{sentence}'")
+        # print("Creating embedding")
+        embedding = create_embedding(sentence)
+        # print("Searching for similar docs...")
+        similar_docs = query_similar_documents(embedding)
+        if similar_docs:
+            # print("Similar Documents:")
+            for doc in similar_docs:
+                print(f"  similarity={doc[2]:.3f}   Content='{doc[1]}'")
+        else:
+            print("No similar documents found or an error occurred.")

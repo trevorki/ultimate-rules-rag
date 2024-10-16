@@ -8,14 +8,18 @@ import json
 from prompts import get_rag_prompts, get_assistant_prompt
 from typing import Optional
 from tools import get_tool_definitions
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 load_dotenv()
 
 COLLECTION_NAME="ultimate_rules"
 PERSIST_DIRECTORY="./chroma_ultimate_rules_db"
 EMBEDDING_MODEL_NAME = "text-embedding-3-large"
-# GENERATION_MODEL_NAME = "gpt-4o-mini-2024-07-18"
-GENERATION_MODEL_NAME = "gpt-4o-2024-08-06"
+GENERATION_MODEL_NAME = "gpt-4o-mini-2024-07-18"
+# GENERATION_MODEL_NAME = "gpt-4o-2024-08-06"
 RAG_SYSTEM_MESSAGE = """You are an assistant for question-answering tasks about the sport of ultimate (ultimate frisbee). 
 State the answer succinctly in plain language and include the full text of the relevant rule(s) used to generate your answer.
 Structure your responses like this:
@@ -73,7 +77,7 @@ class RagChat(BaseModel):
     tools: list = []
     token_count: dict = {"prompt": 0, "completion": 0}
 
-    def __init__(self, server = False, user_message_memory_size = 3, n_results = 5):
+    def __init__(self, server = False, user_message_memory_size = 3, n_results = 10):
         super().__init__(
             model_name=GENERATION_MODEL_NAME,
             embedding_model_name=EMBEDDING_MODEL_NAME,
@@ -113,8 +117,7 @@ class RagChat(BaseModel):
     def calculate_session_cost(self, verbose = True):
         model_costs = {
             "gpt-4o-mini-2024-07-18": {"input": 0.15, "output": 0.60},
-            "gpt-4o-2024-08-06": {"input": 2.50, "output": 10.00},
-            "gpt-4o-2024-05-13": {"input": 5.00, "output": 15.00}
+            "gpt-4o-2024-08-06": {"input": 2.50, "output": 10.00}
         }
         input_price_per_million = model_costs[self.model_name]["input"]
         output_price_per_million = model_costs[self.model_name]["output"]
@@ -141,9 +144,11 @@ class RagChat(BaseModel):
             temperature=0.25,
         )
         self.update_token_count(response)
-        return response.choices[0].message.content
+        response = response.choices[0].message.content
+        logger.info(f"Retrieval Activator response: {response}")
+        return response
     
-    def query_rewrite_activator(self, query: str):
+    def query_rewrite_activator(self, question: str):
         prompt = f"""You are an expert at information retrieval and the rules of Ultimate. 
         Given a question, and the conversation history, determine if the question needs to 
         be rewritten in order to retrieve more information about the question.
@@ -173,7 +178,9 @@ class RagChat(BaseModel):
             temperature=0.25,
         )
         self.update_token_count(response)
-        return response.choices[0].message.content
+        response = response.choices[0].message.content
+        logger.info(f"Rewrite Activator response: {response}")
+        return response
     
     def query_rewriter(self, question: str):
         prompt = f"""You are an expert at information retrieval and the rules of Ultimate. 
@@ -197,7 +204,10 @@ class RagChat(BaseModel):
             model=self.model_name,
             temperature=0.25,
         )
-        return response.choices[0].message.content
+        self.update_token_count(response)
+        response = response.choices[0].message.content
+        logger.info(f"Rewrite response: {response}")
+        return response
 
 
 
@@ -210,6 +220,7 @@ class RagChat(BaseModel):
         docs = response["documents"]
         metadatas = response["metadatas"][0]
         context = [{"source": metadata["source"], "text": doc} for doc, metadata in zip(docs, metadatas)]
+        logger.info(f"Retrieved context: {json.dumps(context, indent=2)}")
         return context
     
 
@@ -234,6 +245,7 @@ class RagChat(BaseModel):
         )
         self.update_token_count(response)
         answer = response.choices[0].message.content
+        logger.info(f"Answer: {answer}")
         return answer
 
 
@@ -250,10 +262,9 @@ def ultimate_rules_chat():
         else:            
 
             question = chat.query_rewriter(question)
-            print(f"\nQuery Rewriter: {question}")
-            
+            logger.info(f"Rewritten question: {question}")
             context = chat.retriever(question)
-            print(f"Question: {question}")
+            logger.info(f"Retrieved context: {json.dumps(context, indent=2)}")
 
             chat.history.update("user", question)
             chat.history.update("assistant", "I am retrieving some information to help answer the question")
