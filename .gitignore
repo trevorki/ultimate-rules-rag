@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+chroma_ultimate_rules_db/
+chroma.log
 
 # Jupyter Notebook
 .ipynb_checkpoints
