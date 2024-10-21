@@ -78,12 +78,21 @@ def wait_for_db(max_retries=5, delay=5):
 if __name__ == "__main__":
     wait_for_db()  # Add this line before processing the embeddings
     
-    path = "prepare_vectorstore/sample_sentence_embeddings.json"
-    with open(path, "r") as f:
-        sentence_embeddings = json.load(f)
+    paths = {
+        "glossary": "texts/glossary_embeddings.json",
+        "rules": "texts/rules_contextual_embeddings.json"
+    }
+    for path in paths:
+        print(f"Processing {path}...")
+        with open(paths[path], "r") as f:
+            embeddings = json.load(f)
 
-    for sentence, embedding in sentence_embeddings.items():
-        source = "samples"
-        doc_id = insert_document(sentence, source, embedding)
-        print(f"Inserted document with ID: '{doc_id}' for sentence: '{sentence}' ")
-    
+        for i, source in enumerate(embeddings):
+            print(f"{i+1} of {len(embeddings)}   ", end = "\r")
+            doc_id = insert_document(
+                source["chunk"],
+                path,
+                source["embedding"]
+            )
+            print(f"Inserted document with ID: '{doc_id}' for sentence: '{source['chunk']}' ")
+        

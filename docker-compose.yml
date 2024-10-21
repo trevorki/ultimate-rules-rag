@@ -34,7 +34,7 @@ services:
     #   - -c
     #   - |
     #     echo "creating vectorstore"
-    #     python prepare_vectorstore/create_vectorstore.py
+    #     python prepare_vectorstore/4-add_to_vectorstore.py
     #     echo "querying vectorstore"
     #     python query_vectorstore.py
     #     echo "done"

@@ -38,19 +38,19 @@ def query_similar_documents(query_embedding, limit=5):
             return cursor.fetchall()
     
 
-sentences = [
-    "The morning mist rolled gently across the tranquil lake, reflecting the pink hues of dawn.",
-    "Engineers unveiled a groundbreaking neural interface allowing direct communication between human brains and computers.",
-    "After years of dedicated practice, Maria's violin performance at Carnegie Hall received a standing ovation.",
+queries = [
+    "what is a pick and what happens after a pick is called",
+    "How many stall counts in ultimate?",
+    "How many stall counts in beach ultimate.",
 ]
 
 # Example usage
 if __name__ == "__main__":
     
-    for sentence in sentences:
-        print(f"\n\nFinding similar docs for: '{sentence}'")
-        embedding = create_embedding(sentence)
-        similar_docs = query_similar_documents(embedding)
+    for query in queries:
+        print(f"\n\nQuery: '{query}'")
+        embedding = create_embedding(query)
+        similar_docs = query_similar_documents(embedding, limit = 5)
         if similar_docs:
             for doc in similar_docs:
                 print(f"  similarity={doc[2]:.3f}   content='{doc[1]}'")
