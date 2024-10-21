@@ -1,7 +1,7 @@
 import json
 
 model_name = "gpt-4o-mini"
-path = "texts/contextual_embeddings.json"
+path = "texts/rules_contextual_embeddings.json"
 with open(path, "r") as f:
     data = json.load(f)
 

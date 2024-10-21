@@ -1,17 +1,17 @@
 ## Ace
 An offensive player at the front of a vertical stack in charge of catching thrower-initiated passes to the break side, or making continuation cuts after a reset throw.
-Synonymous terms: "X," "Alpha"
+Synonymous terms: 'X,' 'Alpha'
 
 ## Air-bounce
 A throwing technique that causes the disc to bounce on the air and rise during its flight, completed by imparting downward pressure on the top side of the disc at the point of release. Normally done with a backhand grip. It can create more of a floating disc flight.
 
 ## Alpha
 An offensive player that is tasked with trying to get open in isolation, often in an endzone setting.
-Synonymous terms: "Iso," "X"
+Synonymous terms: 'Iso,' 'X'
 
 ## Anhyzer
-The shape of a throw that begins its flight with the top of the disc facing toward the thrower but is angled to flatten out or turn later in its flight. Compare to "Hyzer." Term more commonly used in disc golf than ultimate.
-Synonymous terms: "Outside-In"
+The shape of a throw that begins its flight with the top of the disc facing toward the thrower but is angled to flatten out or turn later in its flight. Compare to 'Hyzer.' Term more commonly used in disc golf than ultimate.
+Synonymous terms: 'Outside-In'
 
 ## Around
 A throw — often, but not necessarily a break throw — that goes to the side of the marker that is opposite to the force side.
@@ -20,7 +20,7 @@ A throw — often, but not necessarily a break throw — that goes to the side o
 A pass that is caught for a goal. One of the fundamental offensive stats in ultimate.
 
 ## Backfield
-The area of the field behind the thrower relative to the direction of offensive movement. Compare "Downfield." "Upfield" is sometimes used to refer to both of these contradictory areas, but is discouraged by Ultiworld.
+The area of the field behind the thrower relative to the direction of offensive movement. Compare 'Downfield.' 'Upfield' is sometimes used to refer to both of these contradictory areas, but is discouraged by Ultiworld.
 
 ## Backhand
 A fundamental throw in ultimate that is released with the back of the hand facing the target.
@@ -42,11 +42,10 @@ Motion from an offensive player without the disc that is characterized by a roun
 
 ## Barbecue backhand
 A throw that is released with the back of the hand facing the target where the entire throwing motion takes place on the same side of the body as the hand throwing the disc as opposed to winding up across the body.
-Synonymous terms: "Dad backhand"
+Synonymous terms: 'Dad backhand'
 
 ## Bid
-1. A diving attempt to catch or block a disc.
-Synonymous terms: "Layout"
+1. A diving attempt to catch or block a disc. (Synonymous terms: 'Layout')
 2. An invitation to participate in a tournament. These can either be awarded by the event host or earned through qualification to the next round of a playoff structure, such as a USAU College or Club Series.
 3. An application submitted to seek an invitation to an event.
 
@@ -55,18 +54,17 @@ A pass, usually a forehand, that is thrown with the disc released at a steep, ev
 
 ## Block
 To intercept or knock the disc out of the air on defense that creates a turnover. The most basic defensive stat tracked in ultimate.
-Synonymous terms: "D"
+Synonymous terms: 'D'
 
 ## Bookends
 A goal scored by a player whose defensive play or block earned the team the scoring possession.
-Synonymous terms: "Double happiness"
+Synonymous terms: 'Double happiness'
 
 ## Box-and-one
 A type of junk defense where one player plays 1-on-1 defense against a single offensive player — typically the most threatening player — while other defenders play zone.
 
 ## Bracket
-1. A defensive technique in which two or more defenders in a matchup defense scheme cover two or more distinct spaces on the field (usually deep and under). By communicating and switching, the players can "bracket" the cutters, effectively playing a miniature zone to prevent the offensive players from getting open.
-Synonymous terms: "Sandwich"
+1. A defensive technique in which two or more defenders in a matchup defense scheme cover two or more distinct spaces on the field (usually deep and under). By communicating and switching, the players can 'bracket' the cutters, effectively playing a miniature zone to prevent the offensive players from getting open. Synonymous terms: 'Sandwich'
 2. A common format in tournament play for determining a champion.
 
 ## Break
@@ -90,11 +88,11 @@ A location on the playing field, centered between the sidelines and a set distan
 A score that happens when a defender intercepts a pass in their attacking endzone. The only unassisted score in ultimate. Named after Henry Callahan.
 
 ## Callahan (award)
-A yearly award administered by USA Ultimate for a D-I college player in each gender division recognizing on-field playing excellence as well as "outstanding sportsmanship, leadership, and dedication to ultimate." Nominees are chosen by teams (often promoted with a highlight video) and voted on by current college players. Named after Henry Callahan.
+A yearly award administered by USA Ultimate for a D-I college player in each gender division recognizing on-field playing excellence as well as 'outstanding sportsmanship, leadership, and dedication to ultimate.' Nominees are chosen by teams (often promoted with a highlight video) and voted on by current college players. Named after Henry Callahan.
 
 ## Chase
 A position in a zone defense charged with following the disc and setting a mark on each successive thrower.
-Synonymous terms: "Rabbit," "Puppy"
+Synonymous terms: 'Rabbit,' 'Puppy'
 
 ## Chisel
 A cut that attacks a cup zone by coming from behind the thrower with forward momentum into the cup.
@@ -119,10 +117,10 @@ An offensive cut between the first layer of zone defenders, typically members of
 
 ## Cross step
 A footwork approach typically used for pulling or disc golf driving where the trailing foot (left foot for a right-handed thrower) crosses behind the lead/plant foot on the approach to the pull, allowing the thrower a larger rotational range of motion and improving power generation.
-Synonymous terms: "X step"
+Synonymous terms: 'X step'
 
 ## Crosswind
-Wind blowing from sideline to sideline horizontally across the field. Compare "downwind"/"upwind"
+Wind blowing from sideline to sideline horizontally across the field. Compare 'downwind'/'upwind'
 
 ## Cup
 A multi-person marking scheme that typically tries to prevent yardage-gaining throws as a part of a zone defense.
@@ -135,25 +133,25 @@ An offensive player that typically tries to get open on motion downfield, gainin
 
 ## D
 To intercept or knock the disc out of the air on defense that creates a turnover. The most basic defensive stat tracked in ultimate.
-Synonymous terms: "Block"
+Synonymous terms: 'Block'
 
 ## D-line
 The defensive line, typically referring to the group of players on a team that predominantly play defensive points. May refer to a specific seven players taking the field for a specific defensive point, or an entire unit of players on a team's roster.
 
 ## Dad backhand
 A throw that is released with the back of the hand facing the target where the entire throwing motion takes place on the same side of the body as the hand throwing the disc as opposed to winding up across the body.
-Synonymous terms: "Barbecue backhand"
+Synonymous terms: 'Barbecue backhand'
 
 ## Dead disc
 A state when the disc is not actively in play, for example during a stoppage for a foul discussion. A dead disc requires acknowledgment from both teams to be brought back into a state of active play.
 
 ## Deep deep
 The player that covers the area furthest downfield from the thrower in a zone or switching defensive scheme.
-Synonymous terms: "Last back," "Deep"
+Synonymous terms: 'Last back,' 'Deep'
 
 ## Dish
 A short pass. Most often, this is a reset throw or one to a player that is moving downfield with forward momentum, usually with their eyes on the downfield cutters.
-Synonymous terms: "Dishy"
+Synonymous terms: 'Dishy'
 
 ## Doink
 A dropped pass that is normally a high-percentage catch.
@@ -166,17 +164,17 @@ A yearly award administered by Ultiworld and USA Ultimate for a D-III college pl
 
 ## Double game point
 The final point of a tied game in which the next point determines the winner.
-Synonymous terms: "Universe point," "DGP"
+Synonymous terms: 'Universe point,' 'DGP'
 
 ## Double happiness
 When a single player generates a block or turnover while on defense and then scores the goal to end the same point.
-Synonymous terms: "Bookends"
+Synonymous terms: 'Bookends'
 
 ## Double team
 When more than one defensive player is guarding the same offensive player. In WFDF and USA Ultimate rulesets, it is illegal to double team the offensive player with the disc, though it is legal in the AUDL.
 
 ## Downfield
-The area of the field in front of the thrower relative to the direction of offensive movement. Compare "Backfield." "Upfield" is sometimes used to refer to both of these contradictory areas, but is discouraged by Ultiworld.
+The area of the field in front of the thrower relative to the direction of offensive movement. Compare 'Backfield.' 'Upfield' is sometimes used to refer to both of these contradictory areas, but is discouraged by Ultiworld.
 
 ## Downwind
 Wind blowing from endzone to endzone with the direction of offensive moment.
@@ -187,7 +185,7 @@ Advancing the disc through a series of short passes between offensive players, p
 ## Dump
 1. A pass that is thrown into the backfield, often to reset the stall count.
 2. An offensive player positioned to receive such a pass.
-Synonymous terms: "Reset"
+Synonymous terms: 'Reset'
 
 ## Dump-swing
 A common offensive motion that moves the disc to the backfield with the intention of immediately sending it across the field horizontally.
@@ -206,7 +204,7 @@ A hybrid defensive style somewhere between matchup and zone defense, characteriz
 
 ## Flick
 A fundamental throw in ultimate that is released with the palm of the hand facing the target or towards the sky. Similar to a tennis forehand or a sidearm pitch in baseball.
-Synonymous terms: "Forehand," "Sidearm"
+Synonymous terms: 'Forehand,' 'Sidearm'
 
 ## Flip
 Like a coin toss, a way to determine who will start on offense or defense by correctly calling which side of a disc will land up after being flipped end-over-end in the air.
@@ -222,22 +220,24 @@ When a defender deflects or stops a thrown disc while on the mark with their foo
 
 ## Force
 A defensive marking strategy designed to limit the throwing lanes available to the person with the disc and pressure the offense to work toward a designated area(s) of the field. The marker tries to make it difficult for the thrower by placing their body in the way of throws to one part of the field while the downfield defenders attempt to prevent cuts to the open portions.
-Typically, the defense is articulated as "Force [a direction]," indicating where the marker is attempting to encourage the thrower toward.
+Typically, the defense is articulated as 'Force [a direction],' indicating where the marker is attempting to encourage the thrower toward.
+
+## Force strategies
 Common forcing strategies include:
-- Force away – Using a mark to push the thrower toward the sideline opposite where your team's bench/stuff is located; traditionally paired with "force home."
-- Force backhand – Using a mark to push the thrower toward the sideline on the left of the thrower when they are facing upfield (where a right-handed backhand would be thrown from); traditionally paired with "force forehand."
-- Force flat – Standing directly between the thrower and the end zone, using a mark to push throws to go toward either sideline but not up the middle of the field; equivalent to "force straight-up."
-- Force forehand – Using a mark to push the thrower toward the sideline on the right of the thrower when they are facing upfield (where a right-handed forehand would be thrown from); traditionally paired with "force backhand."
-- Force home – Using a mark to push the thrower toward the sideline where your team's bench/stuff is located; traditionally paired with "force away."
-- Force left – Similar to Force home or away, using a mark to push a thrower toward a specific direction or sideline. Commonly used in Germany and traditionally paired with "force right."
+- Force away – Using a mark to push the thrower toward the sideline opposite where your team's bench/stuff is located; traditionally paired with 'force home.'
+- Force backhand – Using a mark to push the thrower toward the sideline on the left of the thrower when they are facing upfield (where a right-handed backhand would be thrown from); traditionally paired with 'force forehand.'
+- Force flat – Standing directly between the thrower and the end zone, using a mark to push throws to go toward either sideline but not up the middle of the field; equivalent to 'force straight-up.'
+- Force forehand – Using a mark to push the thrower toward the sideline on the right of the thrower when they are facing upfield (where a right-handed forehand would be thrown from); traditionally paired with 'force backhand.'
+- Force home – Using a mark to push the thrower toward the sideline where your team's bench/stuff is located; traditionally paired with 'force away.'
+- Force left – Similar to Force home or away, using a mark to push a thrower toward a specific direction or sideline. Commonly used in Germany and traditionally paired with 'force right.'
 - Force middle – Using a mark to push the thrower toward the center of the field and not allowing a throw toward the sideline closest to them; this often results in the force switching directions throughout the possession.
-- Force right – Similar to Force home or away, using a mark to push a thrower toward a specific direction or sideline. Commonly used in Germany and traditionally paired with "force left."
+- Force right – Similar to Force home or away, using a mark to push a thrower toward a specific direction or sideline. Commonly used in Germany and traditionally paired with 'force left.'
 - Force sideline – Using a mark to push the thrower toward whichever sideline is closest and not allowing a throw toward the middle of the field; this often results in the force switching directions throughout the possession.
-- Force straight-up – Standing directly between the thrower and the end zone, using a mark to push throws to go toward either sideline but not up the middle of the field; equivalent to "force flat."
+- Force straight-up – Standing directly between the thrower and the end zone, using a mark to push throws to go toward either sideline but not up the middle of the field; equivalent to 'force flat.'
 
 ## Forehand
 A fundamental throw in ultimate that is released with the palm of the hand facing the target or towards the sky. Similar to a tennis forehand or a sidearm pitch in baseball.
-Synonymous terms: "Flick," "Sidearm"
+Synonymous terms: 'Flick,' 'Sidearm'
 
 ## Foul
 Non-incidental contact between opposing players, ie contact that affects the outcome of the play. In general, the player initiating the contact has committed the foul. Often results in a stoppage of play to adjudicate the infraction.
@@ -279,13 +279,13 @@ An offensive formation and strategy typified by players setting up in and mainta
 Referring to the height a pass is released from compared to the body; can be applied to any throw that is released above shoulder-level where the top of the disc is still facing up (ie, not an upside-down throw like a hammer or scoober).
 
 ## High side
-On a field with a distinct crosswind, the half of the field that is further upwind. Compare "Low side."
+On a field with a distinct crosswind, the half of the field that is further upwind. Compare 'Low side.'
 
 ## Hold line
 Used as a request for a team preparing to receive the pull to remain in order on the goal line, not crossing in front of or behind one another in a way that obscures them from view as the pulling team assigns defensive match-ups.
 
 ## Ho/Horizontal stack
-An offensive formation in which cutters line up downfield in a horizontal line stretching from sideline to sideline, to initiate movement. Compare "Vertical stack."
+An offensive formation in which cutters line up downfield in a horizontal line stretching from sideline to sideline, to initiate movement. Compare 'Vertical stack.'
 
 ## Hospital pass
 A high, floaty throw that stays airborne for a long time, allowing for a cluster of jostling players under its eventual landing spot.
@@ -297,16 +297,16 @@ A long-distance throw, typically over 30 yards.
 A play in which the offense intentionally throws a long, unlikely-to-be-completed pass toward their attacking end zone and immediately transitions to defense to try to force a turnover and earn back possession in a more favorable field position. Most often seen on a point when a team is scoring downwind.
 
 ## Hyzer
-The shape of a throw that begins its flight with the top of the disc facing away from the thrower but is angled to flatten out or turn later in its flight. Compare to "Anhyzer." Term more commonly used in disc golf than ultimate.
-Synonymous terms: "Inside-Out"
+The shape of a throw that begins its flight with the top of the disc facing away from the thrower but is angled to flatten out or turn later in its flight. Compare to 'Anhyzer.' Term more commonly used in disc golf than ultimate.
+Synonymous terms: 'Inside-Out'
 
 ## Inside
 The breakside space or throwing lane that is on the side of the marker that is closer to the force side.
 A throw into this space.
 
 ## Inside-Out (IO)
-The shape of a throw that begins its flight with the top of the disc facing away from the thrower but is angled to flatten out or turn later in its flight. Compare to "Outside-In."
-Synonymous terms: "Hyzer" (from disc golf)
+The shape of a throw that begins its flight with the top of the disc facing away from the thrower but is angled to flatten out or turn later in its flight. Compare to 'Outside-In.'
+Synonymous terms: 'Hyzer' (from disc golf)
 
 ## Iso/Isolation
 1. An offensive maneuver to clear an area on the field for a designated player to get open without teammates occupying or crossing the same space.
@@ -320,11 +320,11 @@ An area of the field where a thrower might deliver a pass; often used to discuss
 
 ## Layout
 A diving attempt to catch or block a disc.
-Synonymous terms: "Bid"
+Synonymous terms: 'Bid'
 
 ## Long
 A long-distance throw, typically over 30 yards. Common vocabulary in parts of Europe.
-Synonymous terms: "Huck"
+Synonymous terms: 'Huck'
 
 ## Look off
 When a thrower decides not to attempt a pass to an active cutter/receiver, often communicated with a pump-fake in order to move onto another option.
@@ -333,32 +333,32 @@ When a thrower decides not to attempt a pass to an active cutter/receiver, often
 Referring to the height a pass is released from compared to the body; can be applied to any throw that is released below knee-level.
 
 ## Low side
-On a field with a distinct crosswind, the half of the field that is further downwind. Compare "High side."
+On a field with a distinct crosswind, the half of the field that is further downwind. Compare 'High side.'
 
 ## Man Defense
 A defensive scheme where each defender is responsible for covering a single offensive player. Because of its gendered language and easy replacements, this terminology is banned in the Ultiworld Style Guide.
-Synonymous terms: "Matchup defense," "Person defense"
+Synonymous terms: 'Matchup defense,' 'Person defense'
 
 ## Mark
-A defensive maneuver attempting to prevent a thrower from delivering the disc to a designated area of the field by putting your body in the way. See, "Force."
-Informal synonym for "marker," ie the defender applying a mark to the offensive player currently in possession of the disc.
+A defensive maneuver attempting to prevent a thrower from delivering the disc to a designated area of the field by putting your body in the way. See, 'Force.'
+Informal synonym for 'marker,' ie the defender applying a mark to the offensive player currently in possession of the disc.
 Less commonly, any offensive player that is your defensive responsibility in a matchup scheme.
 
 ##  Marker
 The defensive player applying a mark to the offensive player currently in possession of the disc.
-Synonymous terms: "Mark"
+Synonymous terms: 'Mark'
 
 ##  Matchup defense
 A defensive scheme where each defender is responsible for covering a single offensive player.
-Synonymous terms: "Person defense"
+Synonymous terms: 'Person defense'
 
 ## Middle
 An offensive player that tries to get open on cuts downfield — most frequently under cuts as opposed to deep cuts — gaining yards for the offense. Common term in France.
-Synonymous terms: "Cutter"
+Synonymous terms: 'Cutter'
 
 ## Middle Middle
 A position guarding the center of the field in some zone defensive schemes.
-Synonymous terms: "Short deep"
+Synonymous terms: 'Short deep'
 
 ## No huck
 A verbal defensive call to a marker to communicate that they should try to stop the thrower from attempting a long pass, usually a quick flash to a straight-up marking position to disrupt an easy throw to an open target deep.
@@ -373,19 +373,19 @@ Abbreviation for Out of Bounds.
 A neutral, third-party, on-field official that helps resolve self-officiation disputes between players, keeps time, and enforces player conduct. At some USAU events, observers are empowered to make active calls related to objective elements of gameplay (for example: in or out of bounds calls, whether an attempted catch is up or down) as well as make binding rulings in the case of disputed foul or violation calls.
 
 ## Outside-In (OI)
-The shape of a throw that begins its flight with the top of the disc facing toward the thrower but is angled to flatten out or turn later in its flight. Compare to "Inside-out."
-Synonymous terms: "Anhyzer"
+The shape of a throw that begins its flight with the top of the disc facing toward the thrower but is angled to flatten out or turn later in its flight. Compare to 'Inside-out.'
+Synonymous terms: 'Anhyzer'
 
 ## OIO (or OIIO)
 A throw that is released with an outside-in (OI) angle, but to the marking area that is typically attacked with inside-out (IO) throws. In other words, an OI throw to the IO lane — combined to form OIIO.
 
 ## Pancake
 A catching technique where the disc is clapped between two hands, one on top on the face and the other on under side of the disc.
-Synonymous terms: "Clap catch," "Alligator catch"
+Synonymous terms: 'Clap catch,' 'Alligator catch'
 
 ## Person defense
 A defensive scheme where each defender is responsible for covering a single offensive player.
-Synonymous terms: "Matchup defense"
+Synonymous terms: 'Matchup defense'
 
 ## Pick
 An infraction that occurs whenever an offensive player moves in a manner that causes a defensive player guarding an offensive player to be obstructed by another player. Obstruction may result from contact with, or the need to avoid, the obstructing player.
@@ -415,14 +415,14 @@ The throw from one team starting in their own end zone to their opponents on the
 A pre-planned series of cuts and throws to begin an offensive point, designed to create optimal offensive attacking situations.
 
 ## Punt
-A throw that attempts to give the throwing team favorable field position on the ensuing defensive possession, prioritizing that aspect over the likelihood of completion. See also "Huck and Play D."
+A throw that attempts to give the throwing team favorable field position on the ensuing defensive possession, prioritizing that aspect over the likelihood of completion. See also 'Huck and Play D.'
 
 ## Push Pass
 A throw held similarly to a backhand with the index finger along the edge of the disc, released with the palm facing forward and flicking the wrist toward the target to impart rotational spin. Most effective as a short-distance pass in low wind.
 
 ## Rabbit
 A position in a zone defense charged with following the disc and setting a mark on each successive thrower.
-Synonymous terms: "Chase," "Puppy"
+Synonymous terms: 'Chase,' 'Puppy'
 
 ## Read
 1. Anticipating where a disc will end up based on its flight shape and characteristics.
@@ -430,7 +430,7 @@ Synonymous terms: "Chase," "Puppy"
 
 ## Reset
 A (typically) short pass between handlers that has a primary objective to extend a possession by starting a new stall count or changing the angle of attack, rather than attempting to gain yards downfield toward the attacking end zone.
-Synonymous terms: "Dump"
+Synonymous terms: 'Dump'
 
 ## Roll
 A defensive tactic where a marker drops off the thrower or soon-to-be-thrower to pick up a cutting player, while that player's defender moves to mark the thrower.
@@ -442,9 +442,8 @@ A pull that is thrown at a vertical angle in an attempt to have it land and run 
 A way to describe a pass that moves the disc entirely within the confines of a single part of the field if it were divided vertically into equal thirds. It is often seen as more dangerous to attempt long passes that spend their entire flight within the same third of the field.
 
 ## Sandwich
-1. A defensive technique in which two or more defenders in a matchup defense scheme cover two or more distinct spaces on the field (usually deep and under). By communicating and switching, the players can "sandwich" the cutters, effectively playing a miniature zone to prevent the offensive players from getting open.
-Synonymous terms: "Bracket"
-2.When two defenders surround a single offensive player underneath a floating huck as all three attempt to make a play on the disc.
+1. A defensive technique in which two or more defenders in a matchup defense scheme cover two or more distinct spaces on the field (usually deep and under). By communicating and switching, the players can 'sandwich' the cutters, effectively playing a miniature zone to prevent the offensive players from getting open. (Synonymous terms: 'Bracket')
+2. When two defenders surround a single offensive player underneath a floating huck as all three attempt to make a play on the disc.
 
 ## Savage
 Playing without any subs. Because of its negative connotations related to Indigenous populations, it is strongly discouraged in the Ultiworld Style Guide.
@@ -460,14 +459,14 @@ A thrower that is primarily or frequently looking to throw hucks, often used to 
 
 ## Short Deep
 The player that covers the middle of the field in a zone defense, behind the cup or front wall but in front of the deep in line with the wings.
-Synonymous terms: "Middle," "Middle Middle"
+Synonymous terms: 'Middle,' 'Middle Middle'
 
 ## Side stack
 An offensive formation where cutters line up vertically along a sideline in the downfield space.
 
 ## Sidearm
 A fundamental throw in ultimate that is released with the palm of the hand facing the target or towards the sky. Similar to a tennis forehand or a sidearm pitch in baseball.
-Synonymous terms: "Flick," "Forehand"
+Synonymous terms: 'Flick,' 'Forehand'
 
 ## Sky
 Catching or defending the disc high in the air, often over an opposing player.
@@ -489,14 +488,13 @@ An offensive formation where the cutters align themselves in a straight line sha
 
 ## Stall
 A turnover caused by the thrower failing to release the disc within their allotted period of possession.
-Synonymous terms: "Stall out"
+Synonymous terms: 'Stall out'
 
 ## Stall count
 The period of time within which a thrower must release a throw, measured in a set number of seconds.
 
 ## Strike
-1. An upline cut, usually by a handler.
-Synonymous terms: "Upline"
+1. An upline cut, usually by a handler. (Synonymous terms: 'Upline')
 2. A verbal defensive call to a marker to communicate that they should try to stop a throw to such a cut.
 
 ## Strip
@@ -537,11 +535,11 @@ Inadvertently throw the disc into the ground, causing a turnover.
 
 ## Turn
 A loss of possession by the offense caused by an incomplete pass, an interception, or a stall out.
-Synonymous terms: "Turnover"
+Synonymous terms: 'Turnover'
 
 ## Turnover
 A loss of possession by the offense caused by an incomplete pass, an interception, or a stall out.
-Synonymous terms: "Turn"
+Synonymous terms: 'Turn'
 
 ## Under
 The downfield space closer to the disc relative to the attacking end zone.
@@ -549,18 +547,18 @@ A downfield cut towards the disc into that space.
 
 ## Universe point
 The term for the final point of a tied game in which the next point determines the winner.
-Synonymous terms: "Double game point," "DGP"
+Synonymous terms: 'Double game point,' 'DGP'
 
 ## Up
 Verbal call to signal to downfield players that a disc has been thrown and is in the air.
 
 ## Upfield
 The area of the field in front of the thrower relative to the direction of offensive movement, though occasionally also used to refer to the area behind the thrower. Because of these contradictory uses, it is discouraged in the Ultiworld Style Guide.
-Synonymous terms: "Downfield"
+Synonymous terms: 'Downfield'
 
 ## Upline
 A cut from a lateral position on the break side beside or behind the thrower into the downfield open side.
-Synonymous terms: "Strike"
+Synonymous terms: 'Strike'
 
 ## Upwind
 Wind blowing from endzone to endzone against the direction of offensive moment.
@@ -582,7 +580,7 @@ A player that covers the space near a sideline as a part of a zone defense.
 
 ## X step
 A footwork approach typically used for pulling or disc golf driving where the trailing foot (left foot for a right-handed thrower) crosses behind the lead/plant foot on the approach to the pull, allowing the thrower a larger rotational range of motion and improving power generation.
-Synonymous terms: "Cross step"
+Synonymous terms: 'Cross step'
 
 ## Zipper
 An offensive play from a vertical stack where two players at one end of the stack cut horizontally in opposite directions, allowing the third from the front or back to cut vertically straight toward or away from the thrower.

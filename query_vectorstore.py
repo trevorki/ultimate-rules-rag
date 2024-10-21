@@ -49,13 +49,10 @@ if __name__ == "__main__":
     
     for sentence in sentences:
         print(f"\n\nFinding similar docs for: '{sentence}'")
-        # print("Creating embedding")
         embedding = create_embedding(sentence)
-        # print("Searching for similar docs...")
         similar_docs = query_similar_documents(embedding)
         if similar_docs:
-            # print("Similar Documents:")
             for doc in similar_docs:
-                print(f"  similarity={doc[2]:.3f}   Content='{doc[1]}'")
+                print(f"  similarity={doc[2]:.3f}   content='{doc[1]}'")
         else:
             print("No similar documents found or an error occurred.")

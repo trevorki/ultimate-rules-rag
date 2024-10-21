@@ -5,7 +5,6 @@ from openai import OpenAI
 from pydantic import BaseModel, ConfigDict
 from dotenv import load_dotenv
 import json
-from prompts import get_rag_prompts, get_assistant_prompt
 from typing import Optional
 from tools import get_tool_definitions
 

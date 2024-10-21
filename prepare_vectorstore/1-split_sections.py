@@ -13,7 +13,7 @@ summaries = []
 chunks = rules_text.split("## ")[3:]
 
 for chunk in chunks:
-    section_name = chunk.split("\n")[0
+    section_name = chunk.split("\n")[0]
     item = {
         "section_name": section_name,
         "text": chunk
