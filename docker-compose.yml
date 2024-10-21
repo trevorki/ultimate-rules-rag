@@ -1,26 +1,24 @@
 services:
   db:
     image: pgvector/pgvector:pg17
-    container_name: ultirules_db
+    container_name: db
     env_file:
       - .env
     ports:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
-      - ./init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
-      - ./setup_database.sql:/app/setup_database.sql
-    restart: unless-stopped
+      - ./postgres/setup_database.sql:/docker-entrypoint-initdb.d/setup_database.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
       interval: 10s
       timeout: 5s
       retries: 10
-    command: ["postgres", "-c", "log_statement=all"]
+    command: ["postgres", "-c", "log_statement=ddl"] # ddl
 
   app:
     build: .
-    container_name: ultirules_app
+    container_name: app
     depends_on:
       db:
         condition: service_healthy
@@ -30,10 +28,22 @@ services:
       - .:/app
     ports:
       - "8000:8000"
-    restart: unless-stopped
-    command: /bin/bash -c "tail -f /dev/null"
-    tty: true
-    stdin_open: true
+    # restart: unless-stopped
+    # command: 
+    #   - sh
+    #   - -c
+    #   - |
+    #     echo "creating vectorstore"
+    #     python prepare_vectorstore/create_vectorstore.py
+    #     echo "querying vectorstore"
+    #     python query_vectorstore.py
+    #     echo "done"
+    command: 
+      - sh
+      - -c
+      - |
+        echo "querying vectorstore"
+        python query_vectorstore.py
 
 volumes:
   db_data:

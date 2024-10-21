@@ -3,7 +3,6 @@ load_dotenv()
 
 import os
 import psycopg2
-from pgvector.sqlalchemy import Vector
 from pgvector.psycopg2 import register_vector
 
 from openai import OpenAI

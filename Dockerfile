@@ -22,14 +22,3 @@ RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r re
 
 # Copy the application code
 COPY . /app/
-
-# Make sure the script is executable
-RUN chmod +x /app/init-db.sh
-
-# # Copy the SQL file into the container
-# COPY setup_database.sql /docker-entrypoint-initdb.d/setup_database.sql
-
-# # Use init-db.sh as the entrypoint
-# ENTRYPOINT ["/app/init-db.sh"]
-
-# CMD ["python", "query_vectorstore.py"]
