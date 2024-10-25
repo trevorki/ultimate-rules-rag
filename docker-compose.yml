@@ -9,41 +9,35 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
       - ./postgres/setup_database.sql:/docker-entrypoint-initdb.d/setup_database.sql
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-    command: ["postgres", "-c", "log_statement=ddl"] # ddl
 
   app:
     build: .
     container_name: app
-    depends_on:
-      db:
-        condition: service_healthy
     env_file:
       - .env
+    environment:
+      - POSTGRES_HOST=db  # Override only for the app service
     volumes:
       - .:/app
-    ports:
-      - "8000:8000"
-    # restart: unless-stopped
+    depends_on:
+      - db
+
+    command: 
+      - sh
+      - -c
+      - |
+        echo "running retriever.py"
+        python retriever.py
+        echo "done"
     # command: 
     #   - sh
     #   - -c
     #   - |
     #     echo "creating vectorstore"
     #     python prepare_vectorstore/4-add_to_vectorstore.py
-    #     echo "querying vectorstore"
-    #     python query_vectorstore.py
+    #     echo "retriever"
+    #     python retriever.py
     #     echo "done"
-    command: 
-      - sh
-      - -c
-      - |
-        echo "querying vectorstore"
-        python query_vectorstore.py
 
 volumes:
   db_data:

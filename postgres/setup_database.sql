@@ -20,10 +20,10 @@ CREATE OR REPLACE FUNCTION query_similar_documents(
     query_embedding VECTOR(1536),
     limit_num INT
 )
-RETURNS TABLE(id INT, content TEXT, similarity FLOAT8) AS $$
+RETURNS TABLE(id INT, content TEXT, source TEXT, similarity FLOAT8) AS $$
 BEGIN
     RETURN QUERY
-    SELECT documents.id, documents.content, -(documents.embedding <#> query_embedding) AS similarity
+    SELECT documents.id, documents.content, documents.source, -(documents.embedding <#> query_embedding) AS similarity
     FROM documents
     ORDER BY similarity DESC
     LIMIT limit_num;
