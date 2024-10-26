@@ -36,7 +36,7 @@ cursor = conn.cursor()
 
 
 # Example: Insert a document with its embedding
-def insert_document(content, source, embedding):
+def insert_document(content, context, source, embedding):
     with psycopg2.connect(
         dbname=DB_NAME,
         user=DB_USER,
@@ -46,10 +46,10 @@ def insert_document(content, source, embedding):
     ) as conn:
         with conn.cursor() as cursor:
             cursor.execute("""
-                INSERT INTO documents (content, source, embedding)
-                VALUES (%s, %s, %s)
+                INSERT INTO documents (content, context, source, embedding)
+                VALUES (%s, %s, %s, %s)
                 RETURNING id;
-            """, (content ,source, embedding))
+            """, (content, context, source, embedding))
             doc_id = cursor.fetchone()[0]
             conn.commit()
             return doc_id
@@ -85,14 +85,15 @@ if __name__ == "__main__":
     for path in paths:
         print(f"Processing {path}...")
         with open(paths[path], "r") as f:
-            embeddings = json.load(f)
+            chunks = json.load(f)
 
-        for i, source in enumerate(embeddings):
-            print(f"{i+1} of {len(embeddings)}   ", end = "\r")
+        for i, chunk in enumerate(chunks):
+            print(f"{i+1} of {len(chunks)}   ", end = "\r")
             doc_id = insert_document(
-                source["chunk"],
-                path,
-                source["embedding"]
+                content = chunk["chunk"],
+                context = chunk["context"] if "context" in chunk else "This is taken from Ultiworld's Ultimate Glosssary",
+                source = path,
+                embedding = chunk["embedding"]
             )
-            print(f"Inserted document with ID: '{doc_id}' for sentence: '{source['chunk']}' ")
+            print(f"Inserted document with ID: '{doc_id}' for sentence: '{chunk['chunk']}' ")
         

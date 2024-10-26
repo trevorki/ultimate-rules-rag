@@ -1322,8 +1322,6 @@ D1.A. There are not currently any requirements for rules adaptations for youth u
 
 D2. Recommendations
 D2.A. These rule adaptations are not required, but are optional recommendations taken in whole or in part, to help younger players learn to play in a more developmentally appropriate environment.
-
-
 |   | Under-12   | Under-15   | Under-17/20   |
 |---|---|---|----|
 | Foot blocks | Not allowed. If a marker blocks a throw with a non-planted foot or leg, it is considered a marking foul. | Standards rules. Emphasis must be placed by coaches on proper technique and decision-making, especially for new players. | Standards rules. Emphasis must be placed by coaches on proper technique and decision-making, especially for new players. |
@@ -1347,7 +1345,6 @@ The following adaptations to the rules are to be used in beach or sand ultimate 
 
 E1. Number of Players
 E1.A. The recommended number of players per team is either five (5) or four (4).
-
 
 E2. Playing Field
 E2.A. 5v5 Field Dimensions
@@ -1406,7 +1403,6 @@ E6.B. A sand foul is considered distinct and separate to the action that caused 
 Overview - Ultimate 4’s is an exciting and accessible variation of ultimate adapted for smaller teams and smaller fields. Like other variations that use smaller numbers, such as Beach Ultimate, 4’s helps create an opportunity for more involvement from everyone on the field. With shorter stall counts, play moves at a faster pace, and the smaller field creates a space where more throwers can reach all areas of the field. The need for fewer people and less field space makes the sport more accessible in multiple ways. While played with most of the same rules as regulation ultimate, including field surface, matches consist of multiple short games rather than one long one. The first team to win two of the three games wins the match, a format which lends itself to exciting comebacks and thrilling tie-breakers.
 
 The following adaptations to the rules are to be used in Ultimate 4’s competition. These adaptations may be additions to the current official rules or may supersede existing rules. Other than these additions and changes, the current official rules apply to Ultimate 4’s competition.
-
 | | |
 |--------------------|-----------------------------------|
 | Field size (yards) | Central Zone Length: 37 Width: 25 End Zone: 8 Total Length: 53 Note: Total length is the approximate width of an American football field. |

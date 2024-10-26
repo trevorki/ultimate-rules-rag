@@ -52,17 +52,15 @@ class Retriever:
         # logger.info("\n".join([f"ID: {doc[0]}, Content: {doc[1]}, Source: {doc[2]}" for doc in retrieved_docs]))
         
 
-        formatted_docs = [{"id":doc[0], "content":doc[1], "source":doc[2]} for doc in retrieved_docs]
+        retrieved_docs = [{"id":doc[0], "content":doc[1], "source":doc[2]} for doc in retrieved_docs]
 
         if expand_context is True:
-            retrieved_docs = self.get_expanded_context(formatted_docs)
-        return formatted_docs
+            retrieved_docs = self.get_expanded_context(retrieved_docs)
+        return retrieved_docs
     
     def get_expanded_context(self, retrieved_docs):
         # Extract the IDs of the documents to expand
         doc_ids = [doc["id"] for doc in retrieved_docs if doc["source"] == "rules"]
-        print("Getting expanded context")
-        print(f"doc_ids: {doc_ids}")
         
         if not doc_ids:
             return retrieved_docs  # No documents to expand
@@ -72,34 +70,64 @@ class Retriever:
         for doc_id in doc_ids:
             doc_ids_to_fetch.update([doc_id - 1, doc_id, doc_id + 1])
 
-        print(f"doc_ids_to_fetch: {doc_ids_to_fetch}")
-
-        # Construct the SQL query
+        # Fetch adjacent documents
         sql_query = """
             SELECT id, content FROM documents 
             WHERE id IN %s
             AND source = 'rules'
             ORDER BY id
-        """
+        """.replace("    ", "")
         
-        # Execute the query
-        expanded_docs = self.query_db_sql(sql_query, (tuple(doc_ids_to_fetch),))
-
-        # Process the results
-        expanded_content = {}
-        for i in range(1, len(expanded_docs) - 1):
-            prev_content = expanded_docs[i-1][1]
-            current_content = expanded_docs[i][1]
-            next_content = expanded_docs[i+1][1]
-            expanded_content[expanded_docs[i][0]] = f"{prev_content}\n\n{current_content}\n\n{next_content}"
-
-        # Replace the content of the original documents with expanded content
-        result = []
-        for doc in retrieved_docs:
-            if doc["id"] in expanded_content:
-                result.append({"id":doc["id"], "content":expanded_content[doc["id"]], "source":doc["source"]})
+        adjacent_docs = self.query_db_sql(sql_query, (tuple(doc_ids_to_fetch),))
+        
+        # Convert to dictionary for easier lookup
+        doc_map = {doc[0]: doc[1] for doc in adjacent_docs}
+        
+        # Group consecutive IDs
+        groups = []
+        current_group = []
+        
+        sorted_ids = sorted(doc_map.keys())
+        for id in sorted_ids:
+            if not current_group or id == current_group[-1] + 1:
+                current_group.append(id)
             else:
-                result.append(doc)
+                if current_group:
+                    groups.append(current_group)
+                current_group = [id]
+        if current_group:
+            groups.append(current_group)
+
+        # Create merged context documents with tracking of original positions
+        result = []
+        for group in groups:
+            # Only include groups that contain at least one of our original retrieved doc_ids
+            original_positions = [
+                i for i, doc in enumerate(retrieved_docs) 
+                if doc["source"] == "rules" and doc["id"] in group
+            ]
+            if original_positions:
+                merged_content = "\n\n".join(doc_map[id] for id in group)
+                # Use the middle ID from the group as the representative ID
+                representative_id = group[len(group)//2]
+                result.append({
+                    "id": representative_id,
+                    "content": merged_content,
+                    "source": "rules",
+                    "context_range": f"docs {group[0]}-{group[-1]}",
+                    "first_appearance": min(original_positions)  # Track earliest appearance
+                })
+
+        # Sort by the original appearance order
+        result.sort(key=lambda x: x["first_appearance"])
+        
+        # Remove the temporary sorting key
+        for doc in result:
+            doc.pop("first_appearance", None)
+
+        # Add back any non-rules documents from the original results
+        non_rules_docs = [doc for doc in retrieved_docs if doc["source"] != "rules"]
+        result.extend(non_rules_docs)
 
         return result
 

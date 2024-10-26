@@ -22,22 +22,22 @@ services:
     depends_on:
       - db
 
-    command: 
-      - sh
-      - -c
-      - |
-        echo "running retriever.py"
-        python retriever.py
-        echo "done"
     # command: 
     #   - sh
     #   - -c
     #   - |
-    #     echo "creating vectorstore"
-    #     python prepare_vectorstore/4-add_to_vectorstore.py
-    #     echo "retriever"
+    #     echo "running retriever.py"
     #     python retriever.py
     #     echo "done"
+    command: 
+      - sh
+      - -c
+      - |
+        echo "creating vectorstore"
+        python prepare_vectorstore/4-add_to_vectorstore.py
+        echo "running ultimate-rag-basic.py"
+        python ultimate-rag-basic.py
+        echo "done"
 
 volumes:
   db_data:

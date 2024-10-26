@@ -2,7 +2,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import os
-import anthropic
 from openai import OpenAI
 import json
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -58,6 +57,7 @@ Here is the chunk we want to situate within the section:
 </chunk>
 
 Please give a short succinct context to situate this chunk within the overall document for the purposes of improving search retrieval of the chunk.
+If the chunk is a continuation of a rule definition, please summarize the rule as defined in the earlier section in a few words.
 Answer only with the succinct context and nothing else.
 """
 

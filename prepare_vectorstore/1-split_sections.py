@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 load_dotenv()
-
+import json
 import os
 
 rules_path = "texts/Official-Rules-of-Ultimate-2024-2025.md"
