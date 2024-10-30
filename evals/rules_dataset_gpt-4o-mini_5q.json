@@ -1,0 +1,1086 @@
+[
+    {
+        "section": "1 Introduction",
+        "question": "What is the objective of the game of Ultimate?",
+        "answer": "The objective of the game is to score goals by catching a legal pass in the end zone that the player is attacking.",
+        "rules": [
+            "1.A. Description: Ultimate is a non-contact, self-officiated disc sport played by two teams of seven players. The object of the game is to score goals. A goal is scored when a player catches any legal pass in the end zone that player is attacking."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "1 Introduction",
+        "question": "Can a player run while holding the disc in Ultimate?",
+        "answer": "No, a player may not run while holding the disc.",
+        "rules": [
+            "1.A. Description: A player may not run while holding the disc."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "1 Introduction",
+        "question": "What happens if a pass is incomplete in Ultimate?",
+        "answer": "If a pass is incomplete, a turnover occurs, resulting in an immediate change of the team in possession of the disc.",
+        "rules": [
+            "1.A. Description: Any time a pass is incomplete, a turnover occurs, resulting in an immediate change of the team in possession of the disc."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "1 Introduction",
+        "question": "What is the Event Organizer Clause in Ultimate?",
+        "answer": "The Event Organizer Clause allows the event organizer to modify rules relating to game logistics, such as game length, time limits, and uniform requirements, as long as these changes are established before competition starts.",
+        "rules": [
+            "1.B.2. Event Organizer Clause: The event organizer may modify rules relating to game logistics in order to suit the event. Any such change must be established before competition starts."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "1 Introduction",
+        "question": "Under what conditions can a game be played under different rules in Ultimate?",
+        "answer": "A game may be played under any variation of the rules agreed upon by the captains of the teams involved, provided it is not subject to the event organizer clause.",
+        "rules": [
+            "1.B.3. Captain's Clause: For games not subject to the event organizer clause, a game may be played under any variation of the rules agreed upon by the captains of the teams involved."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "2 Spirit of the Game",
+        "question": "What is the primary responsibility of players regarding the Spirit of the Game in ultimate?",
+        "answer": "Players are responsible for fair play, mutual respect among competitors, adherence to the rules, and maintaining the joy of play.",
+        "rules": [
+            "2.A. Spirit of the Game is a set of principles which places the responsibility for fair play on the player."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "2 Spirit of the Game",
+        "question": "What should players do if they cannot agree on a call during a game?",
+        "answer": "If players cannot agree, the disc is returned to the thrower.",
+        "rules": [
+            "2.K. If after discussion players cannot agree, or it is unclear: 2.K.1. what occurred in a play, or 2.K.2. what would most likely have occurred in a play, the disc is returned to the thrower."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "2 Spirit of the Game",
+        "question": "What actions can captains take if a player intentionally violates the rules?",
+        "answer": "Captains should discuss the incident and determine an appropriate outcome, without being bound by specific rules.",
+        "rules": [
+            "2.C.1. If a player intentionally or flagrantly violates the rules, the captains of each team should discuss the incident and determine an appropriate outcome."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "2 Spirit of the Game",
+        "question": "What should players do if a novice player commits an infraction out of ignorance?",
+        "answer": "Experienced players are obliged to explain the infraction and clarify what should happen.",
+        "rules": [
+            "2.H. In the case where a novice player commits an infraction out of ignorance of the rules, experienced players are obliged to explain the infraction and clarify what should happen."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "2 Spirit of the Game",
+        "question": "What are some examples of actions that support good spirit in ultimate?",
+        "answer": "Examples include playing safely, informing teammates of wrong calls, and celebrating good spirit by both teams.",
+        "rules": [
+            "2.E. The following are examples of actions to support good spirit. While the absence of these actions is not necessarily an indication of poor spirit, the examples illustrate three core tenets of Spirit of the Game."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "3 Definitions",
+        "question": "What is the best perspective in ultimate and who can provide it?",
+        "answer": "The best perspective is the most complete view available by a player that includes the relative positions of the disc, ground, players, and line markers involved in a play. It always belongs to a player, but they may seek the perspective of sideline players or coaches to clarify rules.",
+        "rules": [
+            "3.A. Best perspective"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "3 Definitions",
+        "question": "What constitutes a completed pass in ultimate?",
+        "answer": "A completed pass is any catch that results in the team in possession of the disc retaining possession. Any pass that does not result in retention of possession is considered incomplete.",
+        "rules": [
+            "3.B. Completed pass"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "3 Definitions",
+        "question": "How is a foul defined in ultimate?",
+        "answer": "A foul is defined as non-incidental contact between opposing players, where generally the player initiating the contact has committed the foul.",
+        "rules": [
+            "3.C. Foul"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "3 Definitions",
+        "question": "What is the difference between a 'live' disc and an 'in play' disc?",
+        "answer": "A disc is 'in play' when players can move and play can proceed without the defense's acknowledgment, while a disc is 'live' when players can move and the disc is subject to a turnover, but the thrower cannot make a legal pass.",
+        "rules": [
+            "3.M.1. A disc is 'in play'",
+            "3.M.2. A disc is 'live'"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "3 Definitions",
+        "question": "What is the role of a sideline player in relation to the best perspective?",
+        "answer": "A sideline player should not offer their perspective unless solicited by a player, but they may provide perspective if it is to the detriment of their own team.",
+        "rules": [
+            "3.A.1.a. Sideline players' perspective"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "4 Playing Field",
+        "question": "What is the recommended surface for the ultimate playing field?",
+        "answer": "The recommended surface for the ultimate playing field is well trimmed grass.",
+        "rules": [
+            "4.A. The playing field is a rectangular area and should be essentially flat, free of obstructions and afford reasonable player safety. Well trimmed grass is the recommended surface and all lines should be marked."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "4 Playing Field",
+        "question": "What defines the central zone in ultimate?",
+        "answer": "The central zone is defined as the playing field excluding the end zones.",
+        "rules": [
+            "4.E. The central zone is the playing field excluding the end zones."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "4 Playing Field",
+        "question": "What are the perimeter lines of the playing field?",
+        "answer": "The perimeter lines consist of two sidelines along the length and two backlines along the width. These lines are not part of the playing field.",
+        "rules": [
+            "4.C. The playing field is bounded by four perimeter lines: two (2) sidelines along the length and two (2) backlines along the width. The perimeter lines are not part of the playing field."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "4 Playing Field",
+        "question": "Where are the brick marks located on the playing field?",
+        "answer": "Brick marks are located in the central zone a set distance from each goal line and midway between the sidelines.",
+        "rules": [
+            "4.G. Brick marks are located in the central zone a set distance from each goal line and midway between the sidelines."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "4 Playing Field",
+        "question": "What happens if play is obstructed within five yards of the playing field?",
+        "answer": "If play is obstructed by competitors, coaches, spectators, or objects within five yards of the playing field, any obstructed player or the thrower in possession of the disc may call this violation. Play resumes at the stall count reached plus one, or 9 if over 8.",
+        "rules": [
+            "4.J. If play is obstructed by competitors, coaches, spectators, or objects within five yards of the playing field, any obstructed player or the thrower in possession of the disc may call this violation. Play resumes at the stall count reached plus one, or 9 if over 8."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "5 Equipment",
+        "question": "What type of disc can be used during a game of ultimate?",
+        "answer": "Any disc acceptable to both team captains may be used. If they cannot agree, the current Official Disc of USA Ultimate is used.",
+        "rules": [
+            "5.A. Any disc acceptable to both team captains may be used. If they cannot agree, the current Official Disc of USA Ultimate is used."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "5 Equipment",
+        "question": "Are players allowed to wear any type of clothing during a game?",
+        "answer": "Players may wear any soft clothing that does not endanger the safety of other players or provide unfair advantage.",
+        "rules": [
+            "5.B. Players may wear any soft clothing that does not endanger the safety of other players or provide unfair advantage."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "5 Equipment",
+        "question": "What types of cleats are prohibited in ultimate games?",
+        "answer": "Cleats with dangerous parts, such as metallic baseball cleats, track spikes, or worn or broken studs with sharp edges, are not allowed.",
+        "rules": [
+            "5.C. Cleats with dangerous parts, such as metallic baseball cleats, track spikes, or worn or broken studs with sharp edges, are not allowed."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "5 Equipment",
+        "question": "What clothing requirements must players follow in tournament play?",
+        "answer": "Each player must wear a uniform or other clothing distinguishing that player from players on the other team. In tournament play, matching uniforms and numbered jerseys are recommended.",
+        "rules": [
+            "5.D. Each player must wear a uniform or other clothing distinguishing that player from players on the other team. In tournament play, matching uniforms and numbered jerseys are recommended."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "5 Equipment",
+        "question": "Can players use electronic devices to communicate during a game?",
+        "answer": "Team members may not use any form of acoustic amplifiers and/or electronic communication devices to communicate with players, except for medically necessary devices.",
+        "rules": [
+            "5.G. Team members may not use any form of acoustic amplifiers and/or electronic communication devices to communicate with players. Medically necessary devices are exempt from this rule."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "6 Length of Game",
+        "question": "What is the game total in a standard ultimate game?",
+        "answer": "The game total in a standard ultimate game is 15.",
+        "rules": [
+            "6.A.1. A standard game has a game total of 15."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "6 Length of Game",
+        "question": "What is the halftime target for a game with a total of 15 goals?",
+        "answer": "The halftime target for a game with a total of 15 goals is 8.",
+        "rules": [
+            "6.B. Halftime begins when one team's score first reaches the halftime target. [[In a game with a game total of 15, the halftime target will be 8.]]"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "6 Length of Game",
+        "question": "What happens when the soft cap is reached during a game?",
+        "answer": "When the soft cap is reached, play continues until the current scoring attempt is completed. If the game total has not been reached, one is added to the higher score to set a new game total.",
+        "rules": [
+            "6.C.1. The soft cap occurs once a predetermined time of play has elapsed. At the soft cap, play continues until the current scoring attempt is completed. If, after the current scoring attempt is completed, the game total has not yet been reached by one team, one is added to the higher score and the resulting number is the new game total."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "6 Length of Game",
+        "question": "What is the outcome if the hard cap occurs during halftime?",
+        "answer": "If the hard cap occurs during halftime, the game is over and the team with the higher score is the winner.",
+        "rules": [
+            "6.C.2.a. If the hard cap occurs during the halftime break, the game is over and the team with the higher score is the winner."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "6 Length of Game",
+        "question": "What is the duration of a standard halftime in an ultimate game?",
+        "answer": "A standard halftime is 7 minutes.",
+        "rules": [
+            "6.B.1. A standard halftime is 7 minutes."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "7 Timeouts",
+        "question": "How long does a team timeout last in a standard ultimate game?",
+        "answer": "A team timeout lasts 70 seconds.",
+        "rules": [
+            "7.B.1. A team timeout lasts 70 seconds."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "7 Timeouts",
+        "question": "Who can call a team timeout after a goal is scored?",
+        "answer": "Any player may call a timeout after a goal is scored and before both teams have signaled readiness to start play.",
+        "rules": [
+            "7.B.2. Any player may call a timeout after a goal is scored and before both teams have signaled readiness to start play."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "7 Timeouts",
+        "question": "What must a thrower do to call a timeout after a pull?",
+        "answer": "The thrower must form a T with one hand and the disc and audibly say 'timeout.' The timeout begins when the T is formed.",
+        "rules": [
+            "7.B.3. The player must form a T with one hand and the disc, and should audibly say 'timeout.' The timeout begins when the T is formed."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "7 Timeouts",
+        "question": "What happens if a team exceeds the time limit during a timeout?",
+        "answer": "If the time limits for the timeout are exceeded by one team, a player on the other team may announce 'delay of game' and self-check the disc into play without acknowledgment by the opposing team.",
+        "rules": [
+            "7.B.4.d. If the time limits for the timeout are exceeded by one team, a player on the other team may announce 'delay of game' and the player at the location the disc is to be put into play may self-check the disc into play without acknowledgment by the opposing team."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "7 Timeouts",
+        "question": "What is the primary concern during an injury timeout?",
+        "answer": "During an injury timeout, the health and safety of the injured player are of primary concern.",
+        "rules": [
+            "7.C. A timeout called for a player injury. During an injury timeout, the health and safety of the injured player are of primary concern."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "8 Player Substitutions",
+        "question": "When can a team make player substitutions according to the rules of ultimate?",
+        "answer": "A team can make player substitutions after a goal and before they have signaled readiness, or to replace injured players, players with illegal equipment, to resolve an incorrect personnel violation, or to replace a player removed due to misconduct.",
+        "rules": [
+            "8.A.1. after a goal and before the substituting team has signaled readiness",
+            "8.A.2. to replace injured players, replace players with illegal equipment, to resolve an incorrect personnel violation, or to replace a player removed due to misconduct"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "8 Player Substitutions",
+        "question": "Can a team substitute players after a re-pull call?",
+        "answer": "No, substitutions are not permitted following a re-pull call unless it is to replace injured players, players with illegal equipment, or in accordance with other specific reasons outlined in the rules.",
+        "rules": [
+            "8.B. Substitutions are not permitted following a re-pull call, unless in accordance with 8.A.2."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "8 Player Substitutions",
+        "question": "What happens if a player is injured during a game? Can they be substituted?",
+        "answer": "Yes, if a player is injured, they can be substituted according to the rules.",
+        "rules": [
+            "8.A.2. to replace injured players"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "8 Player Substitutions",
+        "question": "If a player is removed due to misconduct, what is the rule regarding substitutions?",
+        "answer": "If a player is removed due to misconduct, the team can substitute that player, and the opposing team may substitute a like number of, or fewer, players.",
+        "rules": [
+            "8.A.2. to replace a player removed due to misconduct"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "8 Player Substitutions",
+        "question": "What are the conditions under which a team can substitute players if they have a player with illegal equipment?",
+        "answer": "A team can substitute players to replace those with illegal equipment, and the opposing team may also substitute a like number of, or fewer, players.",
+        "rules": [
+            "8.A.2. replace players with illegal equipment"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "10 In- and Out-of-bounds",
+        "question": "What happens to a player who contacts the out-of-bounds area?",
+        "answer": "The player is considered out-of-bounds.",
+        "rules": [
+            "10.C"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "10 In- and Out-of-bounds",
+        "question": "If a player catches an in-bounds disc and lands on an opposing player causing their first ground contact to be out-of-bounds, what is this play considered?",
+        "answer": "This is treated as a force-out foul.",
+        "rules": [
+            "10.C.4"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "10 In- and Out-of-bounds",
+        "question": "When does a disc become in-bounds?",
+        "answer": "A disc becomes in-bounds when it is put into play or when play starts or restarts.",
+        "rules": [
+            "10.D"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "10 In- and Out-of-bounds",
+        "question": "What must a player do to continue play after the disc becomes out-of-bounds?",
+        "answer": "A member of the team gaining possession must carry the disc to the nearest spot in the central zone where the disc last crossed the perimeter line or contacted an in-bounds player.",
+        "rules": [
+            "10.H"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "10 In- and Out-of-bounds",
+        "question": "Can a player who is airborne and contacts the out-of-bounds area still be considered in-bounds?",
+        "answer": "An airborne player retains in-bounds or out-of-bounds status until they contact the playing field or the out-of-bounds area.",
+        "rules": [
+            "10.C"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "11 End Zone Possession",
+        "question": "What must a player do immediately after gaining possession of the disc in their defending end zone following a turnover?",
+        "answer": "The player must either establish a pivot at the spot of the disc or carry the disc directly to the closest point on the goal line and put it into play at that spot.",
+        "rules": [
+            "11.A"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "11 End Zone Possession",
+        "question": "If a player gains possession in the end zone they are attacking, but it is not due to scoring a goal, where must they put the disc into play?",
+        "answer": "The player must carry the disc directly to the spot on the goal line closest to where they stopped and put it into play at that spot.",
+        "rules": [
+            "11.B"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "11 End Zone Possession",
+        "question": "What happens if a team gains possession of a dead disc in their attacking end zone?",
+        "answer": "The disc is checked into a live state where the infraction occurred, and the thrower then proceeds according to rule 11.B.",
+        "rules": [
+            "11.C"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "11 End Zone Possession",
+        "question": "Can a player carry the disc at any speed after gaining possession in their defending end zone?",
+        "answer": "Yes, the player may carry the disc at any speed, constant or variable, as long as they do not unreasonably delay.",
+        "rules": [
+            "11.A.2"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "11 End Zone Possession",
+        "question": "What constitutes a travel violation when gaining possession in the defending end zone?",
+        "answer": "A travel violation occurs if the player fails to put the disc into play either at the spot of the disc or on the goal line, and instead puts it into play in between those two spots.",
+        "rules": [
+            "11.A.2"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "12 Scoring",
+        "question": "What is required for a goal to be scored in ultimate?",
+        "answer": "A goal is scored when an in-bounds player catches any legal pass in the end zone of attack and retains possession of the disc throughout all ground contact related to the catch.",
+        "rules": [
+            "12.A"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "12 Scoring",
+        "question": "What determines if a player's first point of ground contact is in the end zone?",
+        "answer": "The player's first point of ground contact must be completely in the end zone, and if they land on their toes first, that is considered the first point. If they land flat-footed and it's unclear, the entire foot is the first point of ground contact.",
+        "rules": [
+            "12.A.1"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "12 Scoring",
+        "question": "What happens if a player loses possession of the disc due to an uncontested foul while their first ground contact is in the end zone?",
+        "answer": "The player is awarded a goal.",
+        "rules": [
+            "12.A.2"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "12 Scoring",
+        "question": "Can a player call 'goal' before completing all ground contact related to the catch?",
+        "answer": "No, a player may not call 'goal' if they did not maintain possession through all ground contact related to the catch or prior to completion of all ground contact.",
+        "rules": [
+            "12.D"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "12 Scoring",
+        "question": "What should a player do if they believe a goal has been scored?",
+        "answer": "The player may call 'goal' and play stops, but they must have maintained possession through all ground contact related to the catch.",
+        "rules": [
+            "12.D"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "13 Turnovers",
+        "question": "What happens if a thrower accidentally drops the disc and it contacts the ground before they regain possession?",
+        "answer": "It is considered a turnover.",
+        "rules": [
+            "13.B"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "13 Turnovers",
+        "question": "Is a pass considered intercepted if the defender catches it but then accidentally drops it before it contacts the ground?",
+        "answer": "No, it is considered an incomplete pass rather than an interception.",
+        "rules": [
+            "13.C"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "13 Turnovers",
+        "question": "What results in a turnover when the marker's count reaches ten?",
+        "answer": "It results in a turnover and a stoppage of play.",
+        "rules": [
+            "13.D.1"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "13 Turnovers",
+        "question": "If an offensive player uses an item of equipment to assist in catching a pass, what is the result?",
+        "answer": "It results in a turnover.",
+        "rules": [
+            "13.D.5"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "13 Turnovers",
+        "question": "What occurs if a thrower catches a legally thrown disc?",
+        "answer": "It is considered a turnover unless another player touches the disc during its flight.",
+        "rules": [
+            "13.D.3"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "14 The Thrower",
+        "question": "What must a player do if they pick up a live disc that is in play?",
+        "answer": "The player must put the disc into play.",
+        "rules": [
+            "14.A.1 If an offensive player picks up a live or in play disc, that player must put it into play."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "14 The Thrower",
+        "question": "How long does an offensive player have to establish a pivot after an in-bounds disc comes to rest in the central zone?",
+        "answer": "The offensive player must establish a pivot within ten seconds after it comes to rest.",
+        "rules": [
+            "14.A.3 If an in-bounds disc comes to rest on the central zone, a member of the team becoming offense must pick up the disc and establish a pivot within ten seconds after it comes to rest."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "14 The Thrower",
+        "question": "What happens if an offensive player delays putting the disc into play unnecessarily?",
+        "answer": "A defender within ten feet may issue a delay of game warning and count down from three to zero.",
+        "rules": [
+            "14.A.5 If an offensive player unnecessarily delays putting the disc into play in violation of rule 20.B, a defender within ten feet of the spot the disc is to be put into play may issue a delay of game warning."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "14 The Thrower",
+        "question": "What must a player do if the disc is out-of-bounds and not quickly retrievable?",
+        "answer": "A replacement disc may be introduced without a stoppage of play, but the player must confirm with an opposing player that the new disc is acceptable.",
+        "rules": [
+            "14.A.4.a If the disc is out of bounds and not reasonably retrievable quickly, a replacement disc may be introduced without a stoppage of play."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "14 The Thrower",
+        "question": "What is required for a live disc to be put into play?",
+        "answer": "The thrower must establish a pivot at the appropriate spot on the field and touch the disc to the ground.",
+        "rules": [
+            "14.B For a live disc to be put into play, the thrower must establish a pivot at the appropriate spot on the field, and touch the disc to the ground."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "15 The Marker",
+        "question": "What is the minimum time required for a stall count from one to ten?",
+        "answer": "The minimum time required for a stall count from one to ten is 9 seconds, as the interval between the first utterance of each number must be at least one second.",
+        "rules": [
+            "15.A.1.a"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "15 The Marker",
+        "question": "Who is allowed to initiate or continue a stall count during a game?",
+        "answer": "Only the marker may initiate or continue a stall count when the thrower has possession of a live disc.",
+        "rules": [
+            "15.A.2"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "15 The Marker",
+        "question": "What happens if the thrower does not release the disc by the first utterance of 'ten'?",
+        "answer": "If the thrower has not released the disc at the first utterance of 'ten', it is a turnover and the marker announces 'stall' and play stops.",
+        "rules": [
+            "15.A.3"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "15 The Marker",
+        "question": "What should the marker do if they switch with another defender?",
+        "answer": "If the defense switches markers, the new marker must reinitiate the stall count, starting over with 'stalling one...'.",
+        "rules": [
+            "15.A.4"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "15 The Marker",
+        "question": "What is a fast count and how can it affect the stall count?",
+        "answer": "A fast count occurs if the marker does not say 'stalling', counts at intervals of less than one second, or skips a number. If a fast count occurs and the thrower does not have a reasonable opportunity to call it before 'ten', it is treated as a contested stall.",
+        "rules": [
+            "15.B.6.a",
+            "15.B.6.b"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "16. The Receiver",
+        "question": "What happens if a player tips the disc to themselves after catching it?",
+        "answer": "If a player tips the disc to themselves and is the first player to touch the disc afterwards, it is considered traveling.",
+        "rules": [
+            "16.A A player may bobble the disc in order to gain control of it, but purposeful bobbling... is considered traveling."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "16. The Receiver",
+        "question": "What must a player do immediately after catching a pass?",
+        "answer": "A player is required to come to a stop as quickly as possible and establish a pivot.",
+        "rules": [
+            "16.B After catching a pass, a player is required to come to a stop as quickly as possible and establish a pivot."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "16. The Receiver",
+        "question": "Can a player release a pass while running without stopping?",
+        "answer": "Yes, a player can release a pass while running or jumping without stopping, as long as they do not change direction or increase speed and release the pass before making three additional points of contact with the ground.",
+        "rules": [
+            "16.C If a player catches the disc while running or jumping... provided that: 16.C.1. the player does not change direction or increase speed... 16.C.2. the pass is released before three additional points of contact with the ground are made."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "16. The Receiver",
+        "question": "What happens if offensive and defensive players catch the disc at the same time?",
+        "answer": "If offensive and defensive players catch the disc simultaneously, the offense retains possession.",
+        "rules": [
+            "16.D If offensive and defensive players catch the disc simultaneously, the offense retains possession."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "16. The Receiver",
+        "question": "Who makes the call if it's unclear whether a catch was made before the disc hit the ground?",
+        "answer": "The player with the best perspective makes the call regarding whether the catch was made before the disc contacted the ground.",
+        "rules": [
+            "16.E If it is unclear whether a catch was made before the disc contacted the ground... the player with the best perspective makes the call."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "17. Violations and Fouls",
+        "question": "Who is allowed to call an infraction in ultimate, and what must they do to make that call?",
+        "answer": "Only a player on the infracted team who recognizes that a specific rule was violated can call an infraction. They must immediately call 'violation' or the name of the specific infraction loudly.",
+        "rules": [
+            "17.A. Unless specified differently elsewhere, an infraction may only be called by a player on the infracted team who recognizes that it has occurred."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "17. Violations and Fouls",
+        "question": "What happens if a player contests a foul call against them in ultimate?",
+        "answer": "A player called for an infraction may contest that call if they believe the infraction did not occur, based on their perspective or disagreement over the application of the rules.",
+        "rules": [
+            "17.B. A player called for an infraction may contest that call if that player believes the infraction did not occur."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "17. Violations and Fouls",
+        "question": "What is the Continuation Rule in ultimate, and when does it apply?",
+        "answer": "The Continuation Rule states that play stops when the thrower in possession acknowledges that an infraction has been called. It applies any time an infraction is called.",
+        "rules": [
+            "17.C. Any time an infraction is called, the Continuation Rule applies."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "17. Violations and Fouls",
+        "question": "If a player calls a pick, who is allowed to make that call, and what must they do?",
+        "answer": "Only the obstructed player can call a pick, and they must announce it by loudly calling 'pick' immediately after it occurs.",
+        "rules": [
+            "17.J.2. A pick can be called only by the obstructed player and must be announced by loudly calling 'pick' immediately after it occurs."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "17. Violations and Fouls",
+        "question": "What is considered dangerous play in ultimate, and what is the proper call for it?",
+        "answer": "Dangerous play involves actions that demonstrate reckless disregard for the safety of others or pose a significant risk of injury. The proper call in such circumstances is 'dangerous play', and play stops.",
+        "rules": [
+            "17.I.1. Dangerous Play. Actions demonstrating reckless disregard for the safety of or posing a significant risk of injury to fellow players, or other dangerously aggressive behavior are considered 'dangerous play' and are treated as a foul."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "18. Positioning",
+        "question": "Can a player occupy a position on the field that is already occupied by an opposing player?",
+        "answer": "No, a player cannot occupy a position that is already occupied by an opposing player.",
+        "rules": [
+            "18.A. Each player is entitled to occupy any position on the field not occupied by an opposing player, unless specifically overridden elsewhere, provided that no personal contact is caused in taking such a position."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "18. Positioning",
+        "question": "If a player jumps to catch a disc, where are they entitled to land?",
+        "answer": "A player is entitled to land at the take-off spot without hindrance, or at another spot as long as that spot and the direct path were not occupied at the time of take-off.",
+        "rules": [
+            "18.B. A player who jumps is entitled to land at the take-off spot without hindrance by opponents. That player also is entitled to land at another spot, provided that the landing spot, and the direct path between the take-off and landing spots, were not already occupied at the time of take-off."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "18. Positioning",
+        "question": "What happens if a player commits a blocking foul while jumping?",
+        "answer": "If a player commits a blocking foul, jumping to the spot does not negate the foul; they must still make reasonable efforts to avoid contact.",
+        "rules": [
+            "18.B. This does not trump a player's responsibility to make reasonable efforts to avoid contact and to not commit a blocking foul."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "18. Positioning",
+        "question": "Are players allowed to use their arms and legs to block an opponent's movement?",
+        "answer": "No, players may not use their extended arms or legs to obstruct the movement of an opponent.",
+        "rules": [
+            "18.C. Players may not use their extended arms or legs to obstruct the movement of an opponent."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "18. Positioning",
+        "question": "During normal running and jumping, are a player's arms and legs considered 'extended'?",
+        "answer": "No, a player's arms and legs are not considered 'extended' during normal running and jumping.",
+        "rules": [
+            "18.C. [[A player's arms and legs are not considered 'extended' during normal running and jumping.]]"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "19. Observers",
+        "question": "Who can decide to use observers during a game?",
+        "answer": "Observers may be used if desired by the captains or the event organizer.",
+        "rules": [
+            "19.A. Observers may be used if desired by the captains or the event organizer."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "19. Observers",
+        "question": "What responsibilities do observers have regarding time limits in a game?",
+        "answer": "Observers are responsible for tracking time limits and announcing associated warnings and expirations.",
+        "rules": [
+            "19.B.1. Track time limits and announce associated warnings and expirations."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "19. Observers",
+        "question": "Can players request an observer to resolve a dispute?",
+        "answer": "Yes, any player directly involved in a dispute may request observer resolution.",
+        "rules": [
+            "19.B.2.a. Any player directly involved in a dispute may request observer resolution."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "19. Observers",
+        "question": "What happens if an observer is involved in resolving a dispute?",
+        "answer": "If an observer is involved in resolving a dispute, play restarts with a check.",
+        "rules": [
+            "19.B.2.c. If an observer is involved in resolving a dispute, play restarts with a check."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "19. Observers",
+        "question": "Under what conditions can players overrule an observer's ruling?",
+        "answer": "Players may overrule an observer's active ruling, provided it is to their team's detriment.",
+        "rules": [
+            "19.D. Players may overrule an observer's active ruling, provided it is to their team's detriment."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "20. Etiquette",
+        "question": "What should a player do if they commit an infraction but do not call it during play?",
+        "answer": "The player committing the infraction should inform the infracted player or team of the infraction.",
+        "rules": [
+            "20.A. If an infraction is committed and not called, the player committing the infraction should inform the infracted player or team of the infraction."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "20. Etiquette",
+        "question": "What is the responsibility of players regarding delays in play?",
+        "answer": "All players must avoid any delay when starting, restarting, or continuing play, including not standing over the disc or taking excessive time to put the disc into play.",
+        "rules": [
+            "20.B. It is the responsibility of all players to avoid any delay when starting, restarting, or continuing play."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "20. Etiquette",
+        "question": "What should players do if there is confusion about who is currently on the field during a stoppage of play?",
+        "answer": "Players should identify themselves when the opposing team requests clarification about who the current players are.",
+        "rules": [
+            "20.C. On a stoppage of play, if it is ever unclear which of a team's members are the current players or where they are on or off the field, they should identify themselves when the opposing team requests."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "20. Etiquette",
+        "question": "What procedure should be followed if a dispute arises during a game?",
+        "answer": "Play should stop and be restarted with a check once the dispute is resolved.",
+        "rules": [
+            "20.D. If a dispute arises on the field, play stops and is restarted with a check when the matter is resolved."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "20. Etiquette",
+        "question": "What should happen if a novice player commits an infraction due to ignorance of the rules?",
+        "answer": "It is common practice to stop play and explain the infraction to the novice player.",
+        "rules": [
+            "20.E. If a novice player commits an infraction out of sincere ignorance of the rules, it should be common practice to stop play and explain the infraction."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix A: Field Diagram",
+        "question": "What are the dimensions of the End Zones in a standard ultimate field?",
+        "answer": "The End Zones are 20 yards (18 meters) deep and 40 yards (37 meters) wide.",
+        "rules": [
+            "Appendix A: Field Diagram"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix A: Field Diagram",
+        "question": "How far is the Brick Mark located from the Goal Line in the Central Zone?",
+        "answer": "The Brick Mark is located 20 yards (18 meters) from the Goal Line in the middle of the Central Zone.",
+        "rules": [
+            "Appendix A: Field Diagram"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix A: Field Diagram",
+        "question": "What is the distance from the Perimeter Line to the Equipment Line?",
+        "answer": "The distance from the Perimeter Line to the Equipment Line is 5 yards (4.5 meters).",
+        "rules": [
+            "Appendix A: Field Diagram"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix A: Field Diagram",
+        "question": "What is the total length of the Central Zone in a standard ultimate field?",
+        "answer": "The Central Zone is 70 yards (64 meters) long.",
+        "rules": [
+            "Appendix A: Field Diagram"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix A: Field Diagram",
+        "question": "How far is the Team Line from the sideline in the standard ultimate field?",
+        "answer": "The Team Line is 3 yards (2.7 meters) from the sideline.",
+        "rules": [
+            "Appendix A: Field Diagram"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix B: Misconduct System",
+        "question": "What happens if a team receives three Technical Fouls during a single game?",
+        "answer": "A third or subsequent Technical Foul for a team in a single game results in a Misconduct Penalty against that team.",
+        "rules": [
+            "B1.A.3"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix B: Misconduct System",
+        "question": "How many Personal Misconduct Fouls can a team member receive before being ejected from the game?",
+        "answer": "A team member who receives a second PMF during a single game is ejected for the remainder of that game.",
+        "rules": [
+            "B1.C.3"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix B: Misconduct System",
+        "question": "What is the consequence of a player receiving more than one ejection during a tournament?",
+        "answer": "If a team member receives more than one ejection in a tournament, that team member is suspended for the rest of the tournament, and a formal complaint may be filed with USAU.",
+        "rules": [
+            "B1.D.4"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix B: Misconduct System",
+        "question": "What type of foul is automatically assessed against a team when one of its members receives a Personal Misconduct Foul?",
+        "answer": "One Team Misconduct Foul (TMF) is automatically assessed against a team whenever one of its members receives a PMF.",
+        "rules": [
+            "B1.C.6"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix B: Misconduct System",
+        "question": "If a team member is ejected, what must they do immediately after the ejection?",
+        "answer": "An ejected team member must immediately leave the general area where their game is being played, as directed by the EDA, which means they must remove themselves at least 100 yards from their team's current playing field and refrain from interacting with any team members, spectators, or officials involved in that game.",
+        "rules": [
+            "B3.D.1"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix C: Hand Signals",
+        "question": "What hand signal indicates that a player is signaling a goal in ultimate?",
+        "answer": "The hand signal for a goal is a person with both arms raised straight up above their head.",
+        "rules": [
+            "C1. Goal: [Hand Signal: A person with both arms raised straight up above their head]"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix C: Hand Signals",
+        "question": "How does a player signal that the disc is uncatchable?",
+        "answer": "A player signals that the disc is uncatchable by holding one hand above their head with the palm facing downwards.",
+        "rules": [
+            "C1. Disc uncatchable: [Hand Signal: A person holding one hand above their head with the palm facing downwards.]"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix C: Hand Signals",
+        "question": "What is the hand signal for a foul in ultimate?",
+        "answer": "The hand signal for a foul is a person with one arm bent at the elbow with the fist touching the opposite shoulder.",
+        "rules": [
+            "C1. Foul: [Hand Signal: An image of a person with one arm bent at the elbow with the fist touching the opposite shoulder.]"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix C: Hand Signals",
+        "question": "What does the hand signal with both arms extended downwards and pointing with index fingers indicate?",
+        "answer": "This hand signal indicates a double team.",
+        "rules": [
+            "C1. Double team: [Hand Signal: An image of a person with both arms extended downwards, pointing down with their index fingers.]"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix C: Hand Signals",
+        "question": "What hand signal should be used to indicate a timeout in ultimate?",
+        "answer": "The hand signal for a timeout is holding a disc horizontally with both hands, one hand on top and the other on the bottom, forming a 'T' shape.",
+        "rules": [
+            "C1. Timeout: [Hand Signal: A person in a grey shirt demonstrating the hand signal for 'Timeout'. The person is holding a disc horizontally with both hands, one hand on top and the other on the bottom, forming a 'T' shape.]"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix E: Beach Ultimate Rules Adaptations",
+        "question": "What is the recommended number of players per team in beach ultimate?",
+        "answer": "The recommended number of players per team is either five (5) or four (4).",
+        "rules": [
+            "E1.A. The recommended number of players per team is either five (5) or four (4)."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix E: Beach Ultimate Rules Adaptations",
+        "question": "What are the dimensions of a standard 5v5 beach ultimate field?",
+        "answer": "The standard field of play is 82 yards (75 meters) long and 27 yards (25 meters) wide, with end zones that are 16 yards (15 meters) deep.",
+        "rules": [
+            "E2.A.1. The standard field of play, including end zones, is 82 yards (75 meters) long and 27 yards (25 meters) wide.",
+            "E2.A.2. The standard end zone is 16 yards (15 meters) deep."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix E: Beach Ultimate Rules Adaptations",
+        "question": "What is the rule regarding footwear in beach ultimate?",
+        "answer": "Shoes and cleats are not allowed; players\u2019 feet must be bare or only have a soft covering such as socks or tape.",
+        "rules": [
+            "E3.A. Shoes and cleats are not allowed. Players\u2019 feet must be bare or only have a soft covering such as socks or tape."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix E: Beach Ultimate Rules Adaptations",
+        "question": "What is the total number of points needed to win a standard beach ultimate game?",
+        "answer": "A standard game has a total of 13 points.",
+        "rules": [
+            "E4.A.1. a game total of 13."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix E: Beach Ultimate Rules Adaptations",
+        "question": "What constitutes a sand foul in beach ultimate?",
+        "answer": "A sand foul occurs when a player causes sand to fly into an opponent\u2019s face in a way that significantly interferes with their play, such as in the eyes or up their nose.",
+        "rules": [
+            "E6.A. A sand foul occurs when a player causes sand to fly into an opponent\u2019s face in a way that significantly interferes with their play, such as in the eyes or up their nose."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix F: Ultimate 4\u2019s Rules Adaptations",
+        "question": "What is the field size for Ultimate 4's?",
+        "answer": "The central zone is 37 yards long and 25 yards wide, with an 8-yard end zone, making the total length approximately 53 yards.",
+        "rules": [
+            "Field size (yards) | Central Zone Length: 37 Width: 25 End Zone: 8 Total Length: 53"
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix F: Ultimate 4\u2019s Rules Adaptations",
+        "question": "How many games are played in a match of Ultimate 4's?",
+        "answer": "Matches are best of 3 games, and the third game is not required if one team wins the first two games.",
+        "rules": [
+            "Matches and Games | Matches are best of 3 games. The third game is not required if one team wins the first two games."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix F: Ultimate 4\u2019s Rules Adaptations",
+        "question": "What is the stall count duration in Ultimate 4's?",
+        "answer": "The stall count is 7 seconds, starting from 1 and going to 7.",
+        "rules": [
+            "Stall Count | Stalls are 7 seconds (starting with 1 going to 7)."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix F: Ultimate 4\u2019s Rules Adaptations",
+        "question": "How long is each game in Ultimate 4's?",
+        "answer": "The first two games are 20 minutes each, and the third game, if necessary, is 10 minutes.",
+        "rules": [
+            "Time of Game and Matches (caps) | 20 minutes each for first 2 games, 10 minutes for last game."
+        ],
+        "reason_for_failure": ""
+    },
+    {
+        "section": "Appendix F: Ultimate 4\u2019s Rules Adaptations",
+        "question": "What happens if a pull touches the out-of-bounds area?",
+        "answer": "Any pull that touches the out-of-bounds area results in a brick, which is placed at mid-field.",
+        "rules": [
+            "Pull | Any pull that touches the out-of-bounds area results in a brick. The brick is at mid-field."
+        ],
+        "reason_for_failure": ""
+    }
+]
