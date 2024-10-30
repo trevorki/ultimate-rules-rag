@@ -25,7 +25,7 @@ class Retriever:
             "port": os.getenv('POSTGRES_PORT')
         }
 
-        print(f"DB Settings: {json.dumps(self.db_settings, indent=4)}")
+        # print(f"DB Settings: {json.dumps(self.db_settings, indent=4)}")
         
 
     def create_embedding(self, text):
@@ -48,9 +48,7 @@ class Retriever:
         query_embedding = self.create_embedding(query)
         sql_query = "SELECT * FROM query_similar_documents(%s::VECTOR, %s);"
         retrieved_docs = self.query_db_sql(sql_query, (query_embedding, limit))
-        # logger.info(f"Retrieved {len(retrieved_docs)} documents")
-        # logger.info("\n".join([f"ID: {doc[0]}, Content: {doc[1]}, Source: {doc[2]}" for doc in retrieved_docs]))
-        
+                
 
         retrieved_docs = [{"id":doc[0], "content":doc[1], "source":doc[2]} for doc in retrieved_docs]
 
