@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import os
-from src.retriever import Retriever
+from src.ultimate_rules_rag.retriever import Retriever
 
 # Example usage
 if __name__ == "__main__":

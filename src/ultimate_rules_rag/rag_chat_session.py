@@ -2,16 +2,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import os
-from src.retriever import Retriever
+from .retriever import Retriever
 import json
 from pydantic import BaseModel, Field
 from typing import Optional, ClassVar, Dict, Tuple
-
-from src.abstracted_clients.openai_client import OpenaiAbstractedClient
-from src.abstracted_clients.anthropic_client import AnthropicAbstractedClient
-from src.abstracted_clients.base_client import BaseClient
 from anthropic import Anthropic
-from src.conversation_history import ConversationHistory
+from .clients.conversation_history import ConversationHistory
+from .clients.base_client import BaseClient
 
 import logging
 logger = logging.getLogger(__name__)
@@ -194,42 +191,42 @@ class RagChatSession(BaseModel):
         answer = self._get_llm_answer(query)
         return answer
 
-# Example usage
-if __name__ == "__main__":
-    # model = "claude-3-5-sonnet-20240620"
-    # client = AnthropicAbstractedClient(model=model)
+# # Example usage
+# if __name__ == "__main__":
+#     # model = "claude-3-5-sonnet-20240620"
+#     # client = AnthropicAbstractedClient(model=model)
 
-    model = "gpt-4o-mini"
-    # model = "gpt-4o-2024-08-06"
-    client = OpenaiAbstractedClient(model=model)
+#     model = "gpt-4o-mini"
+#     # model = "gpt-4o-2024-08-06"
+#     client = OpenaiAbstractedClient(model=model)
 
-    retriever_kwargs = {
-        "limit": 5,
-        "expand_context": True
-    }
+#     retriever_kwargs = {
+#         "limit": 5,
+#         "expand_context": True
+#     }
 
-    print(f"client: {client.__repr__()}")
-    session = RagChatSession(
-        llm_client=client,
-        stream_output=False,
-        memory_size=5,
-        context_size=1
-    )
+#     print(f"client: {client.__repr__()}")
+#     session = RagChatSession(
+#         llm_client=client,
+#         stream_output=False,
+#         memory_size=5,
+#         context_size=1
+#     )
     
-    print("Enter a question (or 'q' to quit): ")
-    query = None
-    while query != "q":
-        query = input("\n\nQUESTION: ")
-        if query != "q":
+#     print("Enter a question (or 'q' to quit): ")
+#     query = None
+#     while query != "q":
+#         query = input("\n\nQUESTION: ")
+#         if query != "q":
             
-            answer = session.answer_question(query, retriever_kwargs=retriever_kwargs)
-            if not session.stream_output: 
-                print("\nANSWER:") 
-                print(answer)
+#             answer = session.answer_question(query, retriever_kwargs=retriever_kwargs)
+#             if not session.stream_output: 
+#                 print("\nANSWER:") 
+#                 print(answer)
 
-    print(f"\n\nhistory:")
-    session.history.pretty_print()
+#     print(f"\n\nhistory:")
+#     session.history.pretty_print()
 
-    # print(f"\n\ncost:")
-    # session.usage.pretty_print()
+#     # print(f"\n\ncost:")
+#     # session.usage.pretty_print()
   

@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=64.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ultimate-rules-rag"
+version = "0.1.0"
+description = "RAG-based ultimate rules QA system"
+requires-python = ">=3.11"
+dynamic = ["dependencies"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["ultimate_rules_rag*"]
+exclude = ["tests*"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
