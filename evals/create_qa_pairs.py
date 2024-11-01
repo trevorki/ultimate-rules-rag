@@ -66,7 +66,7 @@ if __name__ == "__main__":
         qa_dataset.extend(qa_pairs)
 
 
-        filename = f"evals/rules_dataset_{model}_{n_questions}q.json"
+        filename = f"evals/datasets/rules_dataset_{model}_{n_questions}q.json"
         with open(filename, "w", encoding="utf-8") as file:
             json.dump(qa_dataset, file, indent=4)
             

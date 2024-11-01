@@ -25,7 +25,6 @@ class Retriever:
             "port": os.getenv('POSTGRES_PORT')
         }
 
-        # print(f"DB Settings: {json.dumps(self.db_settings, indent=4)}")
         
 
     def create_embedding(self, text):
@@ -44,7 +43,28 @@ class Retriever:
             raise
 
     # Example: Query documents based on similarity to a given embedding
-    def retrieve_similar_documents(self, query, limit=3, expand_context=False):
+    def retrieve_similar_documents(self, query: str, limit: int = 3, expand_context: bool|int = False) -> list[dict]:
+        """
+        Retrieve documents similar to the input query, with optional context expansion.
+
+        Args:
+            query (str): The search query to find similar documents
+            limit (int, optional): Maximum number of documents to retrieve. Defaults to 3.
+            expand_context (bool|int, optional): Controls context expansion around retrieved documents.
+                - False or 0: No expansion
+                - True: Expand by 1 document in each direction
+                - n (positive int): Expand by n documents in each direction
+                Defaults to False.
+
+        Returns:
+            list[dict]: List of documents, where each document is a dictionary containing:
+                - id (int): Document ID
+                - content (str): Document content
+                - source (str): Document source
+                If context is expanded, additional fields include:
+                - context_range (str): Range of document IDs included
+                - first_appearance (int): Original position in results
+        """
         query_embedding = self.create_embedding(query)
         sql_query = "SELECT * FROM query_similar_documents(%s::VECTOR, %s);"
         retrieved_docs = self.query_db_sql(sql_query, (query_embedding, limit))
@@ -52,30 +72,48 @@ class Retriever:
 
         retrieved_docs = [{"id":doc[0], "content":doc[1], "source":doc[2]} for doc in retrieved_docs]
 
-        if expand_context is True:
-            retrieved_docs = self.get_expanded_context(retrieved_docs)
+        if expand_context is True or (isinstance(expand_context, int) and expand_context > 0):
+            expansion_size = 1 if expand_context is True else expand_context
+            retrieved_docs = self.get_expanded_context(retrieved_docs, expansion_size)
         return retrieved_docs
     
-    def get_expanded_context(self, retrieved_docs):
-        # Extract the IDs of the documents to expand
-        doc_ids = [doc["id"] for doc in retrieved_docs if doc["source"] == "rules"]
-        
-        if not doc_ids:
-            return retrieved_docs  # No documents to expand
+    def get_expanded_context(self, retrieved_docs: list[dict], expansion_size: int) -> list[dict]:
+        """
+        Expand the context of retrieved documents by including adjacent documents.
 
-        # Create a list of IDs to fetch, including adjacent documents
+        For documents from the 'rules' source, this method will fetch additional documents
+        before and after each retrieved document. Documents with consecutive IDs are
+        merged into a single context block.
+
+        Args:
+            retrieved_docs (list[dict]): Original list of retrieved documents
+            expansion_size (int): Number of documents to include before and after each result
+
+        Returns:
+            list[dict]: Expanded list of documents, where consecutive documents are merged.
+                Non-rules documents are preserved as-is. Each merged document contains:
+                - id (int): Representative document ID (middle of the group)
+                - content (str): Concatenated content of all documents in the group
+                - source (str): Document source
+                - context_range (str): Range of document IDs included
+                - first_appearance (int): Position of first occurrence in original results
+        """
+        # only expand rules docs
+        rules_docs = [doc for doc in retrieved_docs if "rules" in doc.get("source")]
+        if len(rules_docs) == 0:
+            return retrieved_docs
+        
+        non_rules_docs = [doc for doc in retrieved_docs if "rules" not in doc.get("source")]
+
+        doc_ids = [doc["id"] for doc in rules_docs]
         doc_ids_to_fetch = set()
         for doc_id in doc_ids:
-            doc_ids_to_fetch.update([doc_id - 1, doc_id, doc_id + 1])
-
-        # Fetch adjacent documents
-        sql_query = """
-            SELECT id, content FROM documents 
-            WHERE id IN %s
-            AND source = 'rules'
-            ORDER BY id
-        """.replace("    ", "")
+            # Use the expansion_size parameter to determine range
+            for offset in range(-expansion_size, expansion_size + 1):
+                doc_ids_to_fetch.add(doc_id + offset)
         
+        # Fetch adjacent documents
+        sql_query = "SELECT id, content FROM documents WHERE id IN %s AND source='rules' ORDER BY id"
         adjacent_docs = self.query_db_sql(sql_query, (tuple(doc_ids_to_fetch),))
         
         # Convert to dictionary for easier lookup
@@ -102,45 +140,37 @@ class Retriever:
             # Only include groups that contain at least one of our original retrieved doc_ids
             original_positions = [
                 i for i, doc in enumerate(retrieved_docs) 
-                if doc["source"] == "rules" and doc["id"] in group
+                if "rules" in doc.get("source") and doc.get("id") in group
             ]
+
             if original_positions:
                 merged_content = "\n\n".join(doc_map[id] for id in group)
-                # Use the middle ID from the group as the representative ID
-                representative_id = group[len(group)//2]
+                representative_id = group[len(group)//2] # Use the middle ID from the group as the representative ID
                 result.append({
                     "id": representative_id,
                     "content": merged_content,
                     "source": "rules",
                     "context_range": f"docs {group[0]}-{group[-1]}",
-                    "first_appearance": min(original_positions)  # Track earliest appearance
+                    "first_appearance": min(original_positions)
                 })
 
         # Sort by the original appearance order
         result.sort(key=lambda x: x["first_appearance"])
-        
-        # Remove the temporary sorting key
-        for doc in result:
-            doc.pop("first_appearance", None)
 
-        # Add back any non-rules documents from the original results
-        non_rules_docs = [doc for doc in retrieved_docs if doc["source"] != "rules"]
         result.extend(non_rules_docs)
-
         return result
 
 
 # Example usage
 if __name__ == "__main__":
     
-    queries = [
-        # "what is a pick and what happens after a pick is called",
-        "How many stall counts in ultimate?",
-        # "How many stall counts in beach ultimate.",
-    ]
+    query = "How many stall counts in ultimate?"
+    print(f"\nQuery: '{query}'")
+      
     expand_context=True
     retriever = Retriever()
-    for query in queries:
-        print(f"\n\nQuery: '{query}'")
+    for expand_context in [False, 0, True, 1, 2, 3]:
+        
         retrieved_docs = retriever.retrieve_similar_documents(query, limit = 5, expand_context=expand_context)
-        print(json.dumps(retrieved_docs, indent=4))
+        retrieved_str = "\n".join([doc["content"] for doc in retrieved_docs])
+        print(f"\nexpand_context={expand_context}   length={len(retrieved_str)}")

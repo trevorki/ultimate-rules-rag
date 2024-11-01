@@ -1,0 +1,128 @@
+[
+    {
+        "section": "1 Introduction",
+        "question": "What is the objective of the game of Ultimate?",
+        "n_target_rules": 1,
+        "n_retrieved_rules": 1
+    },
+    {
+        "section": "1 Introduction",
+        "question": "What happens when a pass is incomplete in Ultimate?",
+        "n_target_rules": 1,
+        "n_retrieved_rules": 0
+    },
+    {
+        "section": "1 Introduction",
+        "question": "Can the event organizer modify the rules of Ultimate during a competition?",
+        "n_target_rules": 1,
+        "n_retrieved_rules": 1
+    },
+    {
+        "section": "2 Spirit of the Game",
+        "question": "What is the primary responsibility of players in ultimate regarding the Spirit of the Game?",
+        "n_target_rules": 1,
+        "n_retrieved_rules": 1
+    },
+    {
+        "section": "2 Spirit of the Game",
+        "question": "What should players do if they witness an infraction during a game?",
+        "n_target_rules": 3,
+        "n_retrieved_rules": 0
+    },
+    {
+        "section": "2 Spirit of the Game",
+        "question": "What actions should a team take if a player on their team displays poor spirit?",
+        "n_target_rules": 2,
+        "n_retrieved_rules": 2
+    },
+    {
+        "section": "3 Definitions",
+        "question": "What is the best perspective in ultimate?",
+        "n_target_rules": 1,
+        "n_retrieved_rules": 1
+    },
+    {
+        "section": "3 Definitions",
+        "question": "What defines a completed pass in ultimate?",
+        "n_target_rules": 1,
+        "n_retrieved_rules": 1
+    },
+    {
+        "section": "3 Definitions",
+        "question": "What constitutes a foul in ultimate?",
+        "n_target_rules": 1,
+        "n_retrieved_rules": 0
+    },
+    {
+        "section": "4 Playing Field",
+        "question": "What is the recommended surface for the playing field in ultimate?",
+        "n_target_rules": 1,
+        "n_retrieved_rules": 1
+    },
+    {
+        "section": "4 Playing Field",
+        "question": "What are the boundaries of the playing field in ultimate?",
+        "n_target_rules": 1,
+        "n_retrieved_rules": 1
+    },
+    {
+        "section": "4 Playing Field",
+        "question": "What should players do if play is obstructed within five yards of the playing field?",
+        "n_target_rules": 1,
+        "n_retrieved_rules": 0
+    },
+    {
+        "section": "5 Equipment",
+        "question": "What type of disc can be used in an ultimate game if the team captains cannot agree on a disc?",
+        "n_target_rules": 1,
+        "n_retrieved_rules": 1
+    },
+    {
+        "section": "5 Equipment",
+        "question": "Are players allowed to wear any type of footwear during an ultimate game?",
+        "n_target_rules": 1,
+        "n_retrieved_rules": 1
+    },
+    {
+        "section": "5 Equipment",
+        "question": "What are the uniform requirements for players in tournament play?",
+        "n_target_rules": 1,
+        "n_retrieved_rules": 1
+    },
+    {
+        "section": "6 Length of Game",
+        "question": "What is the game total in a standard ultimate game?",
+        "n_target_rules": 2,
+        "n_retrieved_rules": 2
+    },
+    {
+        "section": "6 Length of Game",
+        "question": "What happens when the soft cap is reached during a game?",
+        "n_target_rules": 1,
+        "n_retrieved_rules": 1
+    },
+    {
+        "section": "6 Length of Game",
+        "question": "What is the halftime target in a game with a total of 15 goals?",
+        "n_target_rules": 2,
+        "n_retrieved_rules": 2
+    },
+    {
+        "section": "7 Timeouts",
+        "question": "How long does a team timeout last in ultimate?",
+        "n_target_rules": 1,
+        "n_retrieved_rules": 1
+    },
+    {
+        "section": "7 Timeouts",
+        "question": "When can a player call a timeout after a goal is scored?",
+        "n_target_rules": 1,
+        "n_retrieved_rules": 0
+    },
+    {
+        "section": "7 Timeouts",
+        "question": "What happens if a team exceeds the timeout limit during a timeout?",
+        "n_target_rules": 1,
+        "n_retrieved_rules": 1
+    }
+]
