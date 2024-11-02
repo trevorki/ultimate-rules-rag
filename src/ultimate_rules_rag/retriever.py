@@ -5,14 +5,14 @@ import os
 import psycopg2
 from pgvector.psycopg2 import register_vector
 import logging
-
 from openai import OpenAI
 import json
-
-from pydantic import BaseModel, Field
-from typing import Dict
+import re
 
 logger = logging.getLogger(__name__)
+
+# FTS_JOIN_OPERATOR = " & "
+FTS_JOIN_OPERATOR = " | "
 
 class Retriever:
     def __init__(self):
@@ -25,11 +25,11 @@ class Retriever:
             "port": os.getenv('POSTGRES_PORT')
         }
 
-        
-
     def create_embedding(self, text):
+        logger.debug("creating embedding...", end="\r")
         response = self.client.embeddings.create(input=text, model="text-embedding-3-small")
         return response.data[0].embedding
+
 
     def query_db_sql(self, sql_query, args):
         try:
@@ -42,41 +42,154 @@ class Retriever:
             print(f"Database connection error: {e}")
             raise
 
-    # Example: Query documents based on similarity to a given embedding
-    def retrieve_similar_documents(self, query: str, limit: int = 3, expand_context: bool|int = False) -> list[dict]:
+
+    def search(self,
+        query: str,
+        search_type: str = "hybrid",
+        limit: int = 3,
+        expand_context: bool|int = False,
+        fts_operator: str = "|",
+        k: int = 60,
+        semantic_weight: float = 0.5,
+        fts_weight: float = 0.5,
+        query_embedding: list|None = None
+    ) -> list[dict]:
+        """
+        General search method that dispatches to specific search types.
+
+        Args:
+            query (str): The search query
+            search_type (str): Type of search to perform. One of:
+                - "semantic": Semantic similarity search
+                - "fts": Full-text search
+                - "hybrid": Combined semantic and full-text search (default)
+            limit (int, optional): Maximum number of documents to retrieve. Defaults to 3.
+            expand_context (bool|int, optional): Controls context expansion around retrieved documents.
+            fts_operator(str): The operator ("|" or "&") to use for full-text search. Defaults to "|".
+            k (int, optional): Parameter for RRF calculation in hybrid search. Defaults to 60.
+            semantic_weight (float, optional): Weight for semantic results in hybrid search. Defaults to 0.5.
+            fts_weight (float, optional): Weight for full-text results in hybrid search. Defaults to 0.5.
+            query_embedding (list|None, optional): Pre-computed query embedding. If None, 
+                embedding will be computed. Defaults to None.
+
+        Returns:
+            list[dict]: List of documents matching the search criteria
+
+        Raises:
+            ValueError: If an invalid search_type is provided
+        """
+        search_type = search_type.lower()
+
+        if search_type == "semantic":
+            retrieved_docs = self.similarity_search(query=query, limit=limit, query_embedding=query_embedding)
+        elif search_type == "fts":
+            retrieved_docs = self.fts_search(query=query, limit=limit, fts_operator=fts_operator)
+        elif search_type == "hybrid":
+            retrieved_docs = self.hybrid_search(
+                query=query, limit=limit, fts_operator=fts_operator, 
+                k=k, semantic_weight=semantic_weight, fts_weight=fts_weight,
+                query_embedding=query_embedding
+            )
+        else:
+            raise ValueError(f"Invalid search_type: {search_type}. Must be one of: 'semantic', 'fts', or 'hybrid'")
+
+        retrieved_docs = [{"id":doc[0], "content":doc[1], "source":doc[3]} for doc in retrieved_docs]
+
+        if expand_context is True or (isinstance(expand_context, int) and expand_context > 0):
+            expansion_size = 1 if expand_context is True else expand_context
+            retrieved_docs = self.get_expanded_context(retrieved_docs, expansion_size)
+        
+        return retrieved_docs
+    
+
+    def similarity_search(self, query: str, limit: int = 3, query_embedding: list|None = None) -> list[dict]:
         """
         Retrieve documents similar to the input query, with optional context expansion.
 
         Args:
             query (str): The search query to find similar documents
             limit (int, optional): Maximum number of documents to retrieve. Defaults to 3.
-            expand_context (bool|int, optional): Controls context expansion around retrieved documents.
-                - False or 0: No expansion
-                - True: Expand by 1 document in each direction
-                - n (positive int): Expand by n documents in each direction
-                Defaults to False.
+            query_embedding (list|None, optional): Pre-computed query embedding. If None, 
+                embedding will be computed. Defaults to None.
 
         Returns:
             list[dict]: List of documents, where each document is a dictionary containing:
                 - id (int): Document ID
                 - content (str): Document content
                 - source (str): Document source
-                If context is expanded, additional fields include:
-                - context_range (str): Range of document IDs included
-                - first_appearance (int): Original position in results
         """
-        query_embedding = self.create_embedding(query)
-        sql_query = "SELECT * FROM query_similar_documents(%s::VECTOR, %s);"
+        if query_embedding is None:
+            query_embedding = self.create_embedding(query)
+        sql_query = "SELECT * FROM similarity_search(%s::VECTOR, %s);"
         retrieved_docs = self.query_db_sql(sql_query, (query_embedding, limit))
-                
-
-        retrieved_docs = [{"id":doc[0], "content":doc[1], "source":doc[2]} for doc in retrieved_docs]
-
-        if expand_context is True or (isinstance(expand_context, int) and expand_context > 0):
-            expansion_size = 1 if expand_context is True else expand_context
-            retrieved_docs = self.get_expanded_context(retrieved_docs, expansion_size)
+        
         return retrieved_docs
     
+
+    def fts_search(self, query: str, limit: int = 3, fts_operator: str = "OR") -> list[dict]:
+        """
+        Perform full-text search on documents.
+
+        Args:
+            query (str): The search query
+            limit (int, optional): Maximum number of documents to retrieve. Defaults to 3.
+            fts_operator (str, optional): The operator ("OR" or "AND") to use for full-text search. Defaults to "OR".
+        Returns:
+            list[dict]: List of documents matching the search criteria
+        """
+        if fts_operator.upper() not in ["OR", "AND"]:
+            raise ValueError(f"Invalid fts_operator: {fts_operator}. Must be one of: 'OR', 'AND'")
+        internal_operator = "&" if fts_operator.upper() == "AND" else "|"
+        
+        # Clean and process the query for full-text search
+        cleaned_query = re.sub(r'[^\w\s]', ' ', query)
+        processed_query = f" {internal_operator} ".join(word for word in cleaned_query.split() if word.isalnum())
+
+        sql_query = "SELECT * FROM fts_search(%s, %s);"
+        retrieved_docs = self.query_db_sql(sql_query, (processed_query, limit))
+        
+        return retrieved_docs
+
+
+    def hybrid_search(self, query: str, limit: int = 3, fts_operator: str = "OR",
+        k: int = 60, semantic_weight: float = 0.5, 
+        fts_weight: float = 0.5,
+        query_embedding: list|None = None) -> list[dict]:
+        """
+        Perform hybrid search combining semantic similarity and full-text search.
+
+        Args:
+            query (str): The search query
+            limit (int, optional): Maximum number of documents to retrieve. Defaults to 3.
+            fts_operator (str, optional): The operator ("OR" or "AND") to use for full-text search. Defaults to "OR".
+            k (int, optional): Parameter for RRF calculation. Defaults to 60.
+            semantic_weight (float, optional): Weight for semantic search results. Defaults to 0.5.
+            fts_weight (float, optional): Weight for full-text search results. Defaults to 0.5.
+            query_embedding (list|None, optional): Pre-computed query embedding. If None, 
+                embedding will be computed. Defaults to None.
+
+        Returns:
+            list[dict]: List of documents matching the hybrid search criteria
+        """
+        # Convert operator to internal representation
+        if fts_operator.upper() not in ["OR", "AND"]:
+            raise ValueError(f"Invalid fts_operator: {fts_operator}. Must be one of: 'OR', 'AND'")
+        internal_operator = "&" if fts_operator.upper() == "AND" else "|"
+        
+        # Convert the query to a format suitable for full-text search
+        cleaned_query = re.sub(r'[^\w\s]', ' ', query)
+        processed_query = f" {internal_operator} ".join(word for word in cleaned_query.split() if word.isalnum())
+    
+        if query_embedding is None:
+            query_embedding = self.create_embedding(query)
+    
+        sql_query = "SELECT * FROM hybrid_search(%s, %s::VECTOR, %s, %s, %s, %s);"
+        args = (processed_query, query_embedding, limit, k, semantic_weight, fts_weight)
+        retrieved_docs = self.query_db_sql(sql_query, args)
+        
+        return retrieved_docs
+    
+
     def get_expanded_context(self, retrieved_docs: list[dict], expansion_size: int) -> list[dict]:
         """
         Expand the context of retrieved documents by including adjacent documents.
@@ -160,17 +273,34 @@ class Retriever:
         result.extend(non_rules_docs)
         return result
 
+    
 
 # Example usage
 if __name__ == "__main__":
+
+       
+    retriever = Retriever()
+    expand_context=0
+    limit = 3
     
-    query = "How many stall counts in ultimate?"
+    query = "how many stall counts?"
+    query_embedding = retriever.create_embedding(query)
     print(f"\nQuery: '{query}'")
       
-    expand_context=True
-    retriever = Retriever()
-    for expand_context in [False, 0, True, 1, 2, 3]:
-        
-        retrieved_docs = retriever.retrieve_similar_documents(query, limit = 5, expand_context=expand_context)
-        retrieved_str = "\n".join([doc["content"] for doc in retrieved_docs])
-        print(f"\nexpand_context={expand_context}   length={len(retrieved_str)}")
+ 
+
+    for search_type in ["semantic", "fts", "hybrid"]:
+        for fts_operator in ["OR", "AND"]:
+            print(f"\n{'*'*80}\n\n{search_type}{fts_operator if search_type in ['hybrid', 'fts'] else ''} search\n")
+            retrieved_docs = retriever.search(
+                query, 
+                search_type=search_type, 
+                limit = limit, 
+                expand_context=expand_context, 
+                fts_operator=fts_operator,
+                query_embedding=query_embedding
+            )
+            for doc in retrieved_docs:
+                print(f"ID: {doc['id']}")
+                # print(f"CONTENT:\n{doc['content']}")
+                # print("\n--------\n")

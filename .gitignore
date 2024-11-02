@@ -1,3 +1,8 @@
+
+evals/results/
+texts/chunked_embedded/
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

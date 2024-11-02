@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS documents (
 CREATE INDEX IF NOT EXISTS documents_embedding_idx ON documents USING hnsw (embedding vector_ip_ops);
 
 -- SIMILARITY SEARCH FUNCTION
-CREATE OR REPLACE FUNCTION query_similar_documents(
+CREATE OR REPLACE FUNCTION similarity_search(
     query_embedding VECTOR(1536),
     limit_num INT
 )

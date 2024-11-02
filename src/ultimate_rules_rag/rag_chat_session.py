@@ -7,7 +7,7 @@ import json
 from pydantic import BaseModel, Field
 from typing import Optional, ClassVar, Dict, Tuple
 from anthropic import Anthropic
-from .clients.conversation_history import ConversationHistory
+from .conversation_history import ConversationHistory
 from .clients.base_client import BaseClient
 
 import logging
@@ -65,18 +65,13 @@ class RagChatSession(BaseModel):
 
     def _get_docs(self, query: str, **kwargs) -> list:
         logger.info(f"Getting similar documents for query: {query}")
-        return self.retriever.retrieve_similar_documents(query, **kwargs)
+        return self.retriever.search(query, **kwargs)
 
     def _prepare_context(self, context: list) -> str:
-        # context_str = "\n\n".join([f"Source: {doc['source']}\n{doc['content']}" for doc in context])
-
         context_items = []
         for doc in context:
             item = {"source": doc['source'], "content": doc['content']}
-            # item = f"{doc['source']}:\n{doc['content']}"
-            # item = doc['content']
             context_items.append(item)
-        # context_str = "\n\n".join(context_items)
         context_str = json.dumps(context_items)
         self.context.add_context(context_str)
         return context_str
@@ -84,7 +79,6 @@ class RagChatSession(BaseModel):
     def _get_llm_answer(self, query: str) -> str:
         logger.info(f"Getting answer with LLM for query: {query}")
         context = self.context.get_context()
-        # print(f"context {len(context)}: {context[0:6000]}...")
 
         prompt = f"""
         <context>
@@ -112,14 +106,12 @@ class RagChatSession(BaseModel):
             messages=self.history.messages + [{"role": "user", "content": prompt}],
             response_format=Answer
         )
-        print(f"\nresponse: {response}")
+        # print(f"\nresponse: {response}")
 
         answer = f"{response.answer}\n\nRelevant rules:\n{'\n'.join(response.relevant_rules)}"
-        
 
         self.history.add_message("user", query)
         self.history.add_message("assistant", answer)
-        self.history.prune_history()
         return answer
     
 
@@ -165,7 +157,7 @@ class RagChatSession(BaseModel):
                 response_format=Response
             )
 
-            print(f"processed input: {response.model_dump()}")
+            # print(f"processed input: {response.model_dump()}")
             return (response.retrieve_more_info, response.query)
             
         except Exception as e:
@@ -230,3 +222,4 @@ class RagChatSession(BaseModel):
 #     # print(f"\n\ncost:")
 #     # session.usage.pretty_print()
   
+

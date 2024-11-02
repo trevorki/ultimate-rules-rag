@@ -16,5 +16,5 @@ if __name__ == "__main__":
     retriever = Retriever()
     for query in queries:
         print(f"\n\nQuery: '{query}'")
-        retrieved_docs = retriever.query_similar_documents(query, limit = 5)
+        retrieved_docs = retriever.similarity_search(query, limit = 5)
         print(retrieved_docs)

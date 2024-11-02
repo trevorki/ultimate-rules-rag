@@ -1,9 +1,17 @@
 import json
+import argparse
+
+# Add argument parser
+parser = argparse.ArgumentParser(description='Calculate embedding costs for chunked text')
+parser.add_argument('--chunk-size', type=int, required=True, help='Size of text chunks')
+args = parser.parse_args()
 
 model_name = "gpt-4o-mini"
-path = "texts/rules_contextual_embeddings.json"
+path = f"texts/chunked_embedded/rules_contextual_embeddings_chunk-{args.chunk_size}.json"
 with open(path, "r") as f:
     data = json.load(f)
+
+print(f"Calculating cost for {model_name} with {len(data)} chunks")
 
 cost_dict = {
     "gpt-4o-mini": {

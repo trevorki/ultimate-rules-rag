@@ -1,0 +1,4784 @@
+[
+    {
+        "question": "During a point, any player can call a team timeout.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 1
+    },
+    {
+        "question": "In between points, any player or coach can call a team timeout.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 2
+    },
+    {
+        "question": "If play is stopped (time outs/discussion of a call) you should 'hand check' the disc by having the defensive player tap the disc, to begin playing again.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 3
+    },
+    {
+        "question": "If the disc is rolling on a pull, you can kick the disc to move it forward.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 4
+    },
+    {
+        "question": "Two adjacent players who simultaneously come into the same area that was previously unoccupied, causing contact is not in itself a foul.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 5
+    },
+    {
+        "question": "Due to Principle of Verticality, no one can jump above you to attempt to D a disc.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 6
+    },
+    {
+        "question": "If you catch a disc and then get pushed out of bounds by an opposing player while in the air, it is a turnover.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 7
+    },
+    {
+        "question": "If the disc goes out of bounds, the offensive player with the disc does not need to tap the disc on the ground to continue play.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 8
+    },
+    {
+        "question": "For a 'Fast Count' call, play must stop.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 9
+    },
+    {
+        "question": "You always have to say the word 'stall' before you begin stalling your opponent. ie \"Stall 1, 2, 3,...\"",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 10
+    },
+    {
+        "question": "The perimeter line of a field is in bounds (in other words, if you catch a disc and land on the line, you are in bounds).",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 11
+    },
+    {
+        "question": "If a disc is turned in the end zone, the other team has to always bring the disc up to the goal line to start play.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 12
+    },
+    {
+        "question": "You must hand check the disc to resume play after a timeout.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 13
+    },
+    {
+        "question": "When receiving the 'pull,' all players on the receiving team can be anywhere in the end zone.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 14
+    },
+    {
+        "question": "When 'pulling,' the pulling team can be anywhere in the end zone.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 15
+    },
+    {
+        "question": "If you pre-stall, you have to give notice to the offensive player before doing it by counting down the prestall.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 16
+    },
+    {
+        "question": "You can contest a strip call.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 17
+    },
+    {
+        "question": "A PICK cannot be called if you run into your own player. Only a player on the other team.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 18
+    },
+    {
+        "question": "Anyone on the field for the defensive team can prestall.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 19
+    },
+    {
+        "question": "If you are on the pulling team, you can catch the disc while it is in the air for a turnover.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 20
+    },
+    {
+        "question": "You are allowed to have stiff contact with your opponent in the game of Ultimate.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 21
+    },
+    {
+        "question": "If you drop a disc carrying it in from out of bounds, while the disc is live (not a timeout/foul discussion) it is is a turnover.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 22
+    },
+    {
+        "question": "Each team has two timeouts per half always.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 23
+    },
+    {
+        "question": "Field dimensions can be changed in tournament play by the tournament director.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 24
+    },
+    {
+        "question": "If you play with observers, you send a disputed call to an observer to decide, you can overrule an observer\u2019s call.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 25
+    },
+    {
+        "question": "If you play with observers, you can only call over an observer once you have tried to work it out with the opposing player.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 26
+    },
+    {
+        "question": "If you accidentally drop a disc while pivoting, it is not a turnover.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 27
+    },
+    {
+        "question": "If you are playing with someone that is new and does not know the rules well, then you should use this to your advantage, and allow yourself to get away with things they may not call.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 28
+    },
+    {
+        "question": "Above all else, you are to be a person of integrity and win a game the right way and not by bending the rules.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 29
+    },
+    {
+        "question": "It is a stall only when they throw the disc after you say the word 'ten' completely?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 30
+    },
+    {
+        "question": "If the thrower throws the disc when it is a Stall 10, and he contests the call, but the disc goes incomplete, the disc comes back to the thrower and the stall count starts at 8.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 31
+    },
+    {
+        "question": "You can contest a contact call.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 32
+    },
+    {
+        "question": "The end zone size is now at 25 x 40 yards, and the playing field proper is 70 x 40 yards.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 33
+    },
+    {
+        "question": "You can tip a pass to yourself in order to evade a defender",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 34
+    },
+    {
+        "question": "You can only take up to three steps after catching a disc.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 35
+    },
+    {
+        "question": "You do not need to set a pivot foot in order to throw.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 36
+    },
+    {
+        "question": "If a pull is thrown and lands out the back, it should be brought out of the endzone, to the goaline, and straight forward from where it landed.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 37
+    },
+    {
+        "question": "Coaches may give input on the outcome of a play or call based on what they saw.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 38
+    },
+    {
+        "question": "The players on the sideline cannot offer their opinion on in/out calls, or any other call/outcome of a play.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 39
+    },
+    {
+        "question": "If you catch the disc and the defender immediately knocks it out:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "It is a turnover"
+            },
+            {
+                "letter": "B",
+                "text": "It is a strip"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 40
+    },
+    {
+        "question": "If the game is to 15, halftime is at:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "When one of the teams scores 8 points"
+            },
+            {
+                "letter": "B",
+                "text": "45 minutes into the game"
+            },
+            {
+                "letter": "C",
+                "text": "Half of the time into the game (i.e. 80 minute total game, halftime would be at 40 minutes)"
+            },
+            {
+                "letter": "D",
+                "text": "When the total score adds up to 8 (i.e. 5-3)"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 41
+    },
+    {
+        "question": "If your marker calls 'STALL' because they think they got to ten, but you yell 'CONTEST', and the pass is an incomplete pass:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The disc goes back to the thrower and the marker starts at stall 8"
+            },
+            {
+                "letter": "B",
+                "text": "The disc goes back to the spot of the throw and it is a turnover there with the defensive team taking over"
+            },
+            {
+                "letter": "C",
+                "text": "It is a turnover where the disc landed incomplete"
+            },
+            {
+                "letter": "D",
+                "text": "None of the above"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 42
+    },
+    {
+        "question": "What happens if two people cannot resolve an issue?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Redo the play"
+            },
+            {
+                "letter": "B",
+                "text": "Ask someone else on the field with best perspective to decide"
+            },
+            {
+                "letter": "C",
+                "text": "Go to an observer"
+            },
+            {
+                "letter": "D",
+                "text": "All of the above"
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 43
+    },
+    {
+        "question": "If you call a timeout and you have no timeouts remaining:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "It is a turnover"
+            },
+            {
+                "letter": "B",
+                "text": "It is a foul and the defense starts the stall count starting at 8"
+            },
+            {
+                "letter": "C",
+                "text": "Nothing happens, the team just does not get a timeout"
+            },
+            {
+                "letter": "D",
+                "text": "The opposing team gets it on the disc on the goal line."
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 44
+    },
+    {
+        "question": "'Contact' call is:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "When you are a cutter and the downfield defender is pushing you or having contact with you"
+            },
+            {
+                "letter": "B",
+                "text": "When you have the disc as a thrower, and are fouled but not throwing"
+            },
+            {
+                "letter": "C",
+                "text": "When you are catching the disc and your defender interferes"
+            },
+            {
+                "letter": "D",
+                "text": "When you run your cut and your defender gets in the way"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 45
+    },
+    {
+        "question": "Time-outs last:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "60 seconds"
+            },
+            {
+                "letter": "B",
+                "text": "70 seconds"
+            },
+            {
+                "letter": "C",
+                "text": "90 seconds"
+            },
+            {
+                "letter": "D",
+                "text": "120 seconds"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 46
+    },
+    {
+        "question": "After you go back into position on offense after a time-out and you move before the disc is put into play, it is called a:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Stall"
+            },
+            {
+                "letter": "B",
+                "text": "Foul"
+            },
+            {
+                "letter": "C",
+                "text": "Violation"
+            },
+            {
+                "letter": "D",
+                "text": "Contest"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 47
+    },
+    {
+        "question": "If you are injured and you stop play:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "You must leave the field and someone replaces you"
+            },
+            {
+                "letter": "B",
+                "text": "You can choose to stay on the field but your team is charged a time-out. If you do not have timeouts, it is a turnover. However, if the injury was caused by the other team, then you can stay without penalty."
+            },
+            {
+                "letter": "C",
+                "text": "You can ask the other team if they agree that it is OK for you to stay in the game"
+            },
+            {
+                "letter": "D",
+                "text": "All of the above"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 48
+    },
+    {
+        "question": "If you are chasing your man and you get picked and he catches it and you yell 'PICK':",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The disc stays where it is with the receiver that caught it"
+            },
+            {
+                "letter": "B",
+                "text": "The disc always goes back to the thrower because it was involved with the pick"
+            },
+            {
+                "letter": "C",
+                "text": "It is a turnover"
+            },
+            {
+                "letter": "D",
+                "text": "The disc goes back to the thrower if you would have had a play on the disc. It stays with the receiver and you get to catch up the relative distance if you did not have a play on the disc."
+            },
+            {
+                "letter": "E",
+                "text": "None of the above"
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 49
+    },
+    {
+        "question": "When you win the toss, you can choose:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "To receive or pull"
+            },
+            {
+                "letter": "B",
+                "text": "Defer to the second half"
+            },
+            {
+                "letter": "C",
+                "text": "Which end zone your team will defend"
+            },
+            {
+                "letter": "D",
+                "text": "A or B"
+            },
+            {
+                "letter": "E",
+                "text": "A or C"
+            },
+            {
+                "letter": "F",
+                "text": "B or C"
+            },
+            {
+                "letter": "G",
+                "text": "All of the above"
+            }
+        ],
+        "answers": [
+            "E"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 50
+    },
+    {
+        "question": "If a team is late to a game, the Tournament Director can:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Penalize the team that does not show up on time with a forfeit"
+            },
+            {
+                "letter": "B",
+                "text": "1 point to the other team for every 5 minutes they are late"
+            },
+            {
+                "letter": "C",
+                "text": "Nothing"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 51
+    },
+    {
+        "question": "If a 'PICK' is called while the thrower releases the disc into the air and no one catches the disc and it falls to the ground:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The disc goes back to the thrower and the play starts again with the person calling pick able to catch up to his man."
+            },
+            {
+                "letter": "B",
+                "text": "It is a turnover where the disc landed incomplete"
+            },
+            {
+                "letter": "C",
+                "text": "If the pass was intended for the person that was had his man picked, then the play happens again with the disc going back to the thrower."
+            },
+            {
+                "letter": "D",
+                "text": "None of the above"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 52
+    },
+    {
+        "question": "If you drop a disc in the end zone due to an uncontested foul:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "You are awarded the point"
+            },
+            {
+                "letter": "B",
+                "text": "You tap the disc in at the spot of the foul, then bring the disc out to the goal line and your team is on offense from there"
+            },
+            {
+                "letter": "C",
+                "text": "The redo the play from the original thrower"
+            },
+            {
+                "letter": "D",
+                "text": "None of the above"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 53
+    },
+    {
+        "question": "When 'contact' is called:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The mark drops the count by two"
+            },
+            {
+                "letter": "B",
+                "text": "Play stops, and restarts with a hand check after the marker backs up. Stall stays where it was at"
+            },
+            {
+                "letter": "C",
+                "text": "The stall increases by two, because contact is a defensive call"
+            },
+            {
+                "letter": "D",
+                "text": "It is treated as a uncontested foul call, against the mark, bringing the stall to zero. But, play could be stopped to contest and discuss if the mark disagrees."
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 54
+    },
+    {
+        "question": "If you catch a pass in the end zone but do not realize it and throw another pass in the end zone to your teammate and he drops it:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "It is still a point"
+            },
+            {
+                "letter": "B",
+                "text": "It is a turnover"
+            },
+            {
+                "letter": "C",
+                "text": "You redo it"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 55
+    },
+    {
+        "question": "How long do you have once the disc lands, on the playing field proper, as a turnover to pick it up on offense?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "No time limit"
+            },
+            {
+                "letter": "B",
+                "text": "5 seconds"
+            },
+            {
+                "letter": "C",
+                "text": "10 seconds"
+            },
+            {
+                "letter": "D",
+                "text": "20 seconds"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 56
+    },
+    {
+        "question": "In the above question, when can you pre-stall?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Once the disc comes to a stop"
+            },
+            {
+                "letter": "B",
+                "text": "10 seconds after it lands dead"
+            },
+            {
+                "letter": "C",
+                "text": "20 seconds after it lands dead"
+            },
+            {
+                "letter": "D",
+                "text": "30 seconds after it lands dead"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 57
+    },
+    {
+        "question": "When you are stalling, you stall by saying:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "'Stalling 1, Stalling 2, Stalling 3 etc.'"
+            },
+            {
+                "letter": "B",
+                "text": "'Stall 1, Stall 2, Stall 3 etc.'"
+            },
+            {
+                "letter": "C",
+                "text": "'Stalling 1, 2, 3 etc.'"
+            },
+            {
+                "letter": "D",
+                "text": "A and B"
+            },
+            {
+                "letter": "E",
+                "text": "All of the above"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 58
+    },
+    {
+        "question": "The score is 8-6. The hard cap horn goes off during the point. The B team scores to make it 8-7.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The B team should not have scored. Game should have been over immediately at 8-6."
+            },
+            {
+                "letter": "B",
+                "text": "You keep playing until you hear the soft cap horn. Then finish the game after that point."
+            },
+            {
+                "letter": "C",
+                "text": "Scores are within one point so you play it out. If A team scores to make it 9-7, game is over. If B team scores to make it 8-8, universe point then."
+            },
+            {
+                "letter": "D",
+                "text": "Game is over. 8-7"
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 59
+    },
+    {
+        "question": "If you call a travel:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "It is a turnover"
+            },
+            {
+                "letter": "B",
+                "text": "Play stops and the disc goes back to the thrower, if a throwing travel, assuming the pass was complete"
+            },
+            {
+                "letter": "C",
+                "text": "Play stops and the receiver who caught the disc must back up to where their momentum would've reasonably taken them, if a receiving travel"
+            },
+            {
+                "letter": "D",
+                "text": "Both B and C"
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 60
+    },
+    {
+        "question": "All of the below are marking violations EXCEPT:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Disc space"
+            },
+            {
+                "letter": "B",
+                "text": "Fast count"
+            },
+            {
+                "letter": "C",
+                "text": "Double team"
+            },
+            {
+                "letter": "D",
+                "text": "Vision blocking"
+            },
+            {
+                "letter": "E",
+                "text": "All of the above are marking violations"
+            }
+        ],
+        "answers": [
+            "E"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 61
+    },
+    {
+        "question": "For the first marking violation after the thrower has gotten the disc:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Play stops and the stall count goes to 0"
+            },
+            {
+                "letter": "B",
+                "text": "Play stops and the stall count is dropped by 1"
+            },
+            {
+                "letter": "C",
+                "text": "Play does not stop and stall count goes to 0"
+            },
+            {
+                "letter": "D",
+                "text": "Play does not stop and stall count is dropped by 1"
+            },
+            {
+                "letter": "E",
+                "text": "Play does not stop and stall count is dropped by 2"
+            }
+        ],
+        "answers": [
+            "E"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 62
+    },
+    {
+        "question": "If an offensive and defensive player catch the disc at the same time:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Disc goes to offensive player"
+            },
+            {
+                "letter": "B",
+                "text": "Disc goes to defensive player"
+            },
+            {
+                "letter": "C",
+                "text": "Redo the play"
+            },
+            {
+                "letter": "D",
+                "text": "Best perspective person decides on it (teammate, etc.)"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 63
+    },
+    {
+        "question": "If there is debate on whether the pass was caught or hit the ground, who can rule on it?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Any offensive players"
+            },
+            {
+                "letter": "B",
+                "text": "Any defensive players"
+            },
+            {
+                "letter": "C",
+                "text": "The player(s) with the best perspective"
+            },
+            {
+                "letter": "D",
+                "text": "A and B"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 64
+    },
+    {
+        "question": "The standard field of play is:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "75 yards x 50 yards with 25 yard end zones"
+            },
+            {
+                "letter": "B",
+                "text": "80 yards x 40 yards with 20 yard end zones"
+            },
+            {
+                "letter": "C",
+                "text": "70 yards x 40 yards with 20 yard end zones"
+            },
+            {
+                "letter": "D",
+                "text": "100 yards x 50 yards with 25 yard end zones"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 65
+    },
+    {
+        "question": "If the disc lands out of bounds on a pull:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The receiving team can ask for a re-pull"
+            },
+            {
+                "letter": "B",
+                "text": "The disc comes into play at the 'brick', or the middle of the field wherever it went out of bounds if it was before it"
+            },
+            {
+                "letter": "C",
+                "text": "If it goes out of the back of the end zone, it comes up to the front of the end zone"
+            },
+            {
+                "letter": "D",
+                "text": "A player could chose to take the disc at the sideline nearest where it went out"
+            },
+            {
+                "letter": "E",
+                "text": "B and D"
+            },
+            {
+                "letter": "F",
+                "text": "All of the above"
+            }
+        ],
+        "answers": [
+            "E"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 66
+    },
+    {
+        "question": "You can only substitute:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Between points"
+            },
+            {
+                "letter": "B",
+                "text": "Injury timeouts"
+            },
+            {
+                "letter": "C",
+                "text": "Team timeouts"
+            },
+            {
+                "letter": "D",
+                "text": "A and B (there is a difference between injury timeouts and team timeouts)"
+            },
+            {
+                "letter": "E",
+                "text": "A and C"
+            },
+            {
+                "letter": "F",
+                "text": "B and C"
+            },
+            {
+                "letter": "G",
+                "text": "All of the above"
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 67
+    },
+    {
+        "question": "How much TOTAL time do you have in between pulls?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "60 seconds"
+            },
+            {
+                "letter": "B",
+                "text": "70 seconds"
+            },
+            {
+                "letter": "C",
+                "text": "90 seconds"
+            },
+            {
+                "letter": "D",
+                "text": "120 seconds"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 68
+    },
+    {
+        "question": "If you are the thrower and you throw the disc and yell 'FOUL':",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "If the disc is caught, you continue to play on"
+            },
+            {
+                "letter": "B",
+                "text": "If the disc is caught, you still bring the disc back to the spot of the foul"
+            },
+            {
+                "letter": "C",
+                "text": "If the disc is incomplete, you continue play with it being a turnover"
+            },
+            {
+                "letter": "D",
+                "text": "If the disc is incomplete, you bring the disc back to the spot of the foul"
+            },
+            {
+                "letter": "E",
+                "text": "A and D"
+            }
+        ],
+        "answers": [
+            "E"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 69
+    },
+    {
+        "question": "If the throw goes up, there is a contested foul and the stall was originally at 8, then the disc goes back to the thrower and the stall count starts at:",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "8"
+            },
+            {
+                "letter": "B",
+                "text": "6"
+            },
+            {
+                "letter": "C",
+                "text": "0"
+            },
+            {
+                "letter": "D",
+                "text": "None of the above"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 70
+    },
+    {
+        "question": "Score is 13-11. B team scores to make it 13-12. Hard cap horn goes off right after they score.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Because it went off after the point concluded, it is the same as going off during the following point. Therefore, play another. Then if A team scores to make it 14-12, game is over. If B team scores to make it 13-13 then universe point."
+            },
+            {
+                "letter": "B",
+                "text": "Game is over."
+            },
+            {
+                "letter": "C",
+                "text": "Game is to 15 so you play it out."
+            },
+            {
+                "letter": "D",
+                "text": "None of the above."
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 71
+    },
+    {
+        "question": "A player on the opposing team makes a call (foul/in or out/travel/etc) and you disagree. What steps can you take to determine what is correct?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Ask the sideline"
+            },
+            {
+                "letter": "B",
+                "text": "Politely discuss the call with players on either team who had the best perspective"
+            },
+            {
+                "letter": "C",
+                "text": "Ask your coach what they think happened on the field"
+            },
+            {
+                "letter": "D",
+                "text": "Ask your coach to clarify specific rules"
+            },
+            {
+                "letter": "E",
+                "text": "Ignore the other player and always stick with your gut"
+            },
+            {
+                "letter": "F",
+                "text": "B and D"
+            },
+            {
+                "letter": "G",
+                "text": "A, B, C, D are all correct"
+            }
+        ],
+        "answers": [
+            "F"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 72
+    },
+    {
+        "question": "After a turnover, with the disc landed on the playing field proper, what action must the new offensive player picking up the disc do before beginning to throw?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The new offensive player must check the disc with a new defensive player"
+            },
+            {
+                "letter": "B",
+                "text": "The new offensive player must yell \"disc in\" upon picking up the disc"
+            },
+            {
+                "letter": "C",
+                "text": "The new offensive player must yell \"disc in\" AND ground tap the disc upon picking it up."
+            },
+            {
+                "letter": "D",
+                "text": "None of these. The new offensive player may pick up the disc and throw immediately."
+            },
+            {
+                "letter": "E",
+                "text": "The new offensive player must check the disc with a new defensive player, or if no defensive player is near can yell \"disc in\" and ground tap the disc instead."
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 73
+    },
+    {
+        "question": "The other team overthrows their receiver in the end zone. A player on your team retrieves the disc, walks it up to the front of the end zone line, and before the defense has a chance to put a mark she ground taps the disc and then throws the disc to someone cutting down field. The other team calls violation because they didn\u2019t get a chance to check the disc in. Is this a valid call? What should happen in this situation?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Yes, valid call, there must be a check."
+            },
+            {
+                "letter": "B",
+                "text": "No, No check is required, only a ground tap after walking out of the endzone."
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 74
+    },
+    {
+        "question": "A receiver is fouled when trying to catch a disc in the end zone. The defender agrees that she fouled the receiver. What happens?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Receiver's disc on the goal line-receiver and defender walk to the end zone line and check the disc in."
+            },
+            {
+                "letter": "B",
+                "text": "An uncontested foul in the end zone is now always a goal."
+            },
+            {
+                "letter": "C",
+                "text": "It depends whether the receiver had possession of the disc before the foul happened. Strips are scores, fouls are on the goaline."
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 75
+    },
+    {
+        "question": "The thrower calls a foul on the marker and stops playing, letting the disc hang by his side. The marker yells \"no contest,\" touches the disc and begins his stall count. The thrower protests, saying he wasn\u2019t ready, but the marker ignores him and the stall count reaches 10. What is the outcome?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Turnover. The defender checked the disc in and then stalled the thrower."
+            },
+            {
+                "letter": "B",
+                "text": "Thrower's disc, stall count at 1. The thrower never offered the disc for a check, so no check occurred. Uncontested foul brings the count to zero."
+            },
+            {
+                "letter": "C",
+                "text": "Thrower's disc, stall count at 6. Offsetting infractions - violation on the thrower for not offering the disc quickly enough and violation on the marker for checking it in before the thrower offered it."
+            },
+            {
+                "letter": "D",
+                "text": "Turnover. The thrower waived the requirement of offering the disc by taking too long, and the defender checked it in and stalled the thrower."
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 76
+    },
+    {
+        "question": "The player catches the disc while airborne and, upon landing, loses possession, bobbling the disc to himself to regain possession. While bobbling, the player takes five steps, both speeding up and changing direction. Upon regaining possession (with both feet on the ground), the player takes two more steps in the same line at the same speed and makes a throw while dragging his back foot, and then continues to run. How many travels, if any, has this player committed?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "One travel, dragging his back foot"
+            },
+            {
+                "letter": "B",
+                "text": "Two travels, dragging his back foot, and when he changed speed and direction running"
+            },
+            {
+                "letter": "C",
+                "text": "Three travels, dragging foot, changing speed and direction, and when losing possession and bobbling"
+            },
+            {
+                "letter": "D",
+                "text": "Two travels, dragging back foot, and when the player took two additional steps after catching"
+            },
+            {
+                "letter": "E",
+                "text": "Zero travels"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 77
+    },
+    {
+        "question": "Earlier in his possession, the thrower called \"disc space\" on the marker (and the marker responded appropriately). Now, the marker again establishes a position violating the disc space. Which of the following describes a legal call by the thrower and an appropriate response by the marker?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The thrower calls \"disc space\" and the marker should stop counting, back up and resume counting at the count reached, minus one."
+            },
+            {
+                "letter": "B",
+                "text": "The thrower calls \"violation,\" play stops, and then play resumes with the stall count at 1."
+            },
+            {
+                "letter": "C",
+                "text": "The thrower calls \"foul,\" play stops, and then play resumes with the stall count at 1."
+            },
+            {
+                "letter": "D",
+                "text": "A and B."
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 78
+    },
+    {
+        "question": "A pick is called at the front of the stack, but the thrower does not hear/acknowledge the call and completes a fast-flying huck to the receiver at the back of the stack, whose defender was very close, but stopped upon hearing the pick call. Where does the disc go?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The disc comes back; the call affected the play because the defender stopped"
+            },
+            {
+                "letter": "B",
+                "text": "The play stands; the picked player had no play on the disc. The picked player can catch up and disc checked in."
+            },
+            {
+                "letter": "C",
+                "text": "The disc comes back; play stopped when the call was made"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 79
+    },
+    {
+        "question": "A huck goes up and a receiver and her defender are jockeying for position while waiting for the disc to arrive. When the disc arrives, the receiver uses one arm to push the defender out of the way, while jumping up and catching the disc with the other arm. The defender calls a foul, and the receiver does not contest the foul. What happens?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Play stops, but the disc remains with the receiver since she caught the disc."
+            },
+            {
+                "letter": "B",
+                "text": "It's a turnover, play stops and the disc is awarded to the fouled defender."
+            },
+            {
+                "letter": "C",
+                "text": "Play stops, the disc goes back to the thrower."
+            },
+            {
+                "letter": "D",
+                "text": "It\u2019s a turnover, play stops, and the fouled defender may take possession or place the disc in the ground and check it into play."
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 80
+    },
+    {
+        "question": "A marker who is stalling the thrower begins to near the end of the stall count and, in excitement, speeds up his stall count and reaches \"ten\" while the disc is still in the thrower's hands, and calls \"stall\". The thrower contests, saying that the count was fast. The marker says: \"well, you still have the disc in your hand, so it's definitely been 10 seconds now, so it's a stall!\" What happens?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "10 seconds have elapsed and the thrower has not thrown the disc, so it's a stall. Turnover, defender checks the disc in at the spot of the foul."
+            },
+            {
+                "letter": "B",
+                "text": "10 seconds have elapsed and the thrower has not thrown the disc, so it's a stall. Turnover, play continues immediately without a check."
+            },
+            {
+                "letter": "C",
+                "text": "Play stopped when the stall was called, so the time that has elapsed since the stoppage of play is irrelevant. Thrower retains possession of the disc and play restarts with a check at \"stalling 8\"."
+            },
+            {
+                "letter": "D",
+                "text": "Play stopped when the stall was called, so the time that has elapsed since the stoppage of play is irrelevant. Thrower retains possession of the disc and play restarts with a check at \"stalling 9\"."
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 81
+    },
+    {
+        "question": "A thrower puts up a floaty, floaty huck and his receiver and the defender are chasing it down. The receiver makes an excellent read and places himself in perfect position to catch the floating pass. Three more defenders collect under the floating disc, pushing each other and collectively pushing the receiver out of position. He calls a foul. They collectively contest, saying \"It was a hospital pass, you can't call that.\" Which of the following is true?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The defenders are wrong, the disc returns to the thrower, and the players should resume their positions at the time of the throw."
+            },
+            {
+                "letter": "B",
+                "text": "The defenders are wrong, the disc returns to the thrower, and the players should resume their positions at the time of the call."
+            },
+            {
+                "letter": "C",
+                "text": "The defenders are right, since the contact was incidental. Turnover."
+            },
+            {
+                "letter": "D",
+                "text": "The defenders are right, the pass was terrible and that's why it wasn't caught. Turnover."
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 82
+    },
+    {
+        "question": "A receiver runs after a huck in a perfectly straight line (assume this straight line continues), with her defender trailing behind. The defender accelerates and begins to catch up. As the trailing defender closes to only a half step behind the receiver, their legs become tangled and they both fall down. The receiver calls a foul. Which describes appropriate action and reasoning by the defender? Where does the disc go?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "She should contest because \"some amount of incidental contact before, during, or immediately after the [receiving] attempt often is unavoidable and is not a foul.\" Disc back to thrower."
+            },
+            {
+                "letter": "B",
+                "text": "She should not contest because she initiated the contact which caused their legs to tangle. Disc to receiver at the spot of the foul."
+            },
+            {
+                "letter": "C",
+                "text": "She should contest because the contact caused her to fall, too, and since they both fell, continued play was not affected. Disc back to thrower."
+            },
+            {
+                "letter": "D",
+                "text": "She should contest because it is not clear that the receiver would have come down with it, so the fair outcome is to send it back. Disc back to thrower."
+            },
+            {
+                "letter": "E",
+                "text": "She should not contest because she initiated the contact which caused their legs to tangle. Disc to receiver who takes possession of the disc where it lies."
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "Rules_Test-CENTER_GROVE_ULTIMATE _CLUB.txt",
+        "question_number": 83
+    },
+    {
+        "question": "What is the maximum number of players allowed on the field for one team during a point in an Ultimate Frisbee game?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "5"
+            },
+            {
+                "letter": "B",
+                "text": "6"
+            },
+            {
+                "letter": "C",
+                "text": "7"
+            },
+            {
+                "letter": "D",
+                "text": "8"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 1
+    },
+    {
+        "question": "What is ultimate?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Contact disc sport played by two teams of seven players."
+            },
+            {
+                "letter": "B",
+                "text": "Non-contact disc sport played by two teams of seven players."
+            },
+            {
+                "letter": "C",
+                "text": "Non-contact disc sport played by two teams of eleven players."
+            },
+            {
+                "letter": "D",
+                "text": "Contact disc sport played by two teams of eleven players."
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 2
+    },
+    {
+        "question": "What is the object of the game?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "To score goals"
+            },
+            {
+                "letter": "B",
+                "text": "To score touchdowns"
+            },
+            {
+                "letter": "C",
+                "text": "To score baskets"
+            },
+            {
+                "letter": "D",
+                "text": "To score runs"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 3
+    },
+    {
+        "question": "A goal is scored when...",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "A player knocks down a pass"
+            },
+            {
+                "letter": "B",
+                "text": "The opposing team turns the disc over"
+            },
+            {
+                "letter": "C",
+                "text": "A player catches any legal pass in the end zone"
+            },
+            {
+                "letter": "D",
+                "text": "All of the above"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 4
+    },
+    {
+        "question": "True or False: A player may run while holding the disc.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 5
+    },
+    {
+        "question": "How is the disc advanced?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "By kicking it to other players"
+            },
+            {
+                "letter": "B",
+                "text": "By passing it to other players"
+            },
+            {
+                "letter": "C",
+                "text": "By running it to other players"
+            },
+            {
+                "letter": "D",
+                "text": "None of the above"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 6
+    },
+    {
+        "question": "True or False: The disc may be passed in any direction.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 7
+    },
+    {
+        "question": "A turnover occurs when...",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "A pass is incomplete"
+            },
+            {
+                "letter": "B",
+                "text": "The marker\u2019s count reaches the maximum number"
+            },
+            {
+                "letter": "C",
+                "text": "The pull is dropped"
+            },
+            {
+                "letter": "D",
+                "text": "All of the above"
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 8
+    },
+    {
+        "question": "What is spirit of the game?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Having fun"
+            },
+            {
+                "letter": "B",
+                "text": "Sportsmanship that places the responsibility for fair play on the player."
+            },
+            {
+                "letter": "C",
+                "text": "Taunting opposing players, dangerous aggression, intentional infractions, or other \"win-at-all-costs\" behavior."
+            },
+            {
+                "letter": "D",
+                "text": "Having a mistake free game."
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 9
+    },
+    {
+        "question": "What is the Captain\u2019s Clause?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "An agreement at the start of the game that each team must have a captain"
+            },
+            {
+                "letter": "B",
+                "text": "An agreement at the start of the game that decides who will receive the disc first"
+            },
+            {
+                "letter": "C",
+                "text": "An agreement that the game may be played under any variation of the rules by the captains of the teams involved."
+            },
+            {
+                "letter": "D",
+                "text": "An agreement that the captain of the team must wear an armband to be recognized"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 10
+    },
+    {
+        "question": "True or False: The event organizer may modify rules relating to game logistics in order to suit the event.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 11
+    },
+    {
+        "question": "True or False: Rules that apply to specific situations override rules for general cases.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 12
+    },
+    {
+        "question": "Who has best perspective?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The player who caught the disc"
+            },
+            {
+                "letter": "B",
+                "text": "The player closest to the action"
+            },
+            {
+                "letter": "C",
+                "text": "The player closest to the action on the opposing team"
+            },
+            {
+                "letter": "D",
+                "text": "The player with the most complete view available"
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 13
+    },
+    {
+        "question": "A ____________ results in the team in possession of the disc retaining possession.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Incomplete Pass"
+            },
+            {
+                "letter": "B",
+                "text": "Completed Pass"
+            },
+            {
+                "letter": "C",
+                "text": "Block"
+            },
+            {
+                "letter": "D",
+                "text": "All of the above"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 14
+    },
+    {
+        "question": "A __________ is a player whose team is not in possession of the disc.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Handler"
+            },
+            {
+                "letter": "B",
+                "text": "Offensive Player"
+            },
+            {
+                "letter": "C",
+                "text": "Defensive Player"
+            },
+            {
+                "letter": "D",
+                "text": "Cutter"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 15
+    },
+    {
+        "question": "True or False: A foul is non-incidental contact.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 16
+    },
+    {
+        "question": "____________ is when a defensive player is reacting to an offensive player.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Double Team"
+            },
+            {
+                "letter": "B",
+                "text": "Vision Blocking"
+            },
+            {
+                "letter": "C",
+                "text": "Marking"
+            },
+            {
+                "letter": "D",
+                "text": "Guarding"
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 17
+    },
+    {
+        "question": "True or False: You need 2 feet in bounds and must completely stop the rotation of the disc in order for it to be a catch.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 18
+    },
+    {
+        "question": "__________ is the defensive player within three meters of the thrower's pivot or of the thrower if no pivot has been established",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Guarding"
+            },
+            {
+                "letter": "B",
+                "text": "The Marker"
+            },
+            {
+                "letter": "C",
+                "text": "Double Team"
+            },
+            {
+                "letter": "D",
+                "text": "Vision Blocking"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 19
+    },
+    {
+        "question": "A __________ is the throw from one team to the other that starts play at the beginning of a half or after a goal.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Huck"
+            },
+            {
+                "letter": "B",
+                "text": "Pull"
+            },
+            {
+                "letter": "C",
+                "text": "Scoober"
+            },
+            {
+                "letter": "D",
+                "text": "Hammer"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 20
+    },
+    {
+        "question": "A __________ is the particular part of the body in continuous contact with a single spot on the field during a thrower's possession once the thrower has come to a stop or has attempted a throw or fake.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Pull"
+            },
+            {
+                "letter": "B",
+                "text": "Marker"
+            },
+            {
+                "letter": "C",
+                "text": "Pivot"
+            },
+            {
+                "letter": "D",
+                "text": "Release Point"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 21
+    },
+    {
+        "question": "A _________ starts at the beginning of the game or when the previous goal is scored and ends when the next goal is scored.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Throw"
+            },
+            {
+                "letter": "B",
+                "text": "Scoring attempt"
+            },
+            {
+                "letter": "C",
+                "text": "Huck"
+            },
+            {
+                "letter": "D",
+                "text": "Turnover"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 22
+    },
+    {
+        "question": "What are the 3 states of the disc?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "In Play, Live, Dead"
+            },
+            {
+                "letter": "B",
+                "text": "Check, Play, Dead"
+            },
+            {
+                "letter": "C",
+                "text": "In Play, Out of Play, Dead"
+            },
+            {
+                "letter": "D",
+                "text": "Live, Out of Play, Dead"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 23
+    },
+    {
+        "question": "A disc is ______ when play may proceed without the defense's acknowledgment.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Dead"
+            },
+            {
+                "letter": "B",
+                "text": "In Play"
+            },
+            {
+                "letter": "C",
+                "text": "Live"
+            },
+            {
+                "letter": "D",
+                "text": "Out of Play"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 24
+    },
+    {
+        "question": "A disc is __________ when players are allowed to move and the disc is subject to a turnover, but the thrower cannot make a legal pass (e.g., walking the disc to the spot where it is to be put into play).",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Dead"
+            },
+            {
+                "letter": "B",
+                "text": "In Play"
+            },
+            {
+                "letter": "C",
+                "text": "Live"
+            },
+            {
+                "letter": "D",
+                "text": "Out of Play"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 25
+    },
+    {
+        "question": "A disc is __________ when play has stopped and can continue only with a check. The disc is not subject to a turnover.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Dead"
+            },
+            {
+                "letter": "B",
+                "text": "In Play"
+            },
+            {
+                "letter": "C",
+                "text": "Live"
+            },
+            {
+                "letter": "D",
+                "text": "Out of Play"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 26
+    },
+    {
+        "question": "Any halting of play due to a call, discussion, or time-out that requires a check or self-check to restart play is called?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Dead disc"
+            },
+            {
+                "letter": "B",
+                "text": "Out of play disc"
+            },
+            {
+                "letter": "C",
+                "text": "Stoppage of play"
+            },
+            {
+                "letter": "D",
+                "text": "Time out"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 27
+    },
+    {
+        "question": "True or False: A disc in flight following any throwing motion (including a fake) that results in the thrower losing contact with the disc is called a throw.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 28
+    },
+    {
+        "question": "What is the playing field proper?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The goal lines"
+            },
+            {
+                "letter": "B",
+                "text": "The playing field excluding the end zones"
+            },
+            {
+                "letter": "C",
+                "text": "The playing field including the boundaries"
+            },
+            {
+                "letter": "D",
+                "text": "The playing field end zones"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 29
+    },
+    {
+        "question": "True or False: The end zone is part of the playing field proper.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 30
+    },
+    {
+        "question": "________ are placed at the corners of the playing field proper and the end zones",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Flags"
+            },
+            {
+                "letter": "B",
+                "text": "Pylons"
+            },
+            {
+                "letter": "C",
+                "text": "Scoreboards"
+            },
+            {
+                "letter": "D",
+                "text": "Cones"
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 31
+    },
+    {
+        "question": "True or False: If play is obstructed by competitors, coaches, spectators or objects within five meters of the playing field, any obstructed player or thrower in possession may call this violation.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 32
+    },
+    {
+        "question": "True or False: Any disc acceptable to both team captains may be used.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 33
+    },
+    {
+        "question": "True or False: Metallic baseball cleats and track spikes can be worn in competition.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 34
+    },
+    {
+        "question": "__________ is a game that is played until one team first reaches or exceeds the game total, with a margin of at least two goals or until a cap is reached.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Game to time"
+            },
+            {
+                "letter": "B",
+                "text": "Game to cap"
+            },
+            {
+                "letter": "C",
+                "text": "Game to possession"
+            },
+            {
+                "letter": "D",
+                "text": "Game to goals"
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 35
+    },
+    {
+        "question": "What is a hard cap?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The maximum score limit imposed before the event."
+            },
+            {
+                "letter": "B",
+                "text": "A maximum score limit imposed during a game once a predetermined time of play has elapsed and after the current scoring attempt is completed."
+            },
+            {
+                "letter": "C",
+                "text": "The ending of the game once a predetermined time of play has elapsed and after the current scoring attempt is completed."
+            },
+            {
+                "letter": "D",
+                "text": "Begins when the score is tied at one goal less than the game total."
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 36
+    },
+    {
+        "question": "What is a soft cap?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The maximum score limit imposed before the event."
+            },
+            {
+                "letter": "B",
+                "text": "A maximum score limit imposed during a game once a predetermined time of play has elapsed and after the current scoring attempt is completed."
+            },
+            {
+                "letter": "C",
+                "text": "The ending of the game once a predetermined time of play has elapsed and after the current scoring attempt is completed."
+            },
+            {
+                "letter": "D",
+                "text": "Begins when the score is tied at one goal less than the game total."
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 37
+    },
+    {
+        "question": "A standard game has a game total of ____, with a point cap of _______.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "11, 13"
+            },
+            {
+                "letter": "B",
+                "text": "13, 15"
+            },
+            {
+                "letter": "C",
+                "text": "15, 17"
+            },
+            {
+                "letter": "D",
+                "text": "17, 19"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 38
+    },
+    {
+        "question": "Halftime lasts how long?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "5 min"
+            },
+            {
+                "letter": "B",
+                "text": "10 min"
+            },
+            {
+                "letter": "C",
+                "text": "15 min"
+            },
+            {
+                "letter": "D",
+                "text": "20 min"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 39
+    },
+    {
+        "question": "In a game with a game total of 15 goals when does overtime begin?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "13-12"
+            },
+            {
+                "letter": "B",
+                "text": "13-13"
+            },
+            {
+                "letter": "C",
+                "text": "14-13"
+            },
+            {
+                "letter": "D",
+                "text": "14-14"
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 40
+    },
+    {
+        "question": "How many timeouts does a team get per half in a standard game?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "1 team time-out per half plus a floater"
+            },
+            {
+                "letter": "B",
+                "text": "2 team time-outs per half plus a floater"
+            },
+            {
+                "letter": "C",
+                "text": "3 team time-outs per half plus a floater"
+            },
+            {
+                "letter": "D",
+                "text": "4 team time-outs per half plus a floater"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 41
+    },
+    {
+        "question": "True or False: Each team has exactly one team time-out in overtime, regardless of whether any time-outs remain from regulation.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 42
+    },
+    {
+        "question": "How long does a team time-out last?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "60 seconds"
+            },
+            {
+                "letter": "B",
+                "text": "70 seconds"
+            },
+            {
+                "letter": "C",
+                "text": "80 seconds"
+            },
+            {
+                "letter": "D",
+                "text": "90 seconds"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 43
+    },
+    {
+        "question": "After the pull hits the ground who can call a team time-out?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Only the thrower"
+            },
+            {
+                "letter": "B",
+                "text": "Only the captain"
+            },
+            {
+                "letter": "C",
+                "text": "Any player on the offensive team"
+            },
+            {
+                "letter": "D",
+                "text": "The coach or the captain"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 44
+    },
+    {
+        "question": "True or False: Players can be subbed out if a team time-out is called.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 45
+    },
+    {
+        "question": "The player who had possession of the disc when the team time-out was called restarts play with a ______ at the pivot spot.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Check"
+            },
+            {
+                "letter": "B",
+                "text": "Throw"
+            },
+            {
+                "letter": "C",
+                "text": "In play call"
+            },
+            {
+                "letter": "D",
+                "text": "Strip"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 46
+    },
+    {
+        "question": "True or False: If the disc is live and the thrower attempts to call a time-out when they have no time-outs remaining, it is a turnover.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 47
+    },
+    {
+        "question": "A player on your team goes down with an injury according to the rules who is allowed to call the injury timeout?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Only the player that was injured."
+            },
+            {
+                "letter": "B",
+                "text": "Only the captain."
+            },
+            {
+                "letter": "C",
+                "text": "Only the player that was injured or the captain can call it."
+            },
+            {
+                "letter": "D",
+                "text": "Any player on the injured player\u2019s team may call the injury timeout."
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 48
+    },
+    {
+        "question": "___________ may be called for illegal equipment, a dangerous condition, or a broken disc.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Team time-out"
+            },
+            {
+                "letter": "B",
+                "text": "Injury time-out"
+            },
+            {
+                "letter": "C",
+                "text": "Technical time-out"
+            },
+            {
+                "letter": "D",
+                "text": "All of the above"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 49
+    },
+    {
+        "question": "Player substitutions can be completed when?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "After a goal and before the substituting team has signaled readiness."
+            },
+            {
+                "letter": "B",
+                "text": "To replace injured players."
+            },
+            {
+                "letter": "C",
+                "text": "To replace players with illegal equipment."
+            },
+            {
+                "letter": "D",
+                "text": "All of the Above."
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 50
+    },
+    {
+        "question": "At the start of the game representatives of the two teams fairly determine whether they want to...",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Receive"
+            },
+            {
+                "letter": "B",
+                "text": "Which end zone they wish to initially defend"
+            },
+            {
+                "letter": "C",
+                "text": "Both A and B"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 51
+    },
+    {
+        "question": "True or False: You stay on the same side you were on at the start of the game coming out of halftime.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 52
+    },
+    {
+        "question": "Play starts at the beginning of each half and after each goal with a...",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Pull"
+            },
+            {
+                "letter": "B",
+                "text": "Huck"
+            },
+            {
+                "letter": "C",
+                "text": "Scoober"
+            },
+            {
+                "letter": "D",
+                "text": "Hammer"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 53
+    },
+    {
+        "question": "The pull may be made only after the puller and a player on the receiving team both ____________to signal their team's readiness to begin play.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Verbally say they are ready"
+            },
+            {
+                "letter": "B",
+                "text": "Put a thumbs up sign"
+            },
+            {
+                "letter": "C",
+                "text": "Raise their hands"
+            },
+            {
+                "letter": "D",
+                "text": "Bow their heads"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 54
+    },
+    {
+        "question": "Which is NOT true about pulls",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "After signaling readiness, players on the pulling team may move anywhere in their end zone, but their feet may not cross the vertical plane of the goal line until the disc is released."
+            },
+            {
+                "letter": "B",
+                "text": "After signaling readiness, players on the receiving team must be in contact with the goal line that they are defending without changing location relative to one another."
+            },
+            {
+                "letter": "C",
+                "text": "A player on the throwing team may touch the pull in the air before a member of the receiving team touches it."
+            },
+            {
+                "letter": "D",
+                "text": "If either team fails to maintain proper positioning before the pull, the other team may audibly announce off-sides and a re-pull ensues. The call must be made before any player on the receiving team touches the disc."
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 55
+    },
+    {
+        "question": "If the pull hits the ground or an out-of-bounds area untouched which is NOT true",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "If the disc initially hits and remains in-bounds, it is put into play where it comes to rest or is stopped"
+            },
+            {
+                "letter": "B",
+                "text": "If the disc initially hits in-bounds and then becomes out-of-bounds before being touched by the receiving team, it is put into play at the spot on the playing field proper nearest to where it first crossed the perimeter line to become out-of-bounds."
+            },
+            {
+                "letter": "C",
+                "text": "If the disc initially hits in-bounds and then becomes out-of-bounds after being touched by the receiving team, it is put into play at the spot on the playing field nearest to where it first crossed the perimeter line to become out-of-bounds."
+            },
+            {
+                "letter": "D",
+                "text": "None of the above"
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 56
+    },
+    {
+        "question": "If your opponent catches the disc, but does not come to an immediate stop you would call what foul?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Travel"
+            },
+            {
+                "letter": "B",
+                "text": "Disc Space"
+            },
+            {
+                "letter": "C",
+                "text": "Stall"
+            },
+            {
+                "letter": "D",
+                "text": "Continuation."
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 57
+    },
+    {
+        "question": "When restarting play if the thrower attempts a pass before the marker checks the disc, the pass (whether complete or incomplete)",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Counts"
+            },
+            {
+                "letter": "B",
+                "text": "Does not count"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 58
+    },
+    {
+        "question": "True or False: An offensive self-check occurs when play is to restart with a check, but no defensive player is near enough to touch the disc.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 59
+    },
+    {
+        "question": "If you catch a disc and your first foot comes down on the line are you in or out-of-bounds?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "In, it is a catch"
+            },
+            {
+                "letter": "B",
+                "text": "Out, it is incomplete"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 60
+    },
+    {
+        "question": "Can a thrower contact an out-of-bounds area to make a throw?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Yes, as long as the pivot remains in contact with the playing field"
+            },
+            {
+                "letter": "B",
+                "text": "No, both feet must be contacting the playing field"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 61
+    },
+    {
+        "question": "True or False: Players can go out-of-bounds to make a play on the disc.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 62
+    },
+    {
+        "question": "A player's first point of contact is in the end zone, but the disc is not across the goal line is this a score?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "No, the disc must cross the goal line."
+            },
+            {
+                "letter": "B",
+                "text": "Yes, where the disc is does not matter it is all about where you first land."
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 63
+    },
+    {
+        "question": "A player stops the rotation of the disc but does not maintain possession throughout all ground contact is this a catch?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Yes, you only need to stop rotation"
+            },
+            {
+                "letter": "B",
+                "text": "No you must maintain possession throughout all ground contact"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 64
+    },
+    {
+        "question": "True or False: If a player in possession of the disc loses possession in the end zone because of an uncontested foul that player is awarded a goal.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 65
+    },
+    {
+        "question": "If a player catches a pass outside of the end zone but their forward momentum causes them to contact the end zone what action follows?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The player is awarded a goal"
+            },
+            {
+                "letter": "B",
+                "text": "The player must carry the disc back to, and put it into play at, the closest spot on the goal line."
+            },
+            {
+                "letter": "C",
+                "text": "The player must take it from their stopping spot."
+            },
+            {
+                "letter": "D",
+                "text": "The disc goes back to the original thrower."
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 66
+    },
+    {
+        "question": "If a player scores, but then unknowingly throws another pass and it is dropped what is the outcome? (No disagreement)",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Goal"
+            },
+            {
+                "letter": "B",
+                "text": "Turnover"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 67
+    },
+    {
+        "question": "If a player scores, but then unknowingly throws another pass and it is dropped what is the outcome? (Best Perspective claims it was not a score to begin with)",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Goal"
+            },
+            {
+                "letter": "B",
+                "text": "Turnover"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 68
+    },
+    {
+        "question": "True or False: Throwers can hand the disc to other players?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 69
+    },
+    {
+        "question": "True or False: It is a turnover if the thrower catches their own disc without anyone else touching it",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 70
+    },
+    {
+        "question": "The disc is thrown too high and you throw your hat at it and hit it to block it. What happens next?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "It is a legal block and a turnover results"
+            },
+            {
+                "letter": "B",
+                "text": "It is a foul and the disc is played from where the disc landed."
+            },
+            {
+                "letter": "C",
+                "text": "The intended receiver is awarded the disc"
+            },
+            {
+                "letter": "D",
+                "text": "The disc goes back to the thrower."
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 71
+    },
+    {
+        "question": "True or False: If an offensive player picks up the disc, that player MUST put it into play",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 72
+    },
+    {
+        "question": "If the disc comes to rest on the playing field proper, after ________ seconds, a defensive player within three meters of the disc may announce ______ and then initiate and continue the stall count, assuming they have verbally given the pre-stall.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "5, \"in play\""
+            },
+            {
+                "letter": "B",
+                "text": "5, \"disc in\""
+            },
+            {
+                "letter": "C",
+                "text": "10, \"in play\""
+            },
+            {
+                "letter": "D",
+                "text": "10, \"disc in\""
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 73
+    },
+    {
+        "question": "If the disc comes to rest other than on the playing field proper (out-of-bounds or in end zone), a member of the offensive team has how long before the disc must be put back into play before the defense can start the stall count?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "10 seconds"
+            },
+            {
+                "letter": "B",
+                "text": "20 seconds"
+            },
+            {
+                "letter": "C",
+                "text": "30 seconds"
+            },
+            {
+                "letter": "D",
+                "text": "40 seconds"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 74
+    },
+    {
+        "question": "The opposing team throws the disc extremely far out-of-bounds (not a pull) you are the thrower, what should you do?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Run extremely fast and hope you make it back before the defense can start pre-stalling you."
+            },
+            {
+                "letter": "B",
+                "text": "Call a time-out and retrieve the disc"
+            },
+            {
+                "letter": "C",
+                "text": "Request another disc or a delay of the pre-stall until you retrieve it"
+            },
+            {
+                "letter": "D",
+                "text": "All of the above"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 75
+    },
+    {
+        "question": "If an offensive player unnecessarily delays putting the disc into play (this includes standing over the disc) A defensive player may issue a ____________ warning. The offense has _____ seconds to react to put it into play or else the defense can announce _______ and start the stall count.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Stall violation, 2, \"in play\""
+            },
+            {
+                "letter": "B",
+                "text": "Stall violation, 5, disc in"
+            },
+            {
+                "letter": "C",
+                "text": "Delay of game, 5, in play"
+            },
+            {
+                "letter": "D",
+                "text": "Delay of game, 2, disc in"
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 76
+    },
+    {
+        "question": "For a live disc to be put into play, the thrower must establish a __________ at the appropriate spot on the field, ______ the disc to the ground, and put it into play.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Pivot, touch"
+            },
+            {
+                "letter": "B",
+                "text": "Point of contact, touch"
+            },
+            {
+                "letter": "C",
+                "text": "Mark, touch"
+            },
+            {
+                "letter": "D",
+                "text": "All of the above"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 77
+    },
+    {
+        "question": "The __________ consists of announcing \"stalling\" and counting from one to ten loudly enough for the thrower to hear.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Defensive count"
+            },
+            {
+                "letter": "B",
+                "text": "Marker"
+            },
+            {
+                "letter": "C",
+                "text": "Stall count"
+            },
+            {
+                "letter": "D",
+                "text": "Time limit"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 78
+    },
+    {
+        "question": "True or False: As long as you have the word stall before all of your numbers you can not be called for a fast count.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True, as long as you say stall it is a legal count"
+            },
+            {
+                "letter": "B",
+                "text": "False, the interval between each number must be at least one second"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 79
+    },
+    {
+        "question": "True or False: Only the marker can initiate or continue a stall count",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "True"
+            },
+            {
+                "letter": "B",
+                "text": "False"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 80
+    },
+    {
+        "question": "You are the mark and start to say the word ten, but the thrower throws it before you finish the word is this a turnover?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Yes"
+            },
+            {
+                "letter": "B",
+                "text": "No"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 81
+    },
+    {
+        "question": "What are the primary colors in the RGB color model?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Red"
+            },
+            {
+                "letter": "B",
+                "text": "Green"
+            },
+            {
+                "letter": "C",
+                "text": "Blue"
+            },
+            {
+                "letter": "D",
+                "text": "Yellow"
+            }
+        ],
+        "answers": [
+            "A",
+            "B",
+            "C"
+        ],
+        "source": "ultimatefrisbee101.txt",
+        "question_number": 82
+    },
+    {
+        "question": "What does \"incidental contact\" mean?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Contact that one party does not believe actually happened"
+            },
+            {
+                "letter": "B",
+                "text": "Contact that occurs as a natural consequence of playing the game"
+            },
+            {
+                "letter": "C",
+                "text": "Accidental contact"
+            },
+            {
+                "letter": "D",
+                "text": "Contact that does not affect continued play"
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 1
+    },
+    {
+        "question": "At what point has a player established possession?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The instant the player stops rotation"
+            },
+            {
+                "letter": "B",
+                "text": "When the player has established full control of a non-spinning disc and has had contact with that disc for a sustained time"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 2
+    },
+    {
+        "question": "What should the dimensions of a field be?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "70 yd by 40 yd with 20 yd end zones"
+            },
+            {
+                "letter": "B",
+                "text": "70 yd by 35 yd with 25 yd end zones"
+            },
+            {
+                "letter": "C",
+                "text": "70 yd by 35 yd with 20 yd end zones"
+            },
+            {
+                "letter": "D",
+                "text": "70 yd by 40 yd with 25 yd end zones"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 3
+    },
+    {
+        "question": "How should a marker legally correct a marking violation (double team, fast count, disc space, vision blocking) called on them?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "\"...three, four, five,\" \"disc space,\" \"four, five, six...\""
+            },
+            {
+                "letter": "B",
+                "text": "\"...three, four, five,\" \"disc space,\" \"three, four, five...\""
+            },
+            {
+                "letter": "C",
+                "text": "\"...three, four, five,\" \"disc space,\" \"one, two, three...\""
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 4
+    },
+    {
+        "question": "How should a marker legally correct a contact call against them?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "\"...three, four, five,\" \"contact,\" \"three, four, five...\""
+            },
+            {
+                "letter": "B",
+                "text": "\"...three, four, five,\" \"contact,\" \"four, five, six...\""
+            },
+            {
+                "letter": "C",
+                "text": "\"...three, four, five,\" \"contact,\" \"one, two, three...\""
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 5
+    },
+    {
+        "question": "At what number should the stall count resume after a pick or contested infraction on either team?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Count reached plus one, with a maximum of six"
+            },
+            {
+                "letter": "B",
+                "text": "Count reached plus one, with a maximum of nine"
+            },
+            {
+                "letter": "C",
+                "text": "Count reached plus one, with a maximum of eight"
+            },
+            {
+                "letter": "D",
+                "text": "One"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 6
+    },
+    {
+        "question": "At what number should the stall count resume after an uncontested offensive foul?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Count reached plus one, with a maximum of six"
+            },
+            {
+                "letter": "B",
+                "text": "One"
+            },
+            {
+                "letter": "C",
+                "text": "Count reached plus one, with a maximum of eight"
+            },
+            {
+                "letter": "D",
+                "text": "Count reached plus one, with a maximum of nine"
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 7
+    },
+    {
+        "question": "At what number should the stall count resume after an uncontested defensive foul?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Count reached plus one, with a maximum of nine"
+            },
+            {
+                "letter": "B",
+                "text": "Count reached plus one, with a maximum of eight"
+            },
+            {
+                "letter": "C",
+                "text": "One"
+            },
+            {
+                "letter": "D",
+                "text": "Count reached plus one, with a maximum of six"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 8
+    },
+    {
+        "question": "At what number should the stall count resume after a contested stall (the first contested stall in a player's current possession)?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Eight"
+            },
+            {
+                "letter": "B",
+                "text": "Six"
+            },
+            {
+                "letter": "C",
+                "text": "Nine"
+            },
+            {
+                "letter": "D",
+                "text": "One"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 9
+    },
+    {
+        "question": "You catch a huck near the end zone you're attacking, and your momentum carries you into the end zone. What must you do before you can throw it?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Establish a pivot on the goal line"
+            },
+            {
+                "letter": "B",
+                "text": "Establish a pivot on the goal line and touch the disc to the ground"
+            },
+            {
+                "letter": "C",
+                "text": "Nothing"
+            },
+            {
+                "letter": "D",
+                "text": "Establish a pivot on the goal line, extend the disc to the marker, and wait for them to touch the disc"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 10
+    },
+    {
+        "question": "You catch a throw from your teammate, and your momentum carries you out of bounds. What must you do before you can throw it?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Establish a pivot on the playing field and touch the disc to the ground"
+            },
+            {
+                "letter": "B",
+                "text": "Nothing"
+            },
+            {
+                "letter": "C",
+                "text": "Establish a pivot on the playing field, extend the disc to the marker, and wait for them to touch the disc"
+            },
+            {
+                "letter": "D",
+                "text": "Establish a pivot on the playing field"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 11
+    },
+    {
+        "question": "You're putting the pull into play from out of bounds either at the brick mark, the middle of the field, or the sideline. What must you do before you can throw it?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Establish a pivot at the brick/middle/sideline"
+            },
+            {
+                "letter": "B",
+                "text": "Establish a pivot at the brick/middle/sideline and touch the disc to the ground"
+            },
+            {
+                "letter": "C",
+                "text": "Establish a pivot at the brick/middle/sideline, extend the disc to the marker, and wait for them to touch the disc"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 12
+    },
+    {
+        "question": "You pick up a disc that the other team threw away in your own end zone. Instead of establishing a pivot at the spot of the disc, you choose to walk it to the goal line. What must you do before you can throw it?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Establish a pivot anywhere between where you picked up the disc and the goal line"
+            },
+            {
+                "letter": "B",
+                "text": "Establish a pivot at the goal line, extend the disc to the marker, and wait for them to touch the disc"
+            },
+            {
+                "letter": "C",
+                "text": "Establish a pivot at the goal line"
+            },
+            {
+                "letter": "D",
+                "text": "Establish a pivot at the goal line and touch the disc to the ground"
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 13
+    },
+    {
+        "question": "An opponent catches a huck from their teammate, and their momentum carries them into your end zone (the one you're defending). When can you start stalling them?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "When they come to a stop"
+            },
+            {
+                "letter": "B",
+                "text": "When they put the disc back into play at the goal line"
+            },
+            {
+                "letter": "C",
+                "text": "When they catch the disc"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 14
+    },
+    {
+        "question": "An opponent catches a throw from their teammate, and their momentum carries them out of bounds. When can you start stalling them?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "When they come to a stop"
+            },
+            {
+                "letter": "B",
+                "text": "When they catch the disc"
+            },
+            {
+                "letter": "C",
+                "text": "When they put the disc back into play on the field"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 15
+    },
+    {
+        "question": "An opponent catches a D in their own end zone, and chooses to walk the disc to the goal line. When can you start stalling them?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "When they start walking toward the goal line"
+            },
+            {
+                "letter": "B",
+                "text": "When they catch the disc"
+            },
+            {
+                "letter": "C",
+                "text": "When they set a pivot on the goal line"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 16
+    },
+    {
+        "question": "A pass goes to you in the end zone you're attacking, and you get fouled, preventing you from catching the disc. You call it, and your opponent does not contest. What should happen next?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "You pick up the disc where you are in the end zone. The marker checks the disc in. Everyone starts moving, and you walk the disc back to the goal line to put it into play, at which point the marker starts stalling you."
+            },
+            {
+                "letter": "B",
+                "text": "You and the marker get to go the goal line. They then check the disc in and start stalling you, and then everyone else can start moving too."
+            },
+            {
+                "letter": "C",
+                "text": "You are awarded a goal."
+            },
+            {
+                "letter": "D",
+                "text": "You pick up the disc where you are in the end zone. The marker checks the disc in and starts stalling you. You walk the disc to the goal line and put it into play."
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 17
+    },
+    {
+        "question": "A pass goes to you in the end zone you're attacking, and you get stripped, after catching it. You call it, and your opponent does not contest. What should happen next?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "You are awarded a goal."
+            },
+            {
+                "letter": "B",
+                "text": "You pick up the disc where you are in the end zone. The marker checks the disc in. Everyone starts moving, and you walk the disc back to the goal line to put it into play, at which point the marker starts stalling you."
+            },
+            {
+                "letter": "C",
+                "text": "You and the marker get to go the goal line. They then check the disc in and start stalling you, and then everyone else can start moving too."
+            },
+            {
+                "letter": "D",
+                "text": "You pick up the disc where you are in the end zone. The marker checks the disc in and starts stalling you. You walk the disc to the goal line and put it into play."
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 18
+    },
+    {
+        "question": "What condition(s) must be met in order to call a disc space violation (assuming the following situations are not caused solely by the movement of the thrower)?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "A part of the marker is within a disc's diameter of any part of the thrower"
+            },
+            {
+                "letter": "B",
+                "text": "A line drawn between any two points on the marker touches the thrower or is within a disc's diameter of the torso or pivot of the thrower"
+            },
+            {
+                "letter": "C",
+                "text": "A line drawn between any two points on the marker touches the thrower or is within a disc's diameter of the torso of the thrower"
+            },
+            {
+                "letter": "D",
+                "text": "A part of the marker is within a disc's diameter of the torso of the thrower"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 19
+    },
+    {
+        "question": "Which of the following are fouls (contact) by the marker? Select all that apply.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The thrower pivots into the marker, who was stationary but was not giving the thrower proper disc space"
+            },
+            {
+                "letter": "B",
+                "text": "The thrower pivots into the marker's legs, even though the marker was giving them proper disc space before the pivot. The marker's legs were stationary"
+            },
+            {
+                "letter": "C",
+                "text": "The marker puts their arm out to block a potential pass, and then the thrower hits the marker's stationary arm with the disc as they are throwing. The marker was giving the thrower proper disc space."
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 20
+    },
+    {
+        "question": "Which of the following are fouls (contact) by the marker? Select all that apply. (This question is deliberately the same as the previous)",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "It's stall 9, and the thrower has no open passes, so they deliberately slap the marker with the disc and call, \"Contact!\""
+            },
+            {
+                "letter": "B",
+                "text": "The thrower hits the marker's body (not arms or legs) with the disc while pivoting. The marker's arms and legs were moving, but their body already occupied the position it had at the time of the supposed foul. The marker is otherwise giving the thrower proper disc space."
+            },
+            {
+                "letter": "C",
+                "text": "The thrower and marker vie for the same space and arrive there at the same time, resulting in non-incidental contact. The marker is otherwise giving the thrower proper disc space."
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 21
+    },
+    {
+        "question": "The offense is near the end zone they are attacking. An offensive player pushes off of a defender, who calls a foul (uncontested). Before the thrower recognizes a foul was called, they complete a scoring pass to another player. Both teams agree the foul itself didn't affect play. What should happen next?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "A goal is awarded."
+            },
+            {
+                "letter": "B",
+                "text": "The goal-scorer gets the disc on the goal line."
+            },
+            {
+                "letter": "C",
+                "text": "The disc goes back to the thrower."
+            },
+            {
+                "letter": "D",
+                "text": "A turnover results, and the disc is placed on the ground at the thrower's feet."
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 22
+    },
+    {
+        "question": "A defender calls a pick. Before the thrower recognizes a call was made, they complete a pass to a teammate. The receiver's defender wasn't the one who was picked, but they reason that play was affected by the call because they stopped moving when they heard the call was made. What should happen next?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The receiver keeps the disc. Their defender cannot catch back up because everyone has to stay where they were when play stopped."
+            },
+            {
+                "letter": "B",
+                "text": "The receiver keeps the disc. Their defender is allowed to catch up to them because they stopped because of the pick."
+            },
+            {
+                "letter": "C",
+                "text": "The disc goes back to the thrower."
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 23
+    },
+    {
+        "question": "A defender calls a travel. Before the thrower recognizes a call was made, they throw an incomplete pass. What should happen next?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The disc goes back to the thrower."
+            },
+            {
+                "letter": "B",
+                "text": "The turnover stands and play continues."
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 24
+    },
+    {
+        "question": "Who can call a foul on you?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Anyone on the other team whom you fouled"
+            },
+            {
+                "letter": "B",
+                "text": "You or anyone whom you fouled"
+            },
+            {
+                "letter": "C",
+                "text": "Anyone on the other team on the field, regardless of whether you fouled them"
+            },
+            {
+                "letter": "D",
+                "text": "Anyone on the field"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 25
+    },
+    {
+        "question": "How do you set a pre-stall?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "While next to the disc (or the spot where the disc is to be put into play), announce, \"Disc in, stalling one...\" after you or any defender has announced, \"Ten seconds... five seconds...\" (or twenty/ten/five for out of bounds/endzone). A defender only needs to announce \"Three seconds...\" if the thrower is standing over the disc."
+            },
+            {
+                "letter": "B",
+                "text": "Tap the disc (or the spot where the disc is to be put into play) and start audibly counting back from ten (twenty for out of bounds and endzone). If the thrower is standing over the disc, you only have to count back from three."
+            },
+            {
+                "letter": "C",
+                "text": "While next to the disc (or the spot where the disc is to be put into play), announce, \"Disc in, stalling one...\" after you or any defender has announced, \"Ten seconds... five seconds...\" (or twenty/ten/five for out of bounds/endzone). The marker may announce \"Delay of game\" and count \"three, two, one, zero,\" then say \"Disc in, stalling one...\" if the thrower is taking longer than necessary to put the disc into play."
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 26
+    },
+    {
+        "question": "When can you set a pre-stall? Select all that apply.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The disc is at rest out of bounds, but it's unreasonable to expect the thrower can get it within twenty seconds"
+            },
+            {
+                "letter": "B",
+                "text": "The disc is at rest in either end zone during a point"
+            },
+            {
+                "letter": "C",
+                "text": "The disc is at rest out of bounds during a point"
+            },
+            {
+                "letter": "D",
+                "text": "The disc is at rest on the field immediately after the pull"
+            },
+            {
+                "letter": "E",
+                "text": "The disc is at rest on the central zone (full field, minus end zones) during a point"
+            }
+        ],
+        "answers": [
+            "B",
+            "C",
+            "D",
+            "E"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 27
+    },
+    {
+        "question": "Which of the following are travels? Select all that apply.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "You catch the disc in motion, take two steps without accelerating or changing direction, and throw it."
+            },
+            {
+                "letter": "B",
+                "text": "You catch the disc on an in-cut. Then you change direction and take just one step in the new direction to get a view up-field."
+            },
+            {
+                "letter": "C",
+                "text": "You get a D, but instead of hitting the disc straight down, you intentionally hit it back the way it came in order to get your team more yards."
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 28
+    },
+    {
+        "question": "Which of the following are travels? Select all that apply.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "You pick your pivot foot up accidentally because you were fouled, and then you throw the disc."
+            },
+            {
+                "letter": "B",
+                "text": "You catch a disc while stationary, and take one of your three free steps."
+            },
+            {
+                "letter": "C",
+                "text": "You intentionally jump right before you catch a disc, causing you to gain yards and/or score."
+            },
+            {
+                "letter": "D",
+                "text": "You accidentally tip a pass to yourself, and you gain yards because of it."
+            }
+        ],
+        "answers": [
+            "A",
+            "B"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 29
+    },
+    {
+        "question": "A pass goes to you and you drop it because you were fouled while trying to catch it. The defender contests the foul and the disc goes back to the thrower. Where should players set up before continuing play?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Where they were when the throw went up"
+            },
+            {
+                "letter": "B",
+                "text": "Where they were when play stopped (when the pass was dropped)"
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 30
+    },
+    {
+        "question": "A pick is called, and then a pass is thrown and completed. Both teams agree the pick affected the play, so the disc goes back to the thrower. Where should players set up before continuing play?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Players stay where they were when play stopped (when the pass was caught). The picked defender gets to recover the ground they lost against their person."
+            },
+            {
+                "letter": "B",
+                "text": "Players go to where they were when the pick was called. The receiver then goes back to the defender who called the pick."
+            },
+            {
+                "letter": "C",
+                "text": "Players stay where they were when play stopped (when the pass was caught). The receiver goes back to the defender who called the pick."
+            },
+            {
+                "letter": "D",
+                "text": "Players go to where they were when the pick was called. The picked defender then gets to recover the ground they lost against their person."
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 31
+    },
+    {
+        "question": "Which of the following situations can never happen, if players are applying the rules correctly?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "A player puts the disc into play from the back line of their own end zone."
+            },
+            {
+                "letter": "B",
+                "text": "A picked defender sets up 12 feet away from the player they were trying to guard, after recovering their lost ground during the stoppage of play."
+            },
+            {
+                "letter": "C",
+                "text": "Play stops because of a foul call. Before play resumes, the player with the disc calls a time out."
+            },
+            {
+                "letter": "D",
+                "text": "A player has a stall called on them while they are walking the disc to a perimeter line or goal line."
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 32
+    },
+    {
+        "question": "A defender lays out for a D. They hit the disc down before dangerously colliding into the offensive player who was trying to catch it. The offensive player calls dangerous play. Which is correct about the proper result of the call, assuming both parties agree that the defender's bid was dangerous?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The dangerous play call should be upheld because the sequence of events regarding the outcome of the play relative to when contact occurred is irrelevant in dangerous play calls."
+            },
+            {
+                "letter": "B",
+                "text": "The dangerous play call cannot be upheld because the outcome of the play was determined before the foul, i.e. the defender hit the disc first."
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 33
+    },
+    {
+        "question": "Soft cap imposes a point cap equal to one plus the higher of the teams' scores after a scoring attempt is completed. The following events occur in a game in chronological order: a goal is scored; the score is now 9-8; soft cap goes off; the disc is pulled; a goal is scored; the score is now 10-8. To what score should the game be played?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Game to 10; consequently, the game is over"
+            },
+            {
+                "letter": "B",
+                "text": "Game to 11, win by at least 2"
+            },
+            {
+                "letter": "C",
+                "text": "Game to 11, win by at least 1"
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 34
+    },
+    {
+        "question": "Hard cap ends the game after the current scoring attempt. If the score is tied, the teams play one more point. The following events occur in a game in chronological order: a goal is scored; the score is now 9-8; hard cap goes off. Should the teams continue with the pull and ensuing point?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "No"
+            },
+            {
+                "letter": "B",
+                "text": "Yes"
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 35
+    },
+    {
+        "question": "You are the thrower. Your off-handler is trying to get open and calls a foul. You don't realize they call foul, so you make an up-field pass. The foul affects the play if the pass is incomplete because you could have had another option for your pass. How should play continue after the result of the pass?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "The disc returns to the thrower and the stall count resumes from where it was."
+            },
+            {
+                "letter": "B",
+                "text": "The disc stays with the receiver if they catch it, and play continues."
+            },
+            {
+                "letter": "C",
+                "text": "The disc returns to the thrower and the stall count starts from zero."
+            },
+            {
+                "letter": "D",
+                "text": "The disc is turned over to the defense regardless of the foul call."
+            }
+        ],
+        "answers": [
+            "A",
+            "C"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 36
+    },
+    {
+        "question": "Pass complete: disc comes back to you. Incomplete: turnover stands. Pass complete: receiver keeps disc. Incomplete: disc comes back to you. Pass complete: disc comes back to you. Incomplete: disc comes back to you. Pass complete: receiver keeps disc. Incomplete: turnover stands.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Pass complete: disc comes back to you. Incomplete: turnover stands."
+            },
+            {
+                "letter": "B",
+                "text": "Pass complete: receiver keeps disc. Incomplete: disc comes back to you."
+            },
+            {
+                "letter": "C",
+                "text": "Pass complete: disc comes back to you. Incomplete: disc comes back to you."
+            },
+            {
+                "letter": "D",
+                "text": "Pass complete: receiver keeps disc. Incomplete: turnover stands."
+            }
+        ],
+        "answers": [
+            "C"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 37
+    },
+    {
+        "question": "You are the thrower. Your off-handler is trying to get open and calls a foul. You don't realize they call foul, so you make an up-field pass. Players agree the foul did not affect play because the off-handler was too far away to be viable for a pass. How should play continue after the result of the pass?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Pass complete: receiver keeps disc. Incomplete: disc comes back to you."
+            },
+            {
+                "letter": "B",
+                "text": "Pass complete: disc comes back to you. Incomplete: disc comes back to you."
+            },
+            {
+                "letter": "C",
+                "text": "Pass complete: disc comes back to you. Incomplete: turnover stands."
+            },
+            {
+                "letter": "D",
+                "text": "Pass complete: receiver keeps disc. Incomplete: turnover stands."
+            }
+        ],
+        "answers": [
+            "D"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 38
+    },
+    {
+        "question": "You are the thrower. The marker fouls you. You quickly steady yourself, wind up, and throw a pass. You then immediately call foul on the marker for the infraction that happened just before the throw. How should play continue after the result of the pass?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "Pass complete: disc comes back to you. Incomplete: disc comes back to you."
+            },
+            {
+                "letter": "B",
+                "text": "Pass complete: disc comes back to you. Incomplete: turnover stands."
+            },
+            {
+                "letter": "C",
+                "text": "Pass complete: receiver keeps disc. Incomplete: disc comes back to you."
+            },
+            {
+                "letter": "D",
+                "text": "Pass complete: receiver keeps disc. Incomplete: turnover stands."
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 39
+    },
+    {
+        "question": "You are a defender, and a floaty huck goes up to you and the receiver you're guarding. You take a position solely to block them from getting to the disc, and the disc lands 20 feet away from both of you. Non-incidental contact occurs as a result of your position. You could easily have made a play on the disc if you hadn't positioned yourself as such. They would have had a play on the disc had you not been there as well. What should happen next?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "You are allowed to box out in this case, so the turnover stands."
+            },
+            {
+                "letter": "B",
+                "text": "Blocking foul on you. Receiver gets the disc where the foul occurred."
+            },
+            {
+                "letter": "C",
+                "text": "Blocking foul on you. Disc goes back to the thrower."
+            }
+        ],
+        "answers": [
+            "B"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 40
+    },
+    {
+        "question": "You are a defender, and a floaty huck goes up to you and the receiver you're guarding. You take a position to block them from getting to the disc, and you bat the disc down before they can get to it. You were playing the disc during its entire flight. They would have had a play on the disc had you not been there. They also made contact with you while you were in that blocking position. What should happen next?",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "You are allowed to box out in this case, so the turnover stands."
+            },
+            {
+                "letter": "B",
+                "text": "Blocking foul on you. Receiver gets the disc where the foul occurred."
+            },
+            {
+                "letter": "C",
+                "text": "Blocking foul on you. Disc goes back to the thrower."
+            }
+        ],
+        "answers": [
+            "A"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 41
+    },
+    {
+        "question": "Which of the following result in a turnover? Select all that apply.",
+        "choices": [
+            {
+                "letter": "A",
+                "text": "You mac (i.e. tip/brush) your own throw once before someone else touches it. Then your team catches it."
+            },
+            {
+                "letter": "B",
+                "text": "You catch your own throw before someone else touches it."
+            },
+            {
+                "letter": "C",
+                "text": "You, on the receiving team, knock the pull down from out of bounds. The disc was airborne until you touched it."
+            },
+            {
+                "letter": "D",
+                "text": "Near the end of a time-out, but before the disc is put into play, you drop the disc."
+            },
+            {
+                "letter": "E",
+                "text": "You catch your own throw after someone else touches it."
+            }
+        ],
+        "answers": [
+            "B",
+            "C"
+        ],
+        "source": "USAU_2024-2025_Rules_Quiz_sebrkid.txt",
+        "question_number": 42
+    }
+]
