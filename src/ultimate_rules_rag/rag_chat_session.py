@@ -108,7 +108,12 @@ class RagChatSession(BaseModel):
         )
         # print(f"\nresponse: {response}")
 
-        answer = f"{response.answer}\n\nRelevant rules:\n{'\n'.join(response.relevant_rules)}"
+        try:
+            answer = f"{response.answer}\n\nRelevant rules:\n{'\n'.join(response.relevant_rules)}"
+        except Exception as e:
+            logger.error(f"Error formatting answer: {e}")
+            logger.error(f"Using plain response: {response}")
+            answer = response
 
         self.history.add_message("user", query)
         self.history.add_message("assistant", answer)

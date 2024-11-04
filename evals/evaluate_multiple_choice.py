@@ -4,7 +4,7 @@ import os
 import json
 from pydantic import BaseModel
 from dotenv import load_dotenv
-
+import time
 
 load_dotenv()
 
@@ -93,7 +93,7 @@ if __name__ == "__main__":
 
     llms = {
         # "gpt-4o-mini": "openai",
-        "gpt-4o-20024-08-06": "openai",
+        # "gpt-4o-20024-08-06": "openai",
         "claude-3-5-sonnet-20240620": "anthropic",
     }
     kwargs = {
@@ -117,12 +117,15 @@ if __name__ == "__main__":
         out_filename = f"mc_chunk-{chunk_size}_model-{model}_lim-{kwargs['limit']}_exp-{kwargs['expand_context']}_search-{kwargs['search_type']}{kwargs['fts_operator']}.json"
         
         processed_questions = []
-        for i, question in enumerate(questions):
-            print(f"processing question {i+1} of {len(questions)}")
+        for i, question in enumerate(questions, start = 1):
+            if i<16:
+                continue
+            print(f"processing question {i} of {len(questions)}")
             processed_question = process_question(session, question, kwargs)
             processed_questions.append(processed_question)
             with open(f"{out_folder}/{out_filename}", "w") as f:
                 json.dump(processed_questions, f, indent=2)
+            time.sleep(5) # for anthropic rate limit
         
 
 
