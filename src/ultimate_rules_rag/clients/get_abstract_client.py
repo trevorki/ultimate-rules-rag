@@ -20,3 +20,59 @@ def get_abstract_client(model: str, **kwargs):
         return AnthropicAbstractedClient(model=model, **kwargs)
     else:
         raise ValueError(f"Unknown client type: {client_type}")
+
+
+############################# TESTS ##############################
+from pydantic import BaseModel, Field
+
+def test_structured_output(client):
+    # Test Stuctured output
+    response_format = {
+        "name": "<the country name>",
+        "capital": "<the capital city of the country>",
+        "language": "<the official language of the country>"
+    }
+
+    class Country(BaseModel):
+        name: str = Field(description="The country name")
+        capital: str = Field(description="The capital city of the country")
+        language: str = Field(description="The official language of the country")
+
+    # Example with different formats using both string and message list inputs
+    
+    messages = [
+        {"role": "system", "content": "You are a helpful geography expert who answers only in UPPERCASE"},
+        {"role": "user", "content": "Please name a country at random"},
+        {"role": "assistant", "content": "France"},
+        {"role": "user", "content": "Tell me about France"}
+    ]
+    formats = [None,response_format, Country]
+    for format in formats:
+        print(f"\nResponse format: {format}")
+        print(client.invoke(messages, response_format=format))
+        print("-------------------------------")
+
+
+
+def test_streaming(client, model):
+    # For streaming:
+    prompt = "Tell me a joke about cookies"
+    config={
+        "stream": True,
+        "model": model    
+    }
+    stream =  client.invoke(prompt, config=config)
+    for chunk in stream:
+        print(chunk, end="", flush=True)
+
+
+
+
+if __name__ == "__main__":
+    models = ["gpt-4o-mini", "gpt-4o-2024-08-06", "claude-3-5-haiku-20241022", "claude-3-5-sonnet-20241022"]
+    for model in models:
+        print(f"\n\n{'-'*50}\nTesting model: {model}\n{'-'*50}\n")
+        client = get_abstract_client(model=model)
+        test_streaming(client, model)
+
+
