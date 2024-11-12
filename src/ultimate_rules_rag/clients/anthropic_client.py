@@ -1,5 +1,5 @@
 import os
-from typing import Dict, Any, List, Union, Optional, Type
+from typing import Dict, Any, List, Union, Optional, Type, Iterator
 import json
 from pydantic import BaseModel, Field
 from anthropic import Anthropic
@@ -54,7 +54,7 @@ class AnthropicAbstractedClient(BaseClient):
     def invoke(self, 
               messages: Union[str, List[Dict[str, str]]],
               config: Optional[Dict[str, Any]] = None, 
-              response_format: Optional[Union[dict, Type[BaseModel]]] = None) -> Union[str, dict, BaseModel]:
+              response_format: Optional[Union[dict, Type[BaseModel]]] = None) -> Union[str, dict, BaseModel, Iterator[str]]:
         """Generate a response using Anthropic's API.
         
         Args:
@@ -65,19 +65,10 @@ class AnthropicAbstractedClient(BaseClient):
                 - temperature: Float between 0 and 1
                 - max_tokens: Maximum tokens in response (default: 1000)
                 - model: Override the default model
-            response_format: Optional output format specification:
-                - If dict: Response will be formatted as a JSON object matching the schema
-                - If Type[BaseModel]: Response will be parsed into the specified Pydantic model
-                - If None: Response will be returned as plain text
-        
-        Returns:
-            Union[str, dict, BaseModel]: The model's response in the requested format:
-                - String for plain text responses
-                - Dict for JSON format responses
-                - Pydantic model instance for structured responses
-            In case of errors, returns the error message as a string.
+                - stream: bool = False - Whether to stream the response
+                Note: Streaming only works with plain text responses (response_format=None)
+            response_format: Optional output format specification
         """
-        # Initialize config first before using it
         config = config or {}
         config['model'] = config.get('model', self.default_model)
         config['max_tokens'] = config.get('max_tokens', DEFAULT_MAX_TOKENS)
@@ -90,16 +81,18 @@ class AnthropicAbstractedClient(BaseClient):
         else:
             message_list = messages.copy()
 
-        # search for system message and add it to config
+        # Check if streaming is requested with structured output
+        if config.get('stream', False) and response_format is not None:
+            raise ValueError("Streaming is only supported for plain text responses (response_format=None)")
+
+        # Handle system message
         system_prompt = None
         for i, msg in enumerate(message_list):
             if msg["role"] == "system":
                 system_prompt = msg["content"]  
                 message_list.pop(i)
-                print(f"Found system prompt: {system_prompt}")
                 break
         
-        # Set the system prompt in config
         if system_prompt:
             config['system'] = system_prompt
 
@@ -117,26 +110,39 @@ class AnthropicAbstractedClient(BaseClient):
             system_prompt = (system_prompt + f"\n\n{format_instruction}").strip()
             config['system'] = system_prompt
 
-        # Make API call
-        response = self.client.messages.create(
-            messages=message_list,
-            **config
-        )
         try:
-            result = response.content[0].text
+            if config.get('stream', False):
+                # Handle streaming response
+                stream = self.client.messages.stream(
+                    messages=message_list,
+                    **{k:v for k,v in config.items() if k != 'stream'}
+                )
+                return stream
 
-            # filter out any non-json outside the braces
-            result = re.sub(r'^[^{]*', '', result)
+            # Make API call
+            response = self.client.messages.create(
+                messages=message_list,
+                **config
+            )
+            try:
+                result = response.content[0].text
 
-            # Parse response based on format
-            if isinstance(response_format, dict):
-                return self.load_dict(result)
-            elif isinstance(response_format, type) and issubclass(response_format, BaseModel):
-                return self.load_pydantic(result, response_format)
-            else:
+                # filter out any non-json outside the braces
+                result = re.sub(r'^[^{]*', '', result)
+
+                # Parse response based on format
+                if isinstance(response_format, dict):
+                    return self.load_dict(result)
+                elif isinstance(response_format, type) and issubclass(response_format, BaseModel):
+                    return self.load_pydantic(result, response_format)
+                else:
+                    return result
+            except Exception as e:
+                logger.error(f"Error parsing Anthropic response: {str(e)}")
+                logger.error(f"Raw response: {result}")
                 return result
         except Exception as e:
-            logger.error(f"Error parsing Anthropic response: {str(e)}")
+            logger.error(f"Error generating Anthropic response: {str(e)}")
             logger.error(f"Raw response: {result}")
             return result
             
@@ -179,10 +185,10 @@ class AnthropicAbstractedClient(BaseClient):
             return None
         
 
-if __name__ == "__main__":
-    
-    client = AnthropicAbstractedClient()
 
+###############################
+def test_structured_output(client):
+    # Test Stuctured output
     response_format = {
         "name": "<the country name>",
         "capital": "<the capital city of the country>",
@@ -209,3 +215,24 @@ if __name__ == "__main__":
         print("-------------------------------")
 
     print("\n\n"+client.invoke("tell me a joke about a watermelon"))
+
+
+def test_streaming(client, model):
+    # For streaming:
+    prompt = "Tell me a joke about France"
+    config={
+        "stream": True,
+        "model": model    
+    }
+    with client.invoke(prompt, config=config) as stream:
+        for text  in stream.text_stream:
+            print(text , end="", flush=True)
+
+
+if __name__ == "__main__":
+    model = "claude-3-5-sonnet-20241022"
+    client = AnthropicAbstractedClient(model)
+
+    test_streaming(client, model)
+
+    

@@ -2,6 +2,7 @@ from typing import Dict, Any, Optional, Type, Union
 from pydantic import BaseModel
 import logging
 from typing import Any, List
+from typing import Generator, Iterator
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -42,7 +43,7 @@ class BaseClient(BaseModel):
     def invoke(self, 
             messages: Union[str, List[Dict[str, str]]], 
             config: Optional[Dict[str, Any]] = None,
-            response_format: Optional[Union[dict, Type[BaseModel]]] = None) -> Union[str, dict, BaseModel]:
+            response_format: Optional[Union[dict, Type[BaseModel]]] = None) -> Union[str, dict, BaseModel, Iterator[str]]:
         """Get response from the language model.
         
         Args:
@@ -50,17 +51,20 @@ class BaseClient(BaseModel):
                      If string: Will be converted to a single user message
                      If list: Each dict should contain 'role' and 'content' keys.
                      Common roles are 'system', 'user', and 'assistant'.
-            config: Optional configuration parameters for the API call
+            config: Optional configuration parameters for the API call including:
+                   - stream: bool = False - Whether to stream the response
+                   Note: Streaming only works with plain text responses (response_format=None)
             response_format: Optional output format specification:
                 - If dict: Response will be formatted as a JSON object matching the schema
                 - If Type[BaseModel]: Response will be parsed into the specified Pydantic model
                 - If None: Response will be returned as plain text
         
         Returns:
-            Union[str, dict, BaseModel]: Model response in one of three formats:
+            Union[str, dict, BaseModel, Iterator[str]]: Model response in one of four formats:
                 - str: Plain text response when no response_format is specified
                 - dict: JSON object when response_format is a dict
                 - BaseModel: Pydantic model instance when response_format is a Pydantic model class
+                - Iterator[str]: Stream of text chunks when config['stream']=True
         
         Raises:
             NotImplementedError: Must be implemented by provider-specific classes

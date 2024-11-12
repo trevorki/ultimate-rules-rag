@@ -7,6 +7,7 @@ from .base_client import BaseClient
 import logging
 from dotenv import load_dotenv
 from typing import List
+from typing import Generator, Iterator
 
 load_dotenv()
 logger = logging.getLogger(__name__)
@@ -45,7 +46,7 @@ class OpenaiAbstractedClient(BaseClient):
     def invoke(self, 
               messages: Union[str, List[Dict[str, str]]],
               config: Optional[Dict[str, Any]] = None, 
-              response_format: Optional[Union[dict, Type[BaseModel]]] = None) -> Union[str, dict, BaseModel]:
+              response_format: Optional[Union[dict, Type[BaseModel]]] = None) -> Union[str, dict, BaseModel, Iterator[str]]:
         """Generate a response using OpenAI's API.
         
         Args:
@@ -56,17 +57,16 @@ class OpenaiAbstractedClient(BaseClient):
                 - temperature: Float between 0 and 2 (default varies by model)
                 - max_tokens: Maximum tokens in response (default varies by model)
                 - model: Override the default model
-            response_format: Optional output format specification:
-                - If dict: Response will be formatted as a JSON object matching the schema
-                - If Type[BaseModel]: Response will be parsed into the specified Pydantic model
-                - If None: Response will be returned as plain text
+                - stream: bool = False - Whether to stream the response
+                Note: Streaming only works with plain text responses (response_format=None)
+            response_format: Optional output format specification
         
         Returns:
-            Union[str, dict, BaseModel]: The model's response in the requested format:
-                - String for plain text responses
-                - Dict for JSON format responses
-                - Pydantic model instance for structured responses
-            In case of errors, returns the error message as a string.
+            Union[str, dict, BaseModel, Iterator[str]]: Model response in one of four formats:
+                - str: Plain text response when no response_format is specified
+                - dict: JSON object when response_format is a dict
+                - BaseModel: Pydantic model instance when response_format is a Pydantic model class
+                - Iterator[str]: Stream of text chunks when config['stream']=True
         """
         config = config or {}
         config['model'] = config.get('model', DEFAULT_OPENAI_MODEL)
@@ -76,7 +76,20 @@ class OpenaiAbstractedClient(BaseClient):
         if isinstance(messages, str):
             messages = [{"role": "user", "content": messages}]
 
+        # Check if streaming is requested with structured output
+        if config.get('stream', False) and response_format is not None:
+            raise ValueError("Streaming is only supported for plain text responses (response_format=None)")
+
         try:
+            if config.get('stream', False):
+                # Handle streaming response
+                stream = self.client.chat.completions.create(
+                    messages=messages,
+                    stream=True,
+                    **{k:v for k,v in config.items() if k != 'stream'}
+                )
+                return stream
+
             if isinstance(response_format, type) and issubclass(response_format, BaseModel):
                 # For Pydantic models
                 config['response_format'] = response_format
@@ -144,9 +157,10 @@ class OpenaiAbstractedClient(BaseClient):
         except Exception:
             return None
 
-if __name__ == "__main__":
-    client = OpenaiAbstractedClient()
-    
+
+###############################
+def test_structured_output(client):
+    # Test Stuctured output
     response_format = {
         "name": "<the country name>",
         "capital": "<the capital city of the country>",
@@ -173,3 +187,25 @@ if __name__ == "__main__":
         print("-------------------------------")
 
     print("\n\n"+client.invoke("tell me a joke about a watermelon"))
+
+
+def test_streaming(client, model):
+    # For streaming:
+    prompt = "Tell me a joke about France"
+    config={
+        "stream": True,
+        "model": model    
+    }
+    stream =  client.invoke(prompt, config=config)
+    for chunk in stream:
+        if chunk.choices[0].delta.content is not None:
+            print(chunk.choices[0].delta.content, end="")
+
+
+
+
+
+if __name__ == "__main__":
+    model = "gpt-4o-2024-08-06"
+    client = OpenaiAbstractedClient(model=model)
+    test_streaming(client, model)
