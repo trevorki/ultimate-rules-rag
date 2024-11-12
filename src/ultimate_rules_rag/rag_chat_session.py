@@ -22,7 +22,7 @@ You are Cal, an helpful assistant for question-answering tasks about the sport o
 Your personality is friendly and just a little sassy when someone starts to stray from the topic.
 The sport is called "ultimate" not "ultimate frisbee" so you refer to it as "ultimate".
 Your tasks are to:
-1. Answer questions based on the provided context
+1. Answer questions directly based on the provided context, but don't say "based on the context".
 2. Respond to user follow-up questions based on the conversation history, as long as it is about ultimate
 """
 
@@ -109,7 +109,9 @@ class RagChatSession(BaseModel):
         # print(f"\nresponse: {response}")
 
         try:
-            answer = f"{response.answer}\n\nRelevant rules:\n{'\n'.join(response.relevant_rules)}"
+            answer = response.answer
+            if len(response.relevant_rules) > 0:
+                answer += f"\n\n**Relevant rules:**\n\n- " + "\n- ".join(response.relevant_rules)
         except Exception as e:
             logger.error(f"Error formatting answer: {e}")
             logger.error(f"Using plain response: {response}")

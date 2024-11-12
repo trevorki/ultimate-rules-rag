@@ -47,4 +47,5 @@ class ConversationHistory(BaseModel):
     def pretty_print(self):
         print("\n\nCONVERSATION HISTORY:")
         for msg in self.messages:
-            print(f"\n{msg['role'].upper()}: {msg['content']}")
+            if msg["role"] in ["user", "assistant"]:
+                print(f"\n{msg['role'].upper()}: {msg['content']}")

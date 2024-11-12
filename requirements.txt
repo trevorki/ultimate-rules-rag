@@ -6,6 +6,7 @@ python-dotenv
 psycopg2-binary
 pgvector
 sqlalchemy
+python-fasthtml
 
 # # to enable use in jupyter lab 
 # ipykernel

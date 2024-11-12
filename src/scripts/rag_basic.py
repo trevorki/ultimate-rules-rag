@@ -1,6 +1,5 @@
 from ultimate_rules_rag.clients.get_abstract_client import get_abstract_client
 from ultimate_rules_rag.rag_chat_session import RagChatSession
-from openai import OpenAI
 import os
 from dotenv import load_dotenv
 
@@ -12,9 +11,12 @@ if __name__ == "__main__":
     # model = "claude-3-5-sonnet-20240620"
     # client = AnthropicAbstractedClient(model=model)
 
-    model = "gpt-4o-mini"
-    # model = "gpt-4o-2024-08-06"
-    client = get_abstract_client(client_type="openai", model=model)
+    # model_name = "gpt-4o-mini"
+    # model_name = "gpt-4o-2024-08-06"
+    # model_name = "claude-3-5-haiku-20241022"
+    model_name = "claude-3-5-sonnet-20241022"
+
+    client = get_abstract_client(model=model_name)
 
     retriever_kwargs = {
         "limit": 5,
@@ -27,7 +29,7 @@ if __name__ == "__main__":
     session = RagChatSession(
         llm_client=client,
         stream_output=False,
-        memory_size=0,
+        memory_size=3,
         context_size=1
     )
     print(session.__dict__)

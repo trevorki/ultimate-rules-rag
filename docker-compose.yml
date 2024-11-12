@@ -21,22 +21,14 @@ services:
       - .:/app
     depends_on:
       - db
-
-    # command: 
-    #   - sh
-    #   - -c
-    #   - |
-    #     echo "running retriever.py"
-    #     python retriever.py
-    #     echo "done"
+    stdin_open: true
+    tty: true
     command: 
       - sh
       - -c
       - |
-        echo "creating vectorstore"
-        python prepare_vectorstore/4-add_to_vectorstore.py
-        echo "running ultimate-rag-basic.py"
-        python ultimate-rag-basic.py
+        echo "running rag_basic.py"
+        python -m src.scripts.rag_basic
         echo "done"
 
 volumes:
