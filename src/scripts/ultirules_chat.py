@@ -6,7 +6,7 @@ from ultimate_rules_rag.rag_chat_session import RagChatSession
 client = get_abstract_client(model="claude-3-5-sonnet-20241022")
 session = RagChatSession(
     llm_client=client,
-    stream_output=False,
+    stream_output=True,
     memory_size=3,
     context_size=1
 )
@@ -64,6 +64,28 @@ hdrs = (
             const markdownElements = evt.detail.elt.querySelectorAll('.markdown');
             markdownElements.forEach(parseMarkdown);
             scrollToBottom();
+        });
+
+        function appendStream(content) {
+            const messagesDiv = document.querySelector('#messages');
+            const lastMessage = messagesDiv.querySelector('.chat-bubble:last-child');
+            
+            if (lastMessage) {
+                const currentContent = lastMessage.textContent;
+                lastMessage.textContent = currentContent + content;
+                
+                // Parse markdown for the updated content
+                if (lastMessage.classList.contains('markdown')) {
+                    lastMessage.innerHTML = marked.parse(lastMessage.textContent);
+                }
+                scrollToBottom();
+            }
+        }
+        
+        // Add event listener for SSE
+        document.body.addEventListener('stream-response', function(e) {
+            if (e.detail === '[DONE]') return;
+            appendStream(e.detail);
         });
     """),
     Style("""
@@ -265,7 +287,8 @@ hdrs = (
         .typing-dot {
             background-color: var(--text-color);
         }
-    """)
+    """),
+    Script(src="https://unpkg.com/htmx.org/dist/ext/sse.js"),
 )
 
 app = FastHTMLWithLiveReload(hdrs=hdrs, debug=True)
@@ -336,19 +359,16 @@ def home():
 
 @app.post("/chat")
 def chat(message: str):
-    # First return the user message and loading indicator
     return (
         ChatMessage("user", message),
-        # Give the loading indicator a unique ID that will be replaced
         Div(LoadingIndicator(), id="current-loading"),
-        # Make the second request that will replace the loading indicator
         Div(
-            hx_get=f"/chat_response?message={message}",
-            hx_trigger="load",
-            hx_target="#current-loading",
-            hx_swap="outerHTML"
+            hx_ext="sse",
+            sse_connect=f"/chat_response?message={message}",
+            sse_swap="beforeend",
+            hx_target="#messages",
+            id="sse-listener"
         ),
-        # Clear the input using out-of-band swap
         Input(
             type="text",
             name="message",
@@ -357,32 +377,41 @@ def chat(message: str):
             id="message-input",
             required=True,
             minlength=2,
-            value="",  # Empty value to clear the input
-            hx_swap_oob="true"  # Out-of-band swap
+            value="",
+            hx_swap_oob="true"
         )
     )
 
-# Add new route for getting assistant response
 @app.get("/chat_response")
-def chat_response(message: str):
-    # Get answer from RAG session
-    answer = session.answer_question(message, retriever_kwargs=retriever_kwargs)
+async def chat_response(message: str):
+    from fastapi.responses import StreamingResponse
     
-    # Return assistant response and clear input
-    clear_input = Input(
-        type="text",
-        name="message",
-        placeholder="Ask a question about ultimate...",
-        cls="input input-bordered w-full",
-        id="message-input",
-        required=True,
-        minlength=2,
-        hx_swap_oob="true"
-    )
+    async def generate():
+        # First chunk removes loading indicator and adds empty message
+        # Combine the elements into a single Div
+        initial_content = Div(
+            Script("document.getElementById('current-loading').remove();"),
+            ChatMessage("assistant", "")
+        )
+        yield f"data: {initial_content}\n\n"
+        
+        # Stream the answer
+        answer_stream = session.answer_question(message, retriever_kwargs=retriever_kwargs)
+        for chunk in answer_stream:
+            # Escape any script tags to prevent XSS
+            chunk = chunk.replace("<script>", "&lt;script&gt;").replace("</script>", "&lt;/script&gt;")
+            yield f"data: {chunk}\n\n"
+        print(f"Answer: {chunk}")
+        
+        yield "data: [DONE]\n\n"
+        
+        # Wrap the final script in a Div
+        cleanup = Div(Script("document.getElementById('sse-listener').remove();"))
+        yield f"data: {cleanup}\n\n"
     
-    return (
-        ChatMessage("assistant", answer),
-        clear_input
+    return StreamingResponse(
+        generate(),
+        media_type="text/event-stream"
     )
 
 if __name__ == "__main__":
