@@ -43,6 +43,12 @@ class OpenaiAbstractedClient(BaseClient):
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.default_model = os.getenv("DEFAULT_OPENAI_MODEL", DEFAULT_OPENAI_MODEL)
 
+    def get_text_stream(self, stream) -> Iterator[str]:
+        """Convert OpenAI stream to standardized text stream."""
+        for chunk in stream:
+            if chunk.choices[0].delta.content is not None:
+                yield chunk.choices[0].delta.content
+
     def invoke(self, 
               messages: Union[str, List[Dict[str, str]]],
               config: Optional[Dict[str, Any]] = None, 
@@ -88,7 +94,7 @@ class OpenaiAbstractedClient(BaseClient):
                     stream=True,
                     **{k:v for k,v in config.items() if k != 'stream'}
                 )
-                return stream
+                return self.get_text_stream(stream)
 
             if isinstance(response_format, type) and issubclass(response_format, BaseModel):
                 # For Pydantic models

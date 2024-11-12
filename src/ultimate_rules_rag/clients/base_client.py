@@ -39,6 +39,17 @@ class BaseClient(BaseModel):
         """
         logger.debug(f"Processing user input of type: {type(user_input)}")
         return [{"type": "text", "text": user_input}]
+    
+    def get_text_stream(self, stream) -> Iterator[str]:
+        """Convert provider-specific stream to standardized text stream.
+        
+        Args:
+            stream: The raw stream from the provider's API
+            
+        Returns:
+            Iterator[str]: Stream of text chunks
+        """
+        raise NotImplementedError
 
     def invoke(self, 
             messages: Union[str, List[Dict[str, str]]], 

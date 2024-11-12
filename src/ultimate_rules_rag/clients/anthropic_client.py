@@ -51,6 +51,11 @@ class AnthropicAbstractedClient(BaseClient):
         if not self.default_model:
             self.default_model = os.getenv("DEFAULT_ANTHROPIC_MODEL")
 
+    def get_text_stream(self, stream) -> Iterator[str]:
+        """Convert Anthropic stream to standardized text stream."""
+        for text in stream.text_stream:
+            yield text
+
     def invoke(self, 
               messages: Union[str, List[Dict[str, str]]],
               config: Optional[Dict[str, Any]] = None, 
@@ -112,12 +117,17 @@ class AnthropicAbstractedClient(BaseClient):
 
         try:
             if config.get('stream', False):
-                # Handle streaming response
+                # Create the stream with context manager
                 stream = self.client.messages.stream(
                     messages=message_list,
                     **{k:v for k,v in config.items() if k != 'stream'}
                 )
-                return stream
+                # Return a generator that uses the context manager
+                def stream_with_context():
+                    with stream as managed_stream:
+                        for text in managed_stream.text_stream:
+                            yield text
+                return stream_with_context()
 
             # Make API call
             response = self.client.messages.create(
@@ -224,9 +234,8 @@ def test_streaming(client, model):
         "stream": True,
         "model": model    
     }
-    with client.invoke(prompt, config=config) as stream:
-        for text  in stream.text_stream:
-            print(text , end="", flush=True)
+    for chunk in client.invoke(prompt, config=config):
+        print(chunk, end="", flush=True)
 
 
 if __name__ == "__main__":
