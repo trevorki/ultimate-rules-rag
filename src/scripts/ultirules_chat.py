@@ -1,202 +1,17 @@
+from fasthtml import FastHTML
 from fasthtml.common import *
-from ultimate_rules_rag.clients.get_abstract_client import get_abstract_client
 from ultimate_rules_rag.rag_chat_session import RagChatSession
+from ultimate_rules_rag.clients.get_abstract_client import get_abstract_client
+import asyncio
 
-# Initialize the chat session
-client = get_abstract_client(model="claude-3-5-sonnet-20241022")
-session = RagChatSession(
-    llm_client=client,
-    stream_output=True,
-    memory_size=3,
-    context_size=1
-)
-
-retriever_kwargs = {
-    "limit": 5,
-    "expand_context": 0,
-    "search_type": "hybrid",
-    "fts_operator": "OR"
-}
-
-# Setup app with DaisyUI and loading indicator styles
-hdrs = (
-    Link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.css", type="text/css"),
+# DaisyUI and custom styling
+headers = (
     Script(src="https://cdn.tailwindcss.com"),
+    Link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.min.css"),
     Script(src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"),
-    Script("""
-        marked.setOptions({
-            breaks: true,
-            gfm: true
-        });
-        
-        function parseMarkdown(element) {
-            if (element.classList.contains('markdown')) {
-                element.innerHTML = marked.parse(element.textContent);
-            }
-        }
-        
-        function scrollToBottom() {
-            const messages = document.querySelector('.messages');
-            messages.scrollTop = messages.scrollHeight;
-        }
-
-        // Theme management
-        document.addEventListener('DOMContentLoaded', function() {
-            // Check for saved theme preference or default to system preference
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                document.documentElement.setAttribute('data-theme', savedTheme);
-            } else {
-                // Check system preference
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
-            }
-        });
-        
-        function toggleTheme() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-        }
-        
-        document.addEventListener('htmx:afterSettle', function(evt) {
-            const markdownElements = evt.detail.elt.querySelectorAll('.markdown');
-            markdownElements.forEach(parseMarkdown);
-            scrollToBottom();
-        });
-
-        function appendStream(content) {
-            const messagesDiv = document.querySelector('#messages');
-            const lastMessage = messagesDiv.querySelector('.chat-bubble:last-child');
-            
-            if (lastMessage) {
-                const currentContent = lastMessage.textContent;
-                lastMessage.textContent = currentContent + content;
-                
-                // Parse markdown for the updated content
-                if (lastMessage.classList.contains('markdown')) {
-                    lastMessage.innerHTML = marked.parse(lastMessage.textContent);
-                }
-                scrollToBottom();
-            }
-        }
-        
-        // Add event listener for SSE
-        document.body.addEventListener('stream-response', function(e) {
-            if (e.detail === '[DONE]') return;
-            appendStream(e.detail);
-        });
-    """),
     Style("""
-        body {
-            background-color: #2A3630;
-            color: #E8E4D9;
-        }
-        h1 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin: 1rem 0;
-            font-weight: bold;
-        }
-        .chat-container {
-            height: calc(100vh - 100px);
-            display: flex;
-            flex-direction: column;
-            background-color: #2A3630;
-        }
-        .messages {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding: 1rem;
-        }
-        .input-area {
-            padding: 1rem;
-            background: #1F2924;
-            border-top: 1px solid #3A463F;
-        }
-        .chat-bubble-primary {
-            background-color: #E8B4B8 !important;
-            color: #1F2924 !important;
-        }
-        .chat-bubble-secondary {
-            background-color: #E8E4D9 !important;
-            color: #1F2924 !important;
-        }
-        .chat-header {
-            color: #E8E4D9;
-        }
-        .input {
-            background-color: #3A463F !important;
-            color: #E8E4D9 !important;
-            border-color: #4A564F !important;
-        }
-        .input::placeholder {
-            color: #8A968F !important;
-        }
-        .btn-primary {
-            background-color: #E8B4B8 !important;
-            border-color: #E8B4B8 !important;
-            color: #1F2924 !important;
-        }
-        .btn-primary:hover {
-            background-color: #D9A5A9 !important;
-            border-color: #D9A5A9 !important;
-        }
-        
-        /* Loading indicator styles */
-        .typing {
-            display: flex;
-            gap: 5px;
-            padding: 10px 15px;
-        }
-        .typing-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--text-color);
-            border-radius: 50%;
-            animation: typing 1.0s infinite;
-            opacity: 0.7;
-        }
-        .typing-dot:nth-child(2) { animation-delay: 0.1s; }
-        .typing-dot:nth-child(3) { animation-delay: 0.2s; }
-        
-        @keyframes typing {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-4px); }
-        }
-
-        /* Hide loading indicator by default */
-        .loading-indicator {
-            display: none;
-        }
-        /* Show when htmx is requesting */
-        .htmx-request #typing-indicator {
-            display: block;
-        }
-        /* Hide form during request */
-        .htmx-request .input-form {
-            display: none;
-        }
-
-        /* Markdown styles */
-        .chat-bubble.markdown ul {
-            list-style-type: disc;
-            margin-left: 1.5em;
-            margin-top: 0.5em;
-            margin-bottom: 0.5em;
-        }
-        .chat-bubble.markdown p {
-            margin-bottom: 0.5em;
-        }
-        .chat-bubble.markdown code {
-            background-color: rgba(0, 0, 0, 0.1);
-            padding: 0.2em 0.4em;
-            border-radius: 3px;
-        }
-
         /* Light mode colors */
-        :root[data-theme="light"] {
+        [data-theme="light"] {
             --bg-color: #F5F5F5;
             --text-color: #2A3630;
             --input-bg: #FFFFFF;
@@ -211,7 +26,7 @@ hdrs = (
         }
 
         /* Dark mode colors */
-        :root[data-theme="dark"] {
+        [data-theme="dark"] {
             --bg-color: #2A3630;
             --text-color: #E8E4D9;
             --input-bg: #3A463F;
@@ -225,195 +40,264 @@ hdrs = (
             --input-area-border: #3A463F;
         }
 
-        body {
+        body { 
             background-color: var(--bg-color);
             color: var(--text-color);
         }
-
         .chat-container {
-            background-color: var(--bg-color);
+            height: calc(100vh - 120px);
+            overflow-y: auto;
+            padding: 1rem;
         }
-
         .input-area {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
             background: var(--input-area-bg);
             border-top: 1px solid var(--input-area-border);
         }
-
-        .chat-bubble-primary {
-            background-color: var(--chat-primary) !important;
-            color: var(--chat-primary-text) !important;
+        .chat-start .chat-bubble {
+            background: var(--chat-secondary);
+            color: var(--chat-secondary-text);
+        }
+        .chat-end .chat-bubble {
+            background: var(--chat-primary);
+            color: var(--chat-primary-text);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--header-bg);
+            border-bottom: 1px solid var(--input-area-border);
         }
 
-        .chat-bubble-secondary {
-            background-color: var(--chat-secondary) !important;
-            color: var(--chat-secondary-text) !important;
+        /* Add styles for markdown content */
+        .chat-bubble ul, .chat-bubble ol {
+            list-style: revert;
+            margin: revert;
+            padding: revert;
         }
-
-        .chat-header {
-            color: var(--text-color);
+        .chat-bubble p {
+            margin: 0.5em 0;
         }
-
-        .input {
-            background-color: var(--input-bg) !important;
-            color: var(--text-color) !important;
-            border-color: var(--input-border) !important;
-        }
-
-        .input::placeholder {
-            color: var(--text-color) !important;
-            opacity: 0.5;
-        }
-
-        /* Theme toggle button styles */
-        .theme-toggle {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            background: var(--input-bg);
-            border: 1px solid var(--input-border);
-            color: var(--text-color);
-            cursor: pointer;
-            transition: all 0.2s;
-            z-index: 100;
-        }
-
-        .theme-toggle:hover {
-            opacity: 0.8;
-        }
-
-        /* Update typing indicator colors */
-        .typing-dot {
-            background-color: var(--text-color);
+        .chat-bubble strong {
+            font-weight: bold;
         }
     """),
-    Script(src="https://unpkg.com/htmx.org/dist/ext/sse.js"),
+    Script("""
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Set initial theme from localStorage or system preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } else {
+                const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', systemTheme);
+            }
+        });
+    """),
+    Script("""
+        function renderMarkdown(element) {
+            if (element && element.classList.contains('chat-bubble')) {
+                const text = element.textContent;
+                element.innerHTML = marked.parse(text);
+            }
+        }
+
+        // Process existing messages
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.chat-bubble').forEach(renderMarkdown);
+        });
+
+        // Process new messages from streaming
+        htmx.on("htmx:afterRequest", function(evt) {
+            if (evt.detail.pathInfo.requestPath === "/chat") {
+                const assistantMsg = document.getElementById('current-response');
+                if (assistantMsg) {
+                    const eventSource = new EventSource("/stream?message=" + encodeURIComponent(evt.detail.requestConfig.parameters.message));
+                    
+                    assistantMsg.removeAttribute('id');
+                    let accumulatedText = '';
+                    
+                    eventSource.onmessage = function(e) {
+                        accumulatedText += e.data;
+                        assistantMsg.innerHTML = marked.parse(accumulatedText);
+                        scrollToBottom();
+                    };
+                    
+                    eventSource.onerror = function() {
+                        eventSource.close();
+                        assistantMsg.removeAttribute('id');
+                        scrollToBottom();
+                    };
+                }
+            }
+            scrollToBottom();
+        });
+    """)
 )
 
-app = FastHTMLWithLiveReload(hdrs=hdrs, debug=True)
+app = FastHTML(hdrs=headers)
 
-def LoadingIndicator():
-    """Create a typing indicator"""
+def ChatMessage(msg, role="assistant", message_id=None):
+    """Create a chat message bubble"""
     return Div(
-        Div(
-            Div(cls="typing-dot"),
-            Div(cls="typing-dot"),
-            Div(cls="typing-dot"),
-            cls="typing"
-        ),
-        cls="chat chat-start",
+        Div(msg, cls="chat-bubble", id=message_id),
+        cls=f"chat chat-{'end' if role == 'user' else 'start'}"
     )
 
-def ChatMessage(role: str, content: str):
-    """Create a chat message bubble"""
-    chat_class = "chat-end" if role == "user" else "chat-start"
-    bubble_class = "chat-bubble-primary" if role == "user" else "chat-bubble-secondary"
-    markdown_class = " markdown" if role == "assistant" else ""
-    
+def ChatBox(messages):
+    """Create the chat container with messages"""
     return Div(
-        Div(role.title(), cls="chat-header"),
-        Div(content, 
-            cls=f"chat-bubble {bubble_class}{markdown_class}"
+        *[ChatMessage(msg["content"], msg["role"]) for msg in messages],
+        cls="chat-container",
+        id="chat-container"
+    )
+
+def InputArea():
+    """Create the input area with form"""
+    return Div(
+        Form(
+            Input(
+                type="text",
+                name="message",
+                placeholder="Ask a question about Ultimate rules...",
+                cls="w-full p-2 rounded border",
+                id="message-input",
+                autocomplete="off",
+                required=True,
+                minlength="2"
+            ),
+            Button(
+                "Send",
+                type="submit",
+                cls="ml-2 px-4 py-2 rounded bg-blue-500 text-white"
+            ),
+            cls="flex gap-2",
+            hx_post="/chat",
+            hx_target="#chat-container",
+            hx_swap="beforeend"
         ),
-        cls=f"chat {chat_class}"
+        cls="input-area"
+    )
+
+def Header():
+    return Div(
+        H1("Ultimate Rules Assistant", cls="text-2xl font-bold"),
+        Button(
+            "🌓", 
+            onclick="toggleTheme()",
+            cls="px-4 py-2 rounded bg-opacity-20 hover:bg-opacity-30 transition-colors"
+        ),
+        cls="header"
     )
 
 @app.get("/")
 def home():
-    messages = Div(
-        Button("Toggle Theme", 
-            cls="theme-toggle",
-            onclick="toggleTheme()"
-        ),
-        Div(
-            ChatMessage("assistant", "Hi! I'm Cal, your ultimate rules assistant. Ask me anything about ultimate!"),
-            Div(LoadingIndicator(), id="typing-indicator", cls="loading-indicator"),
-            id="messages",
-            cls="messages"
-        ),
-        Div(
-            Form(
-                Input(
-                    type="text",
-                    name="message",
-                    placeholder="Ask a question about ultimate...",
-                    cls="input input-bordered w-full",
-                    id="message-input",
-                    required=True,
-                    minlength=2
-                ),
-                Button("Send", cls="btn btn-primary ml-2"),
-                cls="flex gap-2",
-                hx_post="/chat",
-                hx_target="#messages",
-                hx_swap="beforeend",
-                hx_indicator="#typing-indicator"
-            ),
-            cls="input-area"
-        ),
-        cls="chat-container"
+    return Title("Ultimate Rules Chat"), Main(
+        Header(),
+        ChatBox([]),
+        InputArea(),
+        Script("""
+            function scrollToBottom() {
+                const container = document.getElementById('chat-container');
+                container.scrollTop = container.scrollHeight;
+            }
+            
+            htmx.on("htmx:afterRequest", function(evt) {
+                if (evt.detail.pathInfo.requestPath === "/chat") {
+                    const assistantMsg = document.getElementById('current-response');
+                    if (assistantMsg) {
+                        const eventSource = new EventSource("/stream?message=" + encodeURIComponent(evt.detail.requestConfig.parameters.message));
+                        
+                        assistantMsg.removeAttribute('id');
+                        
+                        eventSource.onmessage = function(e) {
+                            assistantMsg.innerHTML += e.data;
+                            scrollToBottom();
+                        };
+                        
+                        eventSource.onerror = function() {
+                            eventSource.close();
+                            assistantMsg.removeAttribute('id');
+                            scrollToBottom();
+                        };
+                    }
+                }
+                scrollToBottom();
+            });
+        """)
     )
-    
-    return Title("UltiRules Chat"), Main(H1("UltiRules Chat"), messages)
+
+# Initialize RAG chat session
+client = get_abstract_client(model="gpt-4o-mini")
+retriever_kwargs = {
+    "limit": 5,
+    "expand_context": 0,
+    "search_type": "hybrid",
+    "fts_operator": "OR"
+}
+session = RagChatSession(
+    llm_client=client,
+    stream_output=True,
+    memory_size=3,
+    context_size=1
+)
 
 @app.post("/chat")
 def chat(message: str):
+    # Validate message server-side
+    message = message.strip()
+    if not message:
+        return ""
+        
+    # Return messages and a cleared input with OOB swap
     return (
-        ChatMessage("user", message),
-        Div(LoadingIndicator(), id="current-loading"),
-        Div(
-            hx_ext="sse",
-            sse_connect=f"/chat_response?message={message}",
-            sse_swap="beforeend",
-            hx_target="#messages",
-            id="sse-listener"
-        ),
+        ChatMessage(message, role="user"),
+        ChatMessage("", role="assistant", message_id="current-response"),
         Input(
             type="text",
             name="message",
-            placeholder="Ask a question about ultimate...",
-            cls="input input-bordered w-full",
+            placeholder="Ask a question about Ultimate rules...",
+            cls="w-full p-2 rounded border",
             id="message-input",
-            required=True,
-            minlength=2,
+            autocomplete="off",
             value="",
             hx_swap_oob="true"
-        )
+        ),
+        Script("scrollToBottom();")
     )
 
-@app.get("/chat_response")
-async def chat_response(message: str):
-    from fastapi.responses import StreamingResponse
+@app.get("/stream")
+async def stream(message: str):
+    response = session.answer_question(message, retriever_kwargs=retriever_kwargs)
     
-    async def generate():
-        # First chunk removes loading indicator and adds empty message
-        # Combine the elements into a single Div
-        initial_content = Div(
-            Script("document.getElementById('current-loading').remove();"),
-            ChatMessage("assistant", "")
-        )
-        yield f"data: {initial_content}\n\n"
-        
-        # Stream the answer
-        answer_stream = session.answer_question(message, retriever_kwargs=retriever_kwargs)
-        for chunk in answer_stream:
-            # Escape any script tags to prevent XSS
-            chunk = chunk.replace("<script>", "&lt;script&gt;").replace("</script>", "&lt;/script&gt;")
-            yield f"data: {chunk}\n\n"
-        print(f"Answer: {chunk}")
-        
-        yield "data: [DONE]\n\n"
-        
-        # Wrap the final script in a Div
-        cleanup = Div(Script("document.getElementById('sse-listener').remove();"))
-        yield f"data: {cleanup}\n\n"
+    async def event_stream():
+        try:
+            for chunk in response:
+                # Properly format as SSE data with newlines
+                yield chunk
+                # Add a small delay to ensure proper streaming
+                await asyncio.sleep(0.01)
+        except Exception as e:
+            print(f"Streaming error: {e}")
+            yield 'data: [Error generating response]\n\n'
     
-    return StreamingResponse(
-        generate(),
-        media_type="text/event-stream"
-    )
+    return EventSourceResponse(event_stream())
 
 if __name__ == "__main__":
     import uvicorn
+    from sse_starlette.sse import EventSourceResponse
     uvicorn.run(app, host="0.0.0.0", port=5000)
