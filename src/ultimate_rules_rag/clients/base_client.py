@@ -54,7 +54,8 @@ class BaseClient(BaseModel):
     def invoke(self, 
             messages: Union[str, List[Dict[str, str]]], 
             config: Optional[Dict[str, Any]] = None,
-            response_format: Optional[Union[dict, Type[BaseModel]]] = None) -> Union[str, dict, BaseModel, Iterator[str]]:
+            response_format: Optional[Union[dict, Type[BaseModel]]] = None, 
+            return_usage: bool = False) -> Union[str, dict, BaseModel, Iterator[str]]:
         """Get response from the language model.
         
         Args:
@@ -69,6 +70,7 @@ class BaseClient(BaseModel):
                 - If dict: Response will be formatted as a JSON object matching the schema
                 - If Type[BaseModel]: Response will be parsed into the specified Pydantic model
                 - If None: Response will be returned as plain text
+            return_usage: Whether to return the usage metrics from the API call
         
         Returns:
             Union[str, dict, BaseModel, Iterator[str]]: Model response in one of four formats:
@@ -76,12 +78,8 @@ class BaseClient(BaseModel):
                 - dict: JSON object when response_format is a dict
                 - BaseModel: Pydantic model instance when response_format is a Pydantic model class
                 - Iterator[str]: Stream of text chunks when config['stream']=True
-        
+                - dict: Usage metrics when return_usage=True
         Raises:
             NotImplementedError: Must be implemented by provider-specific classes
-        """
-        # Convert string input to messages format
-        if isinstance(messages, str):
-            messages = [{"role": "user", "content": messages}]
-            
+        """            
         raise NotImplementedError

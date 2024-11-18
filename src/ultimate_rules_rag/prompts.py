@@ -18,7 +18,7 @@ RAG_PROMPT = """
 - Only use information from the provided context to answer the question
 - Say "I don't know" if the context doesn't contain the answer
 - Say "Sorry, I only know about ultimate" if the question is not about ultimate frisbee
-- Include the most relevant rules used to answer the question. Each rule should include the rule number (if present) and the full verbatim text of the rule.
+- Include the most relevant rules used to answer the question, identified by rule number, and sorted in alphanumeric order.
 </instructions>
 
 <question>
@@ -32,8 +32,8 @@ Please respond in the following markdown format without any other text or symbol
 The_answer_to_the_question_in_simple_language.
 
 **Relevant Rules**
-- **rule_number**: verbatim_rule_text
-- **rule_number**: verbatim_rule_text
+- rule_number
+- rule_number
 etc
 
 If there are no relevant rules used to answer the question then omit the **Relevant Rules** heading and section. 
@@ -77,4 +77,28 @@ User Input:
 
 def get_process_prompt(history: list[dict], context: str, query: str):
     return PROCESS_PROMPT.format(conversation_history=history, context=context, user_input=query)
+
+
+
+REWORD_QUERY_PROMPT = """You are an assistant for question-answering tasks about the sport of ultimate (ultimate frisbee). 
+All questions are in the context of ultimate frisbee.
+
+Given the following conversation history and the current user input, reword the user input to make it suitable for document retrieval.
+
+Rewording rules:
+- Examine the past few questions and possibly reword the user input to make it suitable for document retrieval. This is just to ensure that anything previously discussed is referred to by name and not as "it".
+- If the question does not contain any references to previously discussed concepts, then do not reword it.
+- If the last few questions discuss a concept and the latest question refers to the concept as "it", make it clear what "it" is.
+- It is assumed we are talking about ultimate frisbee so DO NOT say "in ultimate frisbee" in the rewording
+- If rewording is not needed then return "NONE"
+
+Conversation History:
+{conversation_history}
+
+User Input: 
+{user_input}
+"""
+
+def get_reword_query_prompt(history: list[dict], query: str):
+    return REWORD_QUERY_PROMPT.format(conversation_history=history, user_input=query)
 

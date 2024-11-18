@@ -1,0 +1,226 @@
+from dotenv import load_dotenv
+load_dotenv()
+
+import re
+from .retriever import Retriever
+import json
+from pydantic import BaseModel, Field
+from typing import Optional, ClassVar, Dict, Tuple, Union, Iterator
+from .clients.base_client import BaseClient
+from .prompts import get_rag_prompt, get_reword_query_prompt, RAG_SYSTEM_PROMPT
+from .db_client import DBClient
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+ 
+
+class RagChatSession(BaseModel):
+    llm_client: BaseClient
+    retriever: Retriever
+    db_client: DBClient  
+    memory_size: int
+    conversation_id: str
+    username: str
+
+    class Config:
+        arbitrary_types_allowed = True
+
+    def __init__(self, 
+                 llm_client: BaseClient,
+                 memory_size: int = 3, 
+                 conversation_id: str = None, 
+                 username: str = None,):
+        super().__init__(
+            llm_client=llm_client,
+            retriever=Retriever(),
+            db_client=DBClient(),
+            memory_size=memory_size,
+            conversation_id=conversation_id,
+            username=username
+        )
+
+    def _get_docs(self, query: str, **kwargs) -> list:
+        logger.info(f"Getting similar documents for query: {query}")
+        return self.retriever.search(query, **kwargs)
+
+    def _prepare_context(self, context: list[dict]) -> str:
+        context_items = []
+        for doc in context:
+            item = {"source": doc['source'], "content": doc['content']}
+            context_items.append(item)
+        return context_items
+    
+    def _reword_query(self, query: str) -> str:
+        """Reword the query if needed."""
+        history = self.db_client.get_conversation_history(self.conversation_id, message_limit=self.memory_size)
+        prompt = get_reword_query_prompt(history, query)
+        response, usage = self.llm_client.invoke(prompt, return_usage=True)
+
+        if response.lower() == "none":
+            reworded_query = query
+        else:
+            print(f"reworded_query: {response}")
+            reworded_query = response
+
+        self.db_client.add_message(
+            self.conversation_id, query, reworded_query,
+            message_type="reword",
+            model=self.llm_client.default_model,
+            input_tokens=usage.get("input_tokens"), 
+            output_tokens=usage.get("output_tokens") 
+        )
+        return reworded_query
+    
+    def _get_llm_answer(self, query: str, context: list[dict]) -> str:
+        """Get answer from LLM without streaming support."""
+        logger.info(f"Getting answer with LLM for query: {query}")     
+        history = self.db_client.get_conversation_history(self.conversation_id, message_limit=self.memory_size)
+
+        class Answer(BaseModel):
+            answer: str = Field(description="The answer to the question. It should be concise, preferably in one sentence. Exceptions are allowed if the answer includes a long list")
+            relevant_rules: list[str] = Field(description="All the rules used to answer the question (rule numbers only), sorted in alphanumeric order")
+            error: Optional[str] = Field(description="There is a problem formulating an answer, then this field should be the reason why. Otherwise, it should be None.")
+        
+        prompt = get_rag_prompt(query, context, response_format=Answer)
+
+        response, usage = self.llm_client.invoke(
+            messages=history + [{"role": "user", "content": prompt}],
+            config={"temperature": 0.1, "max_tokens": 1000},
+            response_format=Answer,
+            return_usage=True
+        )
+        print(f"response: {response}")
+        print(f"usage: {usage}")
+        try:
+        # if True:
+            answer = response.answer
+            if len(response.relevant_rules) > 0:
+                rules_list_str = self._extract_rules_list(response.relevant_rules, context)
+                answer += f"\n\n**Relevant rules:**\n\n{rules_list_str}"
+        except Exception as e:
+            logger.error(f"Error formatting answer: {e}")
+            logger.error(f"Using plain response: {response}")
+            answer = response
+
+        # Save message to DB
+        self.db_client.add_message(
+            self.conversation_id, query, answer,
+            message_type="conversation",
+            model=self.llm_client.default_model,
+            input_tokens=usage.get("input_tokens"), 
+            output_tokens=usage.get("output_tokens") 
+        )  
+        return answer
+
+    
+    def _extract_rules_list(self, rule_numbers: list[str], context: list[dict]) -> dict[str, str]:
+        """Extracts full text of rules based on rule numbers from the context and returns a dictionary."""
+        context_str = ""
+        for item in context:
+            if item.get("source") == "rules":
+                context_str += "\n" + item["content"]
+
+        rules_dict = self._extract_rules_from_text(context_str, rule_numbers)
+
+        rules_list_str = ""
+        for rule_num, rule_body in rules_dict.items():
+            if rule_body is not None:  # Only include rules that were found
+                rules_list_str += f"- **{rule_num}**: {rule_body.replace('\n- ', '\n  - ')}\n"
+            else:
+                print(f"Rule {rule_num} not found in rules_dict")
+                print(f"rules_dict: {rules_dict.keys()}")
+                print(f"{rule_num} in context_str: {rule_num in context_str}")
+
+
+        return rules_list_str
+    
+    def _extract_rules_from_text(self, text, rule_numbers):
+        """
+        Extract rule bodies for specific rule numbers from a text containing ultimate frisbee rules.
+        
+        Args:
+            text (str): The text containing the rules
+            rule_numbers (list): List of rule numbers to extract
+        
+        Returns:
+            dict: Dictionary mapping rule numbers to their rule bodies
+        """
+        # Split the text into chunks at rule boundaries
+        pattern = r"\n\b(\d+\.[A-Z](?:\.\d+)*(?:\.[a-z](?:\.\d+)?)*\.)"
+        chunks = re.split(pattern, text)
+        
+        # Create a temporary dictionary of all rules
+        temp_dict = {}
+        for i in range(1, len(chunks)-1, 2):
+            rule_num = chunks[i].rstrip('.')  # Remove trailing dot
+            rule_body = chunks[i+1].strip()
+            temp_dict[rule_num] = rule_body
+                
+        rules_dict = {num: temp_dict.get(num) for num in rule_numbers}
+        return rules_dict
+    
+
+    def answer_question(self, query: str, retriever_kwargs: dict = {}) -> Union[str, Iterator[str]]:
+        """
+        Answers the user's question by deciding whether to retrieve more information or use existing history.
+        
+        Parameters:
+            query (str): The user's question.
+            retriever_kwargs (dict): Optional arguments for the retriever
+        
+        Returns:
+            Union[str, Iterator[str]]: Either a string response or a stream of text chunks
+        """
+        # Reword query for better retrieval
+        reworded_query = self._reword_query(query)
+        retrieved_docs = self._get_docs(reworded_query, **retriever_kwargs)
+        context = self._prepare_context(retrieved_docs)
+        return self._get_llm_answer(query, context)
+
+def save_text_to_file(text: str, filename: str):
+    with open(filename, "w") as file:
+        file.write(text)
+
+def save_dict_to_file(dict: dict, filename: str):
+    with open(filename, "w") as file:
+        json.dump(dict, file, indent=2)
+
+# Example usage
+if __name__ == "__main__":
+    from .clients.get_abstract_client import get_abstract_client
+    # model = "claude-3-5-sonnet-20240620"
+    # client = AnthropicAbstractedClient(model=model)
+
+    model = "gpt-4o-mini"
+    # model = "gpt-4o-2024-08-06"
+    client = get_abstract_client(model=model)
+
+
+    retriever_kwargs = {
+        "limit": 5,
+        "expand_context": True,
+        "search_type": "hybrid",
+        "fts_operator": "OR"
+    }
+
+    for stream_output in [True, False]:
+        print(f"\n\n{'*'*10} STREAM OUTPUT: {stream_output} {'*'*10}")
+        question = "What is a callahan?"
+        print(f"\n\nQUESTION: {question}\n\nANSWER: \n")
+        session = RagChatSession(
+            llm_client=client,
+            stream_output=False,
+            memory_size=5,
+            context_size=1
+        )
+        
+        response = session.answer_question(question, retriever_kwargs=retriever_kwargs)
+        if not stream_output:
+            print(response)
+        else:
+            for chunk in response:
+                print(chunk, end="", flush=True)
+
+    # print(f"\n\nhistory:")
+    # session.history.pretty_print()

@@ -1,22 +1,65 @@
--- Create the pgvector extension
+-- Create extensions
 CREATE EXTENSION IF NOT EXISTS vector;
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
--- Drop the documents table if it exists
-DROP TABLE IF EXISTS documents;
+-- Create message_type enum
+CREATE TYPE MESSAGE_TYPE AS ENUM ('conversation', 'reword');
 
 -- Create the documents table with added tsvector column
 CREATE TABLE IF NOT EXISTS documents (
     id SERIAL PRIMARY KEY,
-    content TEXT,
     context TEXT,
+    content TEXT,
     source TEXT,
     embedding VECTOR(1536),
     content_tsv TSVECTOR GENERATED ALWAYS AS (to_tsvector('english', content)) STORED
 );
 
+-- Create users table
+CREATE TABLE IF NOT EXISTS users (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    email TEXT NOT NULL UNIQUE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create conversations table
+CREATE TABLE IF NOT EXISTS conversations (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id UUID NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+-- Create messages table
+CREATE TABLE IF NOT EXISTS messages (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    conversation_id UUID NOT NULL,
+    user_msg TEXT,
+    ai_msg TEXT,
+    message_type MESSAGE_TYPE DEFAULT 'conversation',
+    model TEXT,
+    input_tokens INTEGER,
+    output_tokens INTEGER,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (conversation_id) REFERENCES conversations(id)
+);
+
+-- CREATE MODELS TABLE
+CREATE TABLE IF NOT EXISTS models (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    name TEXT NOT NULL UNIQUE,
+    input_token_cost FLOAT,
+    output_token_cost FLOAT
+);
+
 -- ADD INDECES FOR SEARCH
 CREATE INDEX IF NOT EXISTS documents_embedding_idx ON documents USING hnsw (embedding vector_ip_ops);
 CREATE INDEX IF NOT EXISTS documents_content_tsv_idx ON documents USING GiST (content_tsv);
+
+-- Add index for faster message retrieval by conversation with timestamp ordering
+CREATE INDEX IF NOT EXISTS messages_conversation_id_created_at_idx 
+    ON messages(conversation_id, created_at);
+
+--------- FUNCTIONS ---------
 
 -- SIMILARITY SEARCH FUNCTION
 CREATE OR REPLACE FUNCTION similarity_search(
@@ -99,6 +142,110 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-- Get conversation history function
+CREATE OR REPLACE FUNCTION get_conversation_history(
+    _conversation_id UUID,
+    _message_limit INTEGER
+)
+RETURNS TABLE(
+    id UUID,
+    user_msg TEXT,
+    ai_msg TEXT,
+    created_at TIMESTAMP WITH TIME ZONE
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        recent_messages.id,
+        recent_messages.user_msg,
+        recent_messages.ai_msg,
+        recent_messages.created_at
+    FROM (
+        SELECT 
+            messages.id,
+            messages.user_msg,
+            messages.ai_msg,
+            messages.created_at
+        FROM messages
+        WHERE messages.conversation_id = _conversation_id
+        AND messages.message_type = 'conversation'
+        ORDER BY messages.created_at DESC  -- Get the most recent messages first
+        LIMIT _message_limit
+    ) AS recent_messages
+    ORDER BY recent_messages.created_at ASC;  -- Order by created_at in the outer query
+END;
+$$ LANGUAGE plpgsql;
 
+-- Get all messages for a specific conversation
+CREATE OR REPLACE FUNCTION get_conversation(
+    _conversation_id UUID
+)
+RETURNS TABLE(
+    message_id UUID,
+    user_msg TEXT,
+    ai_msg TEXT,
+    message_type MESSAGE_TYPE,
+    model TEXT,
+    input_tokens INTEGER,
+    output_tokens INTEGER,
+    created_at TIMESTAMP WITH TIME ZONE
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        messages.id,
+        messages.user_msg,
+        messages.ai_msg,
+        messages.message_type,
+        messages.model,
+        messages.input_tokens,
+        messages.output_tokens,
+        messages.created_at
+    FROM messages
+    WHERE messages.conversation_id = _conversation_id
+    ORDER BY messages.created_at ASC;
+END;
+$$ LANGUAGE plpgsql;
 
+-- Function to calculate token cost based on model name, input tokens, and output tokens
+CREATE OR REPLACE FUNCTION calculate_token_cost(
+    model_name TEXT,
+    input_tokens INTEGER,
+    output_tokens INTEGER
+)
+RETURNS FLOAT AS $$
+DECLARE
+    input_cost FLOAT;
+    output_cost FLOAT;
+    total_cost FLOAT;
+BEGIN
+    -- Query the models table to get the input and output token costs
+    SELECT 
+        input_token_cost,
+        output_token_cost
+    INTO input_cost, output_cost
+    FROM models
+    WHERE name = model_name;
 
+    -- Check if the model exists
+    IF input_cost IS NULL OR output_cost IS NULL THEN
+        RAISE EXCEPTION 'Model not found: %', model_name;
+    END IF;
+
+    -- Calculate the total cost
+    total_cost := (input_cost * input_tokens) + (output_cost * output_tokens);
+
+    RETURN total_cost;
+END;
+$$ LANGUAGE plpgsql;
+
+-- INITIAL DATA INSERTION --
+
+INSERT INTO users (email) 
+VALUES ('trevorkinsey@gmail.com');
+
+INSERT INTO models (name, input_token_cost, output_token_cost) VALUES
+    ('gpt-4o-mini', 0.15/1e6, 0.6/1e6),
+    ('gpt-4o-2024-08-06', 2.5/1e6, 10/1e6),
+    ('claude-3-5-haiku-20241022', 0.25/1e6, 1.25/1e6),
+    ('claude-3-5-sonnet-20241022', 3/1e6, 15/1e6);

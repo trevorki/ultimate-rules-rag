@@ -19,4 +19,8 @@ sleep 10
 echo "Running vectorstore preparation script..."
 python prepare_vectorstore/3-add_to_vectorstore.py --chunk_size $CHUNK_SIZE
 
-echo "Database setup completed!" 
+# Run the retrieval evals
+echo "Running retrieval evals..."
+python evals/evaluate_retrieval.py --chunk_size $CHUNK_SIZE
+
+echo "Process completed!" 

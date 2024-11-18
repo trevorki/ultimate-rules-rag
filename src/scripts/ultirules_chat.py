@@ -195,7 +195,7 @@ def InputArea():
 
 def Header():
     return Div(
-        H1("Ultimate Rules Assistant", cls="text-2xl font-bold"),
+        H1("Ultimate Rules Bot", cls="text-2xl font-bold"),
         Button(
             "🌓", 
             onclick="toggleTheme()",

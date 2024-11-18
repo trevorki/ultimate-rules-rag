@@ -154,7 +154,6 @@ Ultimate is a sport that inspires players and fans alike because of its ability 
 2.G.3. provide constructive feedback to other teams about what they are doing well and/or how to improve their adherence to the Spirit of the Game; and
 
 2.G.4. be aware regarding the potential for implicit biases to impact play and Spirit of the Game.
-
 2.G.4.a. Players and team leaders should acknowledge and recognize that the implementation of Spirit of the Game (SOTG) is susceptible to bias. Team leaders should be mindful of and encourage their teammates to be mindful of their own biases when considering and discussing interactions with, and impressions of, other teams as well as their own team. Understand that intent and impact are not the same. The intent of a person's statement or gesture may be neutral or positive to them, but the impact of what they say or do may be harmful or hurtful to others.
 
 
@@ -177,7 +176,6 @@ Ultimate is a sport that inspires players and fans alike because of its ability 
 3.A. Best perspective: The most complete view available by a player that includes the relative positions of the disc, ground, players, and line markers involved in a play. On an unlined field, this may require sighting from one field marker to another. Best perspective always belongs to a player. However, players may rely on the following sources as a component of best perspective:
 
 3.A.1. Players may seek the perspective of sideline players to clarify the rules and to assist players in making the appropriate call. Players may seek the perspective of coaches to clarify a rule, but not to assist in making the appropriate call.
-
 3.A.1.a. Sideline players should not offer their perspective unless solicited by a player. However, a sideline player may offer perspective without being asked by a player if the perspective offered is to the detriment of the sideline player's team.
 
 3.A.2. Players may review officially-designated video footage to assist in resolving a call where such footage is available. However, play may not be delayed to review video footage. [[For example, live instant replay in a stadium setting may be used by players to resolve a contested foul call. Players may not, however, request that a particular play be replayed on the screen. If, after reviewing the video, players still cannot agree, they should not delay the game to rewatch the play multiple times; instead, the play should be treated as a regular contested foul.]
@@ -352,7 +350,6 @@ If no player has sufficient perspective to make a call, the disc should revert t
 6.C.1. The soft cap occurs once a predetermined time of play has elapsed. At the soft cap, play continues until the current scoring attempt is completed. If, after the current scoring attempt is completed, the game total has not yet been reached by one team, one is added to the higher score and the resulting number is the new game total. 6.C.1.a. If the soft cap occurs during the halftime break, the new game total is one more than the higher score. [Don't play a point and then add one.]]
 
 6.C.2. The hard cap is the ending of the game once a predetermined time of play has elapsed. At the hard cap, play continues until the current scoring attempt is completed. If, after the current scoring attempt is completed, the score is tied, play continues until one additional goal is scored. Otherwise, the game ends. The team with the most goals at the end of the game is the winner.
-
 6.C.2.a. If the hard cap occurs during the halftime break, the game is over and the team with the higher score is the winner.
 
 6.C.3. The halftime cap occurs once a predetermined time of play has elapsed. At the halftime cap, play continues until the current scoring attempt is completed. If, after the current scoring attempt is completed, the halftime target has not yet been reached by one team, one is added to the higher score and the resulting number is the new halftime target.
@@ -373,15 +370,10 @@ If no player has sufficient perspective to make a call, the disc should revert t
 7.B.3. After the pull, only a thrower with possession of the disc that has survived ground contact can call a timeout. The player must form a T with one hand and the disc, and should audibly say "timeout." The timeout begins when the T is formed. The disc is then placed on the ground at the pivot spot.
 
 7.B.4. Restarting play after a timeout called by a thrower:
-
 7.B.4.a. All players at the time of the timeout call must return to play unless an injury timeout also is called.
-
 7.B.4.b. Each offensive player must establish a stationary position by the end of the timeout. Movement after this time and before the disc is checked into play is a violation. The defense has ninety seconds after the beginning of the timeout or up to twenty seconds after all offensive players have established their positions (whichever is longer) to check the disc into play.
-
 7.B.4.c. The player who had possession of the disc when the team timeout was called restarts play with a check at the pivot spot, and the marker resumes the stall count with the word "stalling" followed by the last number uttered before the timeout plus one or 9 if over 8, however 15.A.4 applies.
-
 7.B.4.d. If the time limits for the timeout are exceeded by one team, a player on the other team may announce "delay of game" and the player at the location the disc is to be put into play may self-check the disc into play without acknowledgment by the opposing team. In order to invoke this rule a player must give warnings of 20, 10, and 5 seconds.
-
 7.B.5. If the disc is live or in play and the thrower attempts to call a timeout when the team in possession has no timeouts remaining, play is stopped. The marker resumes the stall count with the number last uttered before the call plus three (e.g., if the timeout was called after a stall count of two, play would resume on a stall count of five). If this results in a stall count of ten or above, this is a turnover.
 
 
@@ -390,15 +382,11 @@ If no player has sufficient perspective to make a call, the disc should revert t
 7.C.1. Any player on the injured player's team may call an injury timeout.
 
 7.C.2. The timeout is retroactive to the time of the injury, unless the injured player chooses to continue play before the timeout is called, in which case, the timeout begins at the time of the call. If the disc is in the air or the thrower is in the act of throwing at the time of the injury or of the call when the player has continued play, the timeout begins when the play is completed.
-
 7.C.2.a. The health and safety of the injured player are of primary concern. If a serious injury occurs, other players change their behavior as a result of that injury, and the captains of both teams agree, the play may be resolved or play may be restarted in any appropriate manner despite any outcome dictated by these rules. [[This could include, for example, returning a thrown disc to the thrower regardless of the outcome, restarting the point with a re-pull, or delaying the restart of play.]]
 
 7.C.3. Restarting play after an injury timeout:
-
 7.C.3.a. If a player in possession leaves the field following an injury, the replacing player takes possession.
-
 7.C.3.b. Play restarts at the appropriate spot with a check and the marker resumes any stall count with the word stalling followed by the last number uttered before the injury timeout started plus one or 9 if over 8. The substitution of the thrower or marker does not alter the stall count.
-
 7.C.3.c. All players must resume their locations on the field at the time the injury timeout began (i.e., players may not set up), unless a team timeout is also called.
 
 7.C.4. If the injured player does not leave the game after an injury timeout, that player's team is charged with a team timeout unless the injury was caused by an opposing player. If the team being charged with the timeout is also the team in possession and has no timeouts remaining, it is a turnover.
@@ -408,28 +396,20 @@ If no player has sufficient perspective to make a call, the disc should revert t
 7.C.6. If an injury timeout is called between points, all time limits are suspended until the injured player is removed from the field.
 
 7.C.7. Any player, coach, or observer should call an injury timeout for a player who is bleeding or has an exposed open wound.
-
 7.C.7.a. This timeout takes effect when the call is made (i.e., is not retroactive to the time of injury). If the disc is in the air or the thrower is in the act of throwing at the time of the call, the timeout begins when the play is completed. However, the disc is returned to the thrower if avoiding potential contact with the bleeding player is determined to have affected the play.
-
 7.C.7.b. This timeout may last up to 70 seconds, during which time the injured player must have the wound effectively covered in order to return to the point in progress.
-
-7.C.7.c. If play cannot be restarted with the injured player's wound effectively covered in 70 seconds, the player's team may either 
+7.C.7.c. If play cannot be restarted with the injured player's wound effectively covered in 70 seconds, the player's team may either:
 7.C.7.c.1. replace the injured player according to 7.C.3, or 
 7.C.7.c.2. call a team timeout, if they have one, in order to extend the time frame to have the wound effectively covered and leave the player in the game.
-
 7.C.7.d. A bleeding or exposed open wound is "effectively covered" if it is covered with a dressing sturdy enough to withstand the demands of activity and able to prevent bodily fluids from coming in contact with other players.
-
 7.C.7.e. Any player whose clothing has blood on it must have the affected areas disinfected or must change the clothing before returning to play.
-
 7.C.7.f. Whether a player may return to play is determined by appropriate medical staff. If medical staff is not available, captains and coaches may agree that a wound has been effectively covered and any clothing issues have been addressed.
 
 
 7.D. Technical Timeout: A technical timeout may be called for illegal equipment, a dangerous condition, or a broken disc.
 
 7.D.1. Any player recognizing a condition that endangers themselves or other players may call a technical timeout during play by calling "technical." The thrower may call a technical timeout during play to replace a cracked, torn, deeply gouged, creased, or punctured disc; a warped, wet or dirty disc does not qualify. The timeout begins at the time of the call. If the disc is in the air or the act of throwing at the time of the call, the timeout begins when the play is completed.
-
 7.D.1.a. If a player discovers a dangerous condition after the disc is in the air or while the thrower is in the act of throwing and the player ceases play as a result, the disc is returned to the thrower regardless of the outcome of that pass. However, if both teams agree that ceasing play did not affect the outcome of the throw, the result of the play stands. [[For example, a receiver is not required to continue playing through a dangerous situation, such as a child wandering onto the field. In that case, the receiver should stop making a play on the disc in order to prioritize the safety of themselves and others, and the disc will be returned to the thrower once the dangerous situation is rectified.]]
-
 7.D.1.a.1. If possession reverts to the thrower, all players return to the locations they occupied at the time of the throw.
 
 7.D.2. Any player may briefly extend a stoppage of play to correct faulty equipment (e.g., to tie shoelaces or straighten a disc), but active play may not be stopped for this purpose. (Note: play does not stop during a turnover even if the disc is out-of-bounds.)
@@ -437,24 +417,18 @@ If no player has sufficient perspective to make a call, the disc should revert t
 7.D.3. A player unable to correct illegal equipment in a timely manner must be substituted in accordance with 8.A.2.
 
 7.D.4. Restarting play after a technical timeout:
-
 7.D.4.a. The thrower restarts play at the appropriate spot with a check and the marker resumes any stall count as follows: 
 7.D.4.a.1. If the technical timeout was called during a stoppage of play, the count resumes at the appropriate count for the event that stopped play.
 7.D.4.a.2. If the technical timeout stopped play, the count resumes at the stall count reached plus one, or at six if over five.
-
 7.D.4.b. If a player in possession leaves the field due to illegal equipment, the replacing player puts the disc into play. The substitution of the thrower or marker does not alter the stall count.
-
 7.D.4.c. All players must resume their locations on the field at the time the timeout began (i.e., players may not set up), unless a team timeout is also called.
 
 
 7.E. Spirit timeout: A spirit timeout may be called by one or both teams' spirit captain(s) if they believe that either or both teams have failed to follow the Spirit of the Game, and (1) game play has become dangerous; or (2) repeated Spirit of the Game violations are causing conflict between the teams. Spirit timeouts are subject to the following provisions:
 
 7.E.1. A spirit timeout can be called only if all of the following conditions have been met: 7.E.1.a. Both spirit captains have discussed the perceived Spirit of the Game violation(s) and adjustments to address those violations, and one or more members of either or both teams have not adjusted their conduct.
-
 7.E.1.b. Both spirit captains have discussed the need to call a spirit timeout before calling the spirit timeout. It is not required that both spirit captains agree that a spirit timeout is necessary.
-
 7.E.1.c. Play is stopped.
-
 7.E.1.d. In games with observers, spirit timeouts initiated by the spirit captains must be communicated to the observers before being called. Observers may call a spirit timeout if the observer believes it is needed and at least one of the spirit captains agrees.
 
 7.E.2. During the spirit timeout:
@@ -511,30 +485,20 @@ If no player has sufficient perspective to make a call, the disc should revert t
 9.B.4.b. After signaling readiness, players on the receiving team must have one foot on the goal line that they are defending without changing location relative to one another.
 9.B.4.c. After the disc is released, it is in play and any player may move in any direction.
 
-9.B.4.d. If a player on the pulling team fails to maintain proper positioning before the pull, the receiving team may call "offsides" before gaining possession of the disc. If a player on the receiving team fails to maintain proper positioning before the pull, the pulling team may call "false start" before the receiving team gains possession of the disc. The offsides and false start calls do not stop play, and the Continuation Rule (17.C) does not apply. [[A sideline player or coach who is leaving the playing field with urgency but is still on the playing field when the disc is released is not considered to be offsides or committing a false start. If a sideline player or coach on the playing field impedes a player from the other team, that is a separate violation.] In games where observers are used, these calls can only be made by the observers. In games without observers, each team may send a designated sideline player to either goal line who has the ability to call "offsides" or "false start" or to offer their perspective on such a call. A contested offsides call results in a stoppage of play and a re-pull. [[To contest an offsides or false start call, a player on the contesting team must have perspective at least as good as the person making the call. If the call is made by a designated sideline player, only a similarly-positioned sideline player designated by the contesting team has equal or better perspective.]]
-
+9.B.4.d. If a player on the pulling team fails to maintain proper positioning before the pull, the receiving team may call "offsides" before gaining possession of the disc. If a player on the receiving team fails to maintain proper positioning before the pull, the pulling team may call "false start" before the receiving team gains possession of the disc. The offsides and false start calls do not stop play, and the Continuation Rule (17.C) does not apply. [[A sideline player or coach who is leaving the playing field with urgency but is still on the playing field when the disc is released is not considered to be offsides or committing a false start. If a sideline player or coach on the playing field impedes a player from the other team, that is a separate violation.]] In games where observers are used, these calls can only be made by the observers. In games without observers, each team may send a designated sideline player to either goal line who has the ability to call "offsides" or "false start" or to offer their perspective on such a call. A contested offsides call results in a stoppage of play and a re-pull. [[To contest an offsides or false start call, a player on the contesting team must have perspective at least as good as the person making the call. If the call is made by a designated sideline player, only a similarly-positioned sideline player designated by the contesting team has equal or better perspective.]]
 9.B.4.d.1. In the first instance of offsides, the receiving team may let the disc hit the ground untouched and then take the disc at the brick mark closest to the end zone the receiving team is defending (following the same signaling procedure described in 9.B.6.d.2), even if the disc initially hits in-bounds, in addition to any other applicable options per 9.B.6-7.
-
 9.B.4.d.2. After the first uncontested instance of offsides, in every subsequent instance of offsides, the receiving team may let the disc hit the ground untouched and then take the disc at midfield (by fully extending one hand overhead and calling "midfield" before gaining possession of the disc) in addition to any other applicable options per 9.B.6-7.
-
 9.B.4.d.3. In any instance of false start, the pulling team may call "false start" prior to the receiving team taking possession of the disc. Play stops after the outcome of the pull is decided. Play resumes in a similar manner as after a team timeout. The player with possession of the disc (or any player on the offensive team if no player has possession) takes the disc to the spot on the playing field where the disc is to be put into play (per 9.B.6-7). Ten seconds after the player in possession reaches that location, each offensive player must establish a stationary position. Movement after this time and before the disc is checked into play is a violation. The defense has twenty seconds after all offensive players have established their positions to check the disc into play.
-
 9.B.4.d.4. If the pulling team is offsides and the receiving team commits a false start, the offense may put the disc into play at the appropriate spot for an offsides but may not attempt a pass until the disc is checked into play by the defense.
 
 9.B.5. A player on the throwing team may not touch the pull in the air before a member of the receiving team touches it. If this violation occurs, the receiving team may request a re-pull immediately.
 
 9.B.6. If the pull hits the ground or an out-of-bounds area untouched, it is put into play as follows:
-
 9.B.6.a. If the disc initially hits and remains in-bounds, it is in play where it comes to rest or is stopped (17.F).
-
 9.B.6.b. If the disc initially hits in-bounds and then becomes out-of-bounds before being touched by the receiving team, it is put into play at the spot on the central zone (i.e., excluding the end zones) nearest to where it first crossed the perimeter line to become out-of-bounds.
-
 9.B.6.c. If the disc initially hits in-bounds and then becomes out-of-bounds after being touched by the receiving team, it is put into play at the spot on the playing field nearest to where it first crossed the perimeter line to become out-of-bounds.
-
 9.B.6.d. If the disc initially hits an out-of-bounds area, the receiving team may put the disc into play: 9.B.6.d.1. at the spot determined by 10.H; or
-
 9.B.6.d.2. after signaling for a brick or middle by fully extending one hand overhead and calling brick or middle before gaining possession of the disc, either at 9.B.6.d.2.1. the brick mark closest to the end zone that the receiving team is defending if "brick" was called, or
-
 9.B.6.d.2.2. the spot on the long axis of the central zone nearest to the spot determined by 10.H if "middle" was called.
 
 9.B.7. If the pull is caught on the playing field, the disc is in play where it was caught. If the disc is caught outside the playing field, the disc is put into play at the spot on the playing field nearest to where it was caught.
@@ -553,11 +517,9 @@ If no player has sufficient perspective to make a call, the disc should revert t
 9.C.2. In mixed gender play, the team responsible for signaling the gender ratio for the upcoming point must do so within twenty five (25) seconds after the previous goal was scored. [[The team responsible for signaling gender is encouraged to signal as early as possible after the previous goal is scored, but must do so no later than 25 seconds.]]
 
 9.C.3. Within fifty (50) seconds after the previous goal was scored, the receiving team must line up for the purpose of allowing the pulling team to match up defensively. Each player must place one foot on the goal line, be visible to the pulling team, and not change their relative position on the line.
-
 9.C.3.a. Other team members (coaches, support staff, sideline players) may be present on the field during this time.
 
 9.C.4. Within sixty (60) seconds after the previous goal was scored, the receiving team must signal readiness (9.B.3).
-
 9.C.4.a. All other team members must be clear of the field at this time.
 
 9.C.5. The pulling team must release the pull before the latest to occur of: 9.C.5.a. eighty (80) seconds after the previous goal was scored; or 9.C.5.b. thirty (30) seconds after the receiving team lined up; or 9.C.5.c. twenty (20) seconds after the receiving team signaled readiness.
@@ -645,7 +607,7 @@ After establishing a pivot at the appropriate spot on the field, the thrower mus
 11.B. If a team gains or retains possession in the end zone that they are attacking other than by scoring a goal in accordance with rule 12, the player in possession must carry the disc directly to, and put it into play at, the spot on the goal line closest to where the player stopped.
 
 
-11.C. If a team gains or retains possession of a dead disc in the end zone that they are attacking, the disc is checked into a live state where the infraction occurred, and the thrower then proceeds according to 11.B. [[For example, after an uncontested receiving foul.]
+11.C. If a team gains or retains possession of a dead disc in the end zone that they are attacking, the disc is checked into a live state where the infraction occurred, and the thrower then proceeds according to 11.B. [[For example, after an uncontested receiving foul.]]
 
 
 
@@ -704,17 +666,12 @@ After establishing a pivot at the appropriate spot on the field, the thrower mus
 14.A.4. If the disc is out-of-bounds (10.E) or comes to rest in the end zone, a member of the team becoming offense must put the disc into play within twenty seconds after it comes to rest. [[For an out-of bounds disc that has come to rest on the central zone, the team becoming offense will have twenty seconds to put it into play.]]
 
 14.A.4.a. If the disc is out of bounds and not reasonably retrievable quickly, a replacement disc may be introduced without a stoppage of play. The player retrieving the disc must first confirm with a player on the opposing team that the new disc is acceptable. The player putting the new disc into play must then raise the replacement disc above their head and announce "new disc" before putting the disc into play according to 10.H.
-
 14.A.4.b. If the disc is in the end zone, after twenty seconds elapse, a defensive player within 10 feet of the disc may announce "disc in," and then initiate and continue the stall count, but only if a defensive player has given audible warnings of twenty, ten and five seconds (the pre-stall).
-
 14.A.4.c. If the disc is out-of-bounds, after twenty seconds elapse, a defensive player within ten feet of the spot the disc is to be put into play may announce "disc in," and then initiate and continue the stall count, but only if a defensive player has given audible warnings of twenty, ten and five seconds (the pre-stall).
-
 14.A.4.d. Non-playing members of the team on offense may assist in retrieving live discs outside the player and team lines (or, if no such lines exist, live discs in the out-of-bounds area). Such players cannot cause a turnover. Once a player obtains possession of the disc, they must carry the disc to a spot outside the team line (or, if no such line exists, at least three yards away from the playing field) before carrying it to the spot where it is to be put into play.
 
 14.A.5. If an offensive player unnecessarily delays putting the disc into play in violation of rule 20.B, a defender within ten feet of the spot the disc is to be put into play may issue a delay of game warning instead of calling a violation, by announcing "delay of game" and counting down from three to zero at intervals of at least one second to provide an opportunity for the offensive player to react to the warning. Play then continues as follows:
-
 14.A.5.a. If the behavior in violation of rule 20.B is stopped before the full utterance of the word "zero," the marker stops the count-down and may only initiate the stall count as usual, according to 15.A.2. [An example of "stopping" behavior in violation of rule 20.B is to begin moving toward the disc at walking pace. Another example would be to run downfield, leaving the disc for someone else to pick up. However, if a player is taking more time than reasonably necessary to put the disc into play by standing back from the disc, wandering around near the disc, or standing over the disc, continuing such behavior during the three-second countdown will allow a marker to initiate the stall count under 14.A.5.]]
-
 14.A.5.b. If the behavior in violation of rule 20.B is not stopped before the full utterance of the word "zero," the marker may then initiate or continue a stall count, regardless of any subsequent actions by the offense, by announcing "disc in" and then initiating the stall count.
 
 14.B. For a live disc to be put into play, the thrower must establish a pivot at the appropriate spot on the field, and touch the disc to the ground.
@@ -740,7 +697,6 @@ After establishing a pivot at the appropriate spot on the field, the thrower mus
 15.A.3. If the thrower has not released the disc at the first utterance of the word "ten," it is a turnover. The marker loudly announces "stall" and play stops. If the disc is thrown, play continues until the outcome of that pass is determined. A stall is not a violation and the Continuation Rule (17.C) does not apply.
 
 15.A.3.a.1. If the stall is uncontested, the disc is returned to the thrower at the place of the stall. The thrower then places the disc on the ground and loudly announces "3-2-1 disc in" and the disc is in play.
-
 15.A.3.b. The thrower may contest a stall call in the belief that the disc was released before the first utterance of the word "ten" or if the marker committed a fast count such that the thrower did not have a reasonable opportunity to call "fast count" before the first utterance of the word "ten." If a stall is contested:
 15.A.3.b.1. If the pass was complete or 15.B.5.b applies, play stops, players return to their positions at the time of the throw, and possession reverts to the thrower. After a check, the marker resumes the stall count according to 15.A.5.b.3.
 15.A.3.b.2. If the pass was incomplete, it is a turnover; play stops and resumes with a check.
@@ -838,19 +794,17 @@ After establishing a pivot at the appropriate spot on the field, the thrower mus
 17.B. A player called for an infraction may contest that call if that player believes the infraction did not occur. [[This belief may be based on the player's perspective on the particular sequence of events or based on a disagreement over the application of the rules, provided the player has read and understands the rules. For example, "No, I didn't slap your hand" or "Tipping the disc to someone else is not a travel."]
 
 
-17.C. Any time an infraction is called, the Continuation Rule applies. Continuation Rule: Play stops when the thrower in possession acknowledges that an infraction has been called. [[This refers to the thrower who possesses the disc or has just released the disc at the time of the infraction/call. Who the thrower (3.0.5) is is determined at the time of the infraction/call.] If a call is made when the disc is in the air or the thrower is in the act of throwing, or if the thrower fails to acknowledge the call and subsequently attempts a pass, play continues until the outcome of that pass is determined. For the purpose of the Continuation Rule, an uncontested stall that occurs after another call is treated the same as an incomplete pass. [Thus, if you get stalled before you acknowledge a call, it is treated the same as if you ignored the call and threw a turnover.]] Play then either stops or continues according to the following:
+17.C. Any time an infraction is called, the Continuation Rule applies. Continuation Rule: Play stops when the thrower in possession acknowledges that an infraction has been called. [[This refers to the thrower who possesses the disc or has just released the disc at the time of the infraction/call. Who the thrower (3.0.5) is is determined at the time of the infraction/call.]] If a call is made when the disc is in the air or the thrower is in the act of throwing, or if the thrower fails to acknowledge the call and subsequently attempts a pass, play continues until the outcome of that pass is determined. For the purpose of the Continuation Rule, an uncontested stall that occurs after another call is treated the same as an incomplete pass. [Thus, if you get stalled before you acknowledge a call, it is treated the same as if you ignored the call and threw a turnover.]] Play then either stops or continues according to the following:
 
 17.C.1. Despite any outcome dictated by these rules, if the involved players on both teams agree that the infraction did not affect the outcome of the play, play stops and the result of the play stands. This provision does not apply if the thrower is aware an infraction has been called and subsequently attempts a pass.
 
 17.C.2. Where the outcome of these rules is for play to continue unhalted, the player who called the infraction must announce "play on." Additionally, any player recognizing that play should continue without stoppage should announce "play on." If the player who called the infraction does not announce "play on" and the opposing team is uncertain whether play should continue, the opposing team has the option to stop play by calling "violation."
 
 17.C.3. For calls made by the offense: 
-
 17.C.3.a. If the pass is complete: 
 17.C.3.a.1. If the offense called the infraction before the thrower began the act of throwing (3.O.3), play stops and possession reverts to the thrower.
 17.C.3.a.2. If the offense called the infraction after the thrower began the act of throwing, play continues unhalted.
 17.C.3.a.3. Where an infraction is called by the thrower, players should treat the call as if it was made when the infraction occurred in determining whether the call was made before or after the thrower was in the act of throwing. If the infraction occurred after the throw was released, the call is considered to have been made by a non-thrower. [[This means that if you throw a turnover and call a foul on contact after the release, the turnover will generally stand. Note that the timing is based on when the infraction occurred for this rule.]]
-
 17.C.3.b. If the pass is incomplete:
 17.C.3.b.1. If the infraction affected the play (17.C.5), play stops and the disc reverts to the thrower unless the specific rule (e.g., the receiving foul rule) says otherwise.
 17.C.3.b.2. If the infraction did not affect the play, play stops and the result of the play stands.
@@ -866,12 +820,10 @@ After establishing a pivot at the appropriate spot on the field, the thrower mus
 
 17.C.6. Positioning after a call:
 17.C.6.a. If no pass is thrown or attempted before the thrower stops play by acknowledging the call, all players return to the locations they occupied when the call was made.
-
 17.C.6.b. If a pass is thrown or attempted before the thrower acknowledges the call or the call is made after the throwing attempt, and
 17.C.6.b.1. if possession reverts to the thrower, all players return to the locations they occupied at the earlier of: [[Therefore, if a long pass is thrown and there is a contested receiving foul, the players will return to where they were at the time of the throw (rather than remaining downfield after chasing down the disc).]]
 17.C.6.b.1.1. the time of the throw, 
 17.C.6.b.1.2. the time of the call.
-
 17.C.6.b.2. if a player other than the thrower is awarded possession due to an uncontested call, all players return to the locations they occupied at the time of the infraction.
 17.C.6.b.3. if the result of a play stands, players return to the locations they occupied when play stopped.
 
@@ -913,10 +865,9 @@ After establishing a pivot at the appropriate spot on the field, the thrower mus
 - jumping right in front of a sprinting player in a manner where contact is unavoidable]]
 
 17.I.1.a. Dangerous play is considered a foul regardless of whether or when the disc arrives or contact occurs.
-
 17.I.1.a.1. The vast majority of dangerous play will involve contact between players. However, contact is not required for a player to invoke this rule where there is reasonable certainty that contact would have occurred had the player not taken steps to avoid contact. [[A player is not required to hold their position and receive contact in order to call "dangerous play," but the mere possibility of contact is insufficient to justify a call. Furthermore, if the offending player stops or changes their path such that contact would not have occurred, contact was not "reasonably certain."]
 
-17.1.1.b. Resolution. If uncontested, a call of "dangerous play" is resolved as an analogous foul (e.g., if the call occurred while or immediately after the calling player was making a play on a disc in the air, it is treated as a Receiving Foul (17.I.4.b)). A player called for dangerous play may contest the call if they believe the call was incorrect (17.B).
+17.I.1.b. Resolution. If uncontested, a call of "dangerous play" is resolved as an analogous foul (e.g., if the call occurred while or immediately after the calling player was making a play on a disc in the air, it is treated as a Receiving Foul (17.I.4.b)). A player called for dangerous play may contest the call if they believe the call was incorrect (17.B).
 
 17.I.1.b.1. Dangerous play between a thrower and marker is treated as a throwing foul that affected the play, regardless of whether or when the disc is released or when contact occurs, unless the calling player determines otherwise.
 
@@ -928,39 +879,27 @@ After establishing a pivot at the appropriate spot on the field, the thrower mus
 
 17.I.3. Non-incidental contact resulting from adjacent opposing players vying for the same unoccupied position may be treated as offsetting fouls.
 
-17.I.4. Some fouls carry some extra provisions, as listed below. 17.I.4.a. Throwing Fouls:
+17.I.4. Some fouls carry some extra provisions, as listed below. 
 
+17.I.4.a. Throwing Fouls:
 17.I.4.a.1. A throwing foul may be called when there is non-incidental contact between the thrower and marker. [[Nearly every instance of contact between the thrower and marker will be non-incidental with respect to the thrower, whether it disrupts the thrower's concentration, interferes with the thrower's movement, disturbs the thrower's grip, interferes with a throw, or affects continued play in any other way.]] The disc in a thrower's possession is considered part of the thrower.
-
 17.I.4.a.2. In general, any contact between the thrower and the extended (i.e., away from the midline of the body) arms or legs of a marker is a foul on the marker, unless the contacted area of the marker is completely stationary and in a legal position. [[Really completely stationary. This is very rare.]
-
 17.I.4.a.3. Any contact that occurs due to the marker setting up in an illegal position (15.B.8) is a foul on the marker. [Non-incidental contact. Again, nearly all contact will be non-incidental with respect to the thrower.]] [[This contact must be part of an ultimate-related maneuver (throwing, pivoting, etc.) and must occur with a part of the marker that is illegally positioned. For example, shoving the marker does not result in contact due to the marker setting up an illegal position. Similarly, if a marker is providing disc space, except for illegally wrapping the thrower with their arms, only contact with the illegally positioned arms is due to the marker setting up an illegal position.]] Once the marker has set up in a legal marking position, it is the responsibility of both players to respect this legal position. However, contact resulting from the thrower and the marker both vying for the same unoccupied position is a foul on the marker.
-
 17.I.4.a.4. Any contact initiated by a thrower with the body (excluding arms and legs extended from the midline of the body) of a legally positioned (15.B.8) marker is a foul on the thrower. [Non-incidental contact. The effect of the contact on the marker is important here, as many, but not all, instances of contact will affect continued play with respect to the marker.]]
-
 17.I.4.a.5. Although it should be avoided whenever possible, incidental contact occurring during the follow-through (after the disc is released) is not a foul. [[Remember, even if the contact were non-incidental, because it occurred after the throw was released, it cannot be deemed to have affected the specific play, and a turnover will stand.]]
-
 17.I.4.a.6. If non-incidental contact occurs between the thrower and marker such that the thrower could call a throwing foul on the marker, the thrower may instead choose to call "contact." Play does not stop and the marker resumes the stall count at "one." Other than resetting the stall count, the "contact" call is resolved in the same manner as a marking violation (15.B). The marker may contest the "contact" call by calling "violation," which stops play. If the thrower calls "contact" after beginning the throwing motion and subsequently releases the disc, it is treated as if the thrower called "foul."
-
 17.I.4.a.7. Any references above to a marker also apply to any defensive player within ten feet of the thrower's pivot.
 
 17.I.4.b. Receiving Fouls:
-
-17.I.4.b.1. If a player contacts an opponent while the disc is in the air and thereby interferes with that opponent's attempt to make a play on the disc, that player has committed a receiving foul. Some amount of incidental contact before, during, or immediately after the attempt often is unavoidable and is not a foul. [[The opponent must at least begin an attempt to make a play on the disc. The opponent's "attempt to make a play on the disc" includes any second efforts after a disc is tipped, if the disc has not become uncatchable.]][Incidental contact, by definition, is not a foul.]
-
+17.I.4.b.1. If a player contacts an opponent while the disc is in the air and thereby interferes with that opponent's attempt to make a play on the disc, that player has committed a receiving foul. Some amount of incidental contact before, during, or immediately after the attempt often is unavoidable and is not a foul. [[The opponent must at least begin an attempt to make a play on the disc. The opponent's "attempt to make a play on the disc" includes any second efforts after a disc is tipped, if the disc has not become uncatchable.]] [[Incidental contact, by definition, is not a foul.]]
 17.I.4.b.2. If 17.C.3.b.1 or 17.C.4.a.1 of the Continuation Rule applies: if the call is uncontested, the fouled player gains possession at the spot on the playing field closest to the spot of the infraction. If the foul is contested, the disc reverts to the thrower.
-
 17.I.4.b.3. The Principle of Verticality: All players have the right to enter the air space immediately above their torso to make a play on a thrown disc. If non-incidental contact occurs in the airspace immediately above a player before the outcome of the play is determined (e.g., before possession is gained or an incomplete pass is effected), it is a foul on the player entering the vertical space of the other player. [[If the disc is caught (or rendered uncatchable) before contact occurs, then the outcome of the play is determined already and the contact is not an infraction of this rule.]]
-
 17.I.4.b.4. Force-out Foul: If an airborne player catches the disc and is contacted by an opposing player before landing, and that contact causes the player to land out-of-bounds instead of in-bounds, or out of the end zone instead of in the end zone, it is a foul on the opposing player and the fouled player retains possession at the spot of the foul. If an uncontested force-out foul results in an in-bounds player landing outside the end zone being attacked when they would have landed in the end zone without the foul, a goal is awarded.
 
 
 17.I.4.c. Blocking Fouls:
-
 17.I.4.c.1. When the disc is in the air a player may not move in a manner solely to prevent an opponent from taking an unoccupied path to the disc and any resulting non-incidental contact is a foul on the blocking player which is treated like a receiving foul (17.1.4.b). [[Solely. The intent of the player's movement can be partly motivated to prevent an opponent from taking an unoccupied path to the disc, so long as it is part of a general effort to make a play on the disc. Note, if a trailing player runs into a player in front of them, it is nearly always a foul on the trailing player.]]
-
-17.I.4.c.2. A player may not take a position that is unavoidable by a moving opponent when time, distance, and line of sight are considered. [[If you are already in a position, you maintaining that position is not "taking a position."] Non-incidental contact resulting from taking such a position is a foul on the blocking player.
-
+17.I.4.c.2. A player may not take a position that is unavoidable by a moving opponent when time, distance, and line of sight are considered. [[If you are already in a position, you maintaining that position is not "taking a position."]] Non-incidental contact resulting from taking such a position is a foul on the blocking player.
 17.I.4.d. Strip: If a foul causes a player to lose possession of the disc, it is a strip. A strip is a subset of fouls and is treated the same way. [[Initiating contact with a disc in a player's possession is a foul.]] [[Sustained contact with, and control of, a non-spinning disc is required to establish possession (3.J). A player may not call a strip if they had only momentary contact with or lacked control of the disc at the time of an opponent contacting the disc because the player did not have possession.]]
 
 
@@ -978,42 +917,29 @@ After establishing a pivot at the appropriate spot on the field, the thrower mus
 17.K. Traveling: The thrower must establish and continually maintain a pivot at the appropriate spot on the field until the throw is released. Failure to do so is a travel and is resolved according to 17.K.3, below. [[Resolved according to 17.K.3 only if the travel is called, otherwise play continues uninterrupted.]] [[Remember that according to 17.A, a player must perceive that this infraction has occurred in order to make a call. In most cases, it is unreasonable for a marker to recognize an infraction concerning a small toe-drag during the release of a throw since this would require the marker to simultaneously perceive both the toe-drag and the release. To ensure accuracy, defenders should err toward allowing play to continue if the drag causing the travel is less than two inches.]] [[In addition, remember that a player must only make a call where the infraction is significant enough to affect play (2.D.10).]]
 
 17.K.1. In addition, each of the following is a travel:
-
 17.K.1.a. A player catches the disc and either speeds up, changes direction or does not stop as quickly as possible before establishing a pivot (16.B).
-
 17.K.1.b. A player receives a pass while running or jumping, and releases a pass after the third additional ground contact and before establishing a pivot (16.C).
-
 17.K.1.c. Purposeful bobbling (including tipping, delaying, guiding, brushing, or the like) to oneself in order to advance the disc in any direction from where it initially was contacted (16.A).
-
 17.K.1.c.1. If a defender commits this infraction and the result of the play is a turnover, the defender retains possession at the initial spot of the travel.
-
 17.K.1.d. The thrower fails to touch the disc to the ground when required (14.B).
 
 
 17.K.2. Exceptions:
-
 17.K.2.a. If a non-standing player loses contact with the pivot spot in order to stand up, it is not a travel, provided the new pivot is established at the same location.
-
 17.K.2.b. It is not a travel if a player catches the disc and releases a pass before three additional points of ground contact (16.C).
-
 17.K.2.c. If play stops, the thrower may reset the pivot.
 
 
 17.K.3. Resolutions:
 
 17.K.3.a. If the travel occurs and a pass is thrown:
-
 17.K.3.a.1. If the pass is incomplete, play continues uninterrupted (as per the Continuation Rule, 17.C.4.b).
-
 17.K.3.a.2. If the pass is complete, play stops and the disc is returned to the thrower where the travel occurred (as per the Continuation Rule, 17.C.4.a.1). Play restarts with a check. [[The spot where the travel occurred is the spot on the field where the thrower's pivot would have been had they not traveled.]] [[If the thrower threw from either the end zone or out-of-bounds, and their pivot was more than one step from the appropriate spot, the following procedure is used instead: First, the disc is checked in where the thrower threw the pass, making it live, then the thrower walks to the appropriate spot for their pivot and puts the disc in play. At this point, the stall count may resume.]]
 
 
 17.K.3.b. If the travel occurs and no pass has been attempted:
-
 17.K.3.b.1. Play does not stop. The defense (typically the marker) points to the spot where the travel occurred, and the thrower returns to that spot without delay. The thrower must touch the disc to the ground before attempting a legal pass. [[Play does not stop, but the disc is live, so it is still subject to a turnover (for example if the thrower drops it).]]
-
 17.K.3.b.2. The stall count is paused until the thrower sets a pivot where the travel occurred. The marker is not required to say "stalling" when resuming the count if they previously initiated the stall count by saying "stalling" prior to calling travel. The thrower must touch the disc to the ground before attempting a pass. [The marker must initiate a stall count with the word "stalling," but resuming the count does not require the marker to say "stalling" again because play did not stop.]]
-
 17.K.3.b.3. If the thrower wishes to contest the travel call, they announce "violation" and play stops. Upon checking the disc in, the stall count resumes at the count reached plus 1, or 6 if over 5 (15.A.5.a.3). [[If the defense does not indicate to the thrower where the travel occurred, or the thrower wishes to contest the location of an indicated spot, the thrower should announce "violation", stopping play, and explain that the spot was incorrectly/not indicated. After setting their pivot in the correct spot, and checking the disc in, the stall count resumes at the count reached plus 1, or 6 if over 5 (15.A.5.a.3).]]
 
 
@@ -1043,11 +969,8 @@ After establishing a pivot at the appropriate spot on the field, the thrower mus
 19.B.1. Track time limits and announce associated warnings and expirations.
 
 19.B.2. Resolve player disputes.
-
 19.B.2.a. Any player directly involved in a dispute may request observer resolution.
-
 19.B.2.b. An observer may resolve a dispute without request from the players involved if they cannot resolve it in a timely manner.
-
 19.B.2.c. If an observer is involved in resolving a dispute, play restarts with a check.
 
 19.B.3. Censure or eject players for Spirit of the Game infractions. This includes assigning responsibility for game delays to a specific player.

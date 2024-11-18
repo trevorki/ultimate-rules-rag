@@ -59,7 +59,8 @@ class AnthropicAbstractedClient(BaseClient):
     def invoke(self, 
               messages: Union[str, List[Dict[str, str]]],
               config: Optional[Dict[str, Any]] = None, 
-              response_format: Optional[Union[dict, Type[BaseModel]]] = None) -> Union[str, dict, BaseModel, Iterator[str]]:
+              response_format: Optional[Union[dict, Type[BaseModel]]] = None,
+              return_usage: bool = False) -> Union[str, dict, BaseModel, Iterator[str]]:
         """Generate a response using Anthropic's API.
         
         Args:
@@ -73,6 +74,7 @@ class AnthropicAbstractedClient(BaseClient):
                 - stream: bool = False - Whether to stream the response
                 Note: Streaming only works with plain text responses (response_format=None)
             response_format: Optional output format specification
+            return_usage: Whether to return the usage metrics from the API call
         """
         config = config or {}
         config['model'] = config.get('model', self.default_model)
@@ -114,48 +116,54 @@ class AnthropicAbstractedClient(BaseClient):
             system_prompt = config.get('system', '')
             system_prompt = (system_prompt + f"\n\n{format_instruction}").strip()
             config['system'] = system_prompt
-
-        try:
-            if config.get('stream', False):
-                # Create the stream with context manager
-                stream = self.client.messages.stream(
-                    messages=message_list,
-                    **{k:v for k,v in config.items() if k != 'stream'}
-                )
-                # Return a generator that uses the context manager
-                def stream_with_context():
-                    with stream as managed_stream:
-                        for text in managed_stream.text_stream:
-                            yield text
-                return stream_with_context()
-
-            # Make API call
-            response = self.client.messages.create(
-                messages=message_list,
-                **config
-            )
-            try:
-                result = response.content[0].text
-
-                # filter out any non-json outside the braces
-                result = re.sub(r'^[^{]*', '', result)
-
-                # Parse response based on format
-                if isinstance(response_format, dict):
-                    return self.load_dict(result)
-                elif isinstance(response_format, type) and issubclass(response_format, BaseModel):
-                    return self.load_pydantic(result, response_format)
-                else:
-                    return result
-            except Exception as e:
-                logger.error(f"Error parsing Anthropic response: {str(e)}")
-                logger.error(f"Raw response: {result}")
-                return result
-        except Exception as e:
-            logger.error(f"Error generating Anthropic response: {str(e)}")
-            logger.error(f"Raw response: {result}")
-            return result
+        
+        if config.get('stream', False):
+            return self.get_streaming_response(message_list, config)
+        else:
+            return self.get_non_streaming_response(message_list, config, response_format, return_usage)
             
+            
+    def get_streaming_response(self, messages, config):
+            stream = self.client.messages.stream(
+                messages=messages,
+                **{k:v for k,v in config.items() if k != 'stream'}
+            )
+            # Return a generator that uses the context manager
+            def stream_with_context():
+                with stream as managed_stream:
+                    for text in managed_stream.text_stream:
+                        yield text
+            return stream_with_context()
+    
+    def get_non_streaming_response(self, messages, config, response_format, return_usage):
+        response = self.client.messages.create(
+            messages=messages,
+            **config
+        )
+        usage = {
+            "input_tokens": response.usage.input_tokens,
+            "output_tokens": response.usage.output_tokens,
+        }
+        try:
+            output = response.content[0].text
+            if response_format:
+                output = re.sub(r'^[^{]*', '', output) # filter out any non-json outside the braces
+
+            # Parse response based on format
+            if isinstance(response_format, dict):
+                output = self.load_dict(output)
+            elif isinstance(response_format, type) and issubclass(response_format, BaseModel):
+                output = self.load_pydantic(output, response_format)
+
+            if return_usage:
+                return output, usage
+            else:
+                return output
+
+        except Exception as e:
+            logger.error(f"Error parsing Anthropic response: {str(e)}")
+            logger.error(f"Raw response: {response}")
+            return response
 
     def load_dict(self, json_string: str) -> dict:
         """Parse a JSON string response into a dictionary.
@@ -195,53 +203,3 @@ class AnthropicAbstractedClient(BaseClient):
             return None
         
 
-
-###############################
-def test_structured_output(client):
-    # Test Stuctured output
-    response_format = {
-        "name": "<the country name>",
-        "capital": "<the capital city of the country>",
-        "language": "<the official language of the country>"
-    }
-
-    class Country(BaseModel):
-        name: str = Field(description="The country name")
-        capital: str = Field(description="The capital city of the country")
-        language: str = Field(description="The official language of the country")
-
-    # Example with different formats using both string and message list inputs
-    formats = [None,response_format, Country]
-    messages = [
-        {"role": "system", "content": "You are a helpful geography expert who answers only in UPPERCASE"},
-        {"role": "user", "content": "Please name a country at random"},
-        {"role": "assistant", "content": "France"},
-        {"role": "user", "content": "Tell me about France"}
-    ]
-
-    for format in formats:
-        print(f"\nResponse format: {format}")
-        print(client.invoke(messages, response_format=format))
-        print("-------------------------------")
-
-    print("\n\n"+client.invoke("tell me a joke about a watermelon"))
-
-
-def test_streaming(client, model):
-    # For streaming:
-    prompt = "Tell me a joke about France"
-    config={
-        "stream": True,
-        "model": model    
-    }
-    for chunk in client.invoke(prompt, config=config):
-        print(chunk, end="", flush=True)
-
-
-if __name__ == "__main__":
-    model = "claude-3-5-sonnet-20241022"
-    client = AnthropicAbstractedClient(model)
-
-    test_streaming(client, model)
-
-    

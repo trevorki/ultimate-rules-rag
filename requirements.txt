@@ -7,6 +7,9 @@ psycopg2-binary
 pgvector
 sqlalchemy
 python-fasthtml
+fastapi
+requests
+uvicorn
 
 # # to enable use in jupyter lab 
 # ipykernel
