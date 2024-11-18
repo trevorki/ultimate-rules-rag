@@ -15,29 +15,23 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
  
 
-class RagChatSession(BaseModel):
+class RagChat(BaseModel):
     llm_client: BaseClient
     retriever: Retriever
     db_client: DBClient  
     memory_size: int
-    conversation_id: str
-    username: str
 
     class Config:
         arbitrary_types_allowed = True
 
     def __init__(self, 
                  llm_client: BaseClient,
-                 memory_size: int = 3, 
-                 conversation_id: str = None, 
-                 username: str = None,):
+                 memory_size: int = 3):
         super().__init__(
             llm_client=llm_client,
             retriever=Retriever(),
             db_client=DBClient(),
-            memory_size=memory_size,
-            conversation_id=conversation_id,
-            username=username
+            memory_size=memory_size
         )
 
     def _get_docs(self, query: str, **kwargs) -> list:
@@ -51,9 +45,9 @@ class RagChatSession(BaseModel):
             context_items.append(item)
         return context_items
     
-    def _reword_query(self, query: str) -> str:
+    def _reword_query(self, query: str, conversation_id: str) -> str:
         """Reword the query if needed."""
-        history = self.db_client.get_conversation_history(self.conversation_id, message_limit=self.memory_size)
+        history = self.db_client.get_conversation_history(conversation_id, message_limit=self.memory_size)
         prompt = get_reword_query_prompt(history, query)
         response, usage = self.llm_client.invoke(prompt, return_usage=True)
 
@@ -64,7 +58,7 @@ class RagChatSession(BaseModel):
             reworded_query = response
 
         self.db_client.add_message(
-            self.conversation_id, query, reworded_query,
+            conversation_id, query, reworded_query,
             message_type="reword",
             model=self.llm_client.default_model,
             input_tokens=usage.get("input_tokens"), 
@@ -72,10 +66,10 @@ class RagChatSession(BaseModel):
         )
         return reworded_query
     
-    def _get_llm_answer(self, query: str, context: list[dict]) -> str:
+    def _get_llm_answer(self, query: str, context: list[dict], conversation_id: str) -> str:
         """Get answer from LLM without streaming support."""
         logger.info(f"Getting answer with LLM for query: {query}")     
-        history = self.db_client.get_conversation_history(self.conversation_id, message_limit=self.memory_size)
+        history = self.db_client.get_conversation_history(conversation_id, message_limit=self.memory_size)
 
         class Answer(BaseModel):
             answer: str = Field(description="The answer to the question. It should be concise, preferably in one sentence. Exceptions are allowed if the answer includes a long list")
@@ -90,14 +84,13 @@ class RagChatSession(BaseModel):
             response_format=Answer,
             return_usage=True
         )
-        print(f"response: {response}")
-        print(f"usage: {usage}")
         try:
         # if True:
             answer = response.answer
             if len(response.relevant_rules) > 0:
                 rules_list_str = self._extract_rules_list(response.relevant_rules, context)
-                answer += f"\n\n**Relevant rules:**\n\n{rules_list_str}"
+                if len(rules_list_str) > 0:
+                    answer += f"\n\n**Relevant rules:**\n\n{rules_list_str}"
         except Exception as e:
             logger.error(f"Error formatting answer: {e}")
             logger.error(f"Using plain response: {response}")
@@ -105,7 +98,7 @@ class RagChatSession(BaseModel):
 
         # Save message to DB
         self.db_client.add_message(
-            self.conversation_id, query, answer,
+            conversation_id, query, answer,
             message_type="conversation",
             model=self.llm_client.default_model,
             input_tokens=usage.get("input_tokens"), 
@@ -161,66 +154,24 @@ class RagChatSession(BaseModel):
         return rules_dict
     
 
-    def answer_question(self, query: str, retriever_kwargs: dict = {}) -> Union[str, Iterator[str]]:
+    def answer_question(self, query: str, conversation_id: str, retriever_kwargs: dict = {}) -> Union[str, Iterator[str]]:
         """
         Answers the user's question by deciding whether to retrieve more information or use existing history.
         
         Parameters:
             query (str): The user's question.
+            conversation_id (str): Unique identifier for the conversation
             retriever_kwargs (dict): Optional arguments for the retriever
         
         Returns:
             Union[str, Iterator[str]]: Either a string response or a stream of text chunks
         """
-        # Reword query for better retrieval
-        reworded_query = self._reword_query(query)
+        reworded_query = self._reword_query(query, conversation_id)
         retrieved_docs = self._get_docs(reworded_query, **retriever_kwargs)
         context = self._prepare_context(retrieved_docs)
-        return self._get_llm_answer(query, context)
+        return self._get_llm_answer(query, context, conversation_id)
+    
+    def create_conversation(self, user_email: str):
+        conversation_id = self.db_client.create_conversation(user_email=user_email)
+        return conversation_id
 
-def save_text_to_file(text: str, filename: str):
-    with open(filename, "w") as file:
-        file.write(text)
-
-def save_dict_to_file(dict: dict, filename: str):
-    with open(filename, "w") as file:
-        json.dump(dict, file, indent=2)
-
-# Example usage
-if __name__ == "__main__":
-    from .clients.get_abstract_client import get_abstract_client
-    # model = "claude-3-5-sonnet-20240620"
-    # client = AnthropicAbstractedClient(model=model)
-
-    model = "gpt-4o-mini"
-    # model = "gpt-4o-2024-08-06"
-    client = get_abstract_client(model=model)
-
-
-    retriever_kwargs = {
-        "limit": 5,
-        "expand_context": True,
-        "search_type": "hybrid",
-        "fts_operator": "OR"
-    }
-
-    for stream_output in [True, False]:
-        print(f"\n\n{'*'*10} STREAM OUTPUT: {stream_output} {'*'*10}")
-        question = "What is a callahan?"
-        print(f"\n\nQUESTION: {question}\n\nANSWER: \n")
-        session = RagChatSession(
-            llm_client=client,
-            stream_output=False,
-            memory_size=5,
-            context_size=1
-        )
-        
-        response = session.answer_question(question, retriever_kwargs=retriever_kwargs)
-        if not stream_output:
-            print(response)
-        else:
-            for chunk in response:
-                print(chunk, end="", flush=True)
-
-    # print(f"\n\nhistory:")
-    # session.history.pretty_print()

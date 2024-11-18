@@ -20,11 +20,11 @@ class BaseClient(BaseModel):
     default_model: str = None
     model_config = {"arbitrary_types_allowed": True}
 
-    def __init__(self, **data):
+    def __init__(self, default_model: str, **data):
         super().__init__(**data)
-        self.initialize_client()
+        self.initialize_client(default_model)
 
-    def initialize_client(self):
+    def initialize_client(self, default_model: str):
         """Initialize the client and default model. Must be implemented by subclasses."""
         raise NotImplementedError
 

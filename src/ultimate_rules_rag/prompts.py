@@ -91,6 +91,7 @@ Rewording rules:
 - If the last few questions discuss a concept and the latest question refers to the concept as "it", make it clear what "it" is.
 - It is assumed we are talking about ultimate frisbee so DO NOT say "in ultimate frisbee" in the rewording
 - If rewording is not needed then return "NONE"
+- return just the reworded query, no other text
 
 Conversation History:
 {conversation_history}

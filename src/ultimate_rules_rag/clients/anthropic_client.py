@@ -13,6 +13,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 DEFAULT_MAX_TOKENS = 1000
+DEFAULT_ANTHROPIC_MODEL = "claude-3-5-sonnet-20241022"
 
 class AnthropicAbstractedClient(BaseClient):
     """Anthropic-specific implementation of the LLM provider.
@@ -32,22 +33,23 @@ class AnthropicAbstractedClient(BaseClient):
         default_model: The default model to use for completions
     """
     
-    def __init__(self, model: str = None):
+    def __init__(self, default_model: str = None):
         """Initialize the client with optional model override.
         
         Args:
             model: Optional model to use instead of environment variable default
         """
-        super().__init__(default_model=model)
-        self.initialize_client()
+        super().__init__(default_model=default_model)
+        self.initialize_client(default_model)
     
-    def initialize_client(self):
+    def initialize_client(self, default_model: str|None = None):
         """Initialize the Anthropic client with API credentials.
         
         Requires ANTHROPIC_API_KEY environment variable to be set.
         Sets up the client and default model configuration.
         """
         self.client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+        self.default_model = default_model or os.getenv("DEFAULT_OPENAI_MODEL", DEFAULT_ANTHROPIC_MODEL)
         if not self.default_model:
             self.default_model = os.getenv("DEFAULT_ANTHROPIC_MODEL")
 

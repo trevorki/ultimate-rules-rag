@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 DEFAULT_MAX_TOKENS = 1000
-DEFAULT_OPENAI_MODEL = "gpt-4o-2024-08-06"  # Add default model constant
+DEFAULT_OPENAI_MODEL = "gpt-4o-mini"  # Add default model constant
 
 class OpenaiAbstractedClient(BaseClient):
     """OpenAI-specific implementation of the LLM provider.
@@ -32,16 +32,15 @@ class OpenaiAbstractedClient(BaseClient):
     Attributes:
         client: The underlying OpenAI client instance
         default_model: The default model to use for completions
-    """
-    
-    def initialize_client(self):
+    """   
+    def initialize_client(self, default_model: str|None):
         """Initialize the OpenAI client with API credentials.
         
         Requires OPENAI_API_KEY environment variable to be set.
         Sets up the client and default model configuration.
         """
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-        self.default_model = os.getenv("DEFAULT_OPENAI_MODEL", DEFAULT_OPENAI_MODEL)
+        self.default_model = default_model or DEFAULT_OPENAI_MODEL
 
     def get_text_stream(self, stream) -> Iterator[str]:
         """Convert OpenAI stream to standardized text stream."""
@@ -76,7 +75,7 @@ class OpenaiAbstractedClient(BaseClient):
                 - Iterator[str]: Stream of text chunks when config['stream']=True
         """
         config = config or {}
-        config['model'] = config.get('model', DEFAULT_OPENAI_MODEL)
+        config['model'] = config.get('model', self.default_model)
         logger.debug(f"Generating OpenAI response with model: {config.get('model')}")
         
         # Convert string input to messages format

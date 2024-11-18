@@ -1,6 +1,6 @@
 from ultimate_rules_rag.clients.get_abstract_client import get_abstract_client
 # from ultimate_rules_rag.rag_chat_session import RagChatSession
-from ultimate_rules_rag.rag_chat_session_db import RagChatSession
+from ultimate_rules_rag.rag_chat import RagChat
 from ultimate_rules_rag.db_client import DBClient
 import os
 from dotenv import load_dotenv
@@ -8,14 +8,23 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def main(model_name: str, stream_output: bool = False):
-    llm_client = get_abstract_client(model=model_name)
-    
+def main(default_model: str):
+    llm_client = get_abstract_client(default_model=default_model)
     db_client = DBClient()
     memory_size = 3
-    user_email = "trevorkinsey@gmail.com"
+
+    rag_chat = RagChat(
+        llm_client=llm_client,
+        memory_size=memory_size
+    )
+    print(f"llm_client: {rag_chat.llm_client.__dict__}")
+
     
-    conversation_id = db_client.create_conversation(user_email=user_email)
+    user_email = "trevorkinsey@gmail.com"
+    conversation_id = rag_chat.create_conversation(user_email=user_email)
+
+    print(f"user_id: {user_email}")
+    print(f"created conversation_id: {conversation_id}")
 
     retriever_kwargs = {
         "limit": 5,
@@ -24,26 +33,13 @@ def main(model_name: str, stream_output: bool = False):
         "fts_operator": "OR"
     }
 
-    print(f"Client: {llm_client.__repr__()}")
-    print(f"Stream output: {stream_output}")
-    print(f"user_id: {user_email}")
-    print(f"conversation_id: {conversation_id}")
-
-    
-    session = RagChatSession(
-        llm_client=llm_client,
-        memory_size=memory_size,
-        conversation_id=conversation_id,
-        username=user_email
-    )
-
     print("\nEnter a question (or 'q' to quit): ")
     query = None
     while query != "q":
         query = input("\n\nQUESTION: ")
         if query != "q":
-            print("\nANSWER:", end=" " if stream_output else "\n")
-            response = session.answer_question(query, retriever_kwargs=retriever_kwargs)
+            print("\nANSWER:", end="\n")
+            response = rag_chat.answer_question(query, conversation_id, retriever_kwargs=retriever_kwargs)
             print(response)
 
 
@@ -54,9 +50,10 @@ def main(model_name: str, stream_output: bool = False):
                 print(f"\n{msg['role'].upper()}: {msg['content']}")
     
     
-    print(f"\n\nChat History:")
+
     history = db_client.get_conversation_history(conversation_id, message_limit=memory_size)
     pretty_print(history)
+    print(f"conversation_id: {conversation_id}")
 
 
 if __name__ == "__main__":
@@ -67,11 +64,10 @@ if __name__ == "__main__":
     # - "claude-3-5-haiku-20241022"
     # - "claude-3-5-sonnet-20241022"
     
-    model_name = "gpt-4o-mini"
-    stream_output = True  # Set to False for structured output with relevant rules
-   
+    default_model = "gpt-4o-mini"
+    # default_model = "claude-3-5-sonnet-20241022"
     
-    main(model_name, stream_output)
+    main(default_model)
 
     
 
