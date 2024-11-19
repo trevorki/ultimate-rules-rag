@@ -3,50 +3,86 @@ import json
 
 BASE_URL = "http://localhost:8000"
 
-def test_chat_session():
-    # Test creating a new chat session
-    chat_data = {
-        "message": "What is a callahan?",
-        "model_name": "gpt-4o-mini",
-        "stream": False  # Set to False for simpler testing
-    }
-    
-    print("\n1. Testing new chat session...")
-    response = requests.post(f"{BASE_URL}/chat", json=chat_data)
-    if response.status_code == 200:
-        result = response.json()
-        session_id = result["session_id"]
-        print(f"Session ID: {session_id}")
-        print(f"Response: {result['response']}\n")
-    else:
-        print(f"Error: {response.status_code}")
-        return
+def login(username, password):
+    response = requests.post(
+        f"{BASE_URL}/token",
+        data={"username": username, "password": password}
+    )
+    assert response.status_code == 200
+    return response.json()["access_token"]
 
-    # Test continuing the conversation
-    print("2. Testing follow-up question...")
-    chat_data = {
-        "session_id": session_id,
-        "message": "How many players are on the field during play?",
-        "stream": False
+def get_headers(token):
+    return {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json"
     }
-    response = requests.post(f"{BASE_URL}/chat", json=chat_data)
-    if response.status_code == 200:
-        result = response.json()
-        print(f"Response: {result['response']}\n")
+
+def create_conversation(headers):
+    conv_response = requests.post(
+        f"{BASE_URL}/conversation",
+        headers=headers
+    )
+    assert conv_response.status_code == 200
+    conversation_id = conv_response.json()["conversation_id"]
+    print("Created conversation:", conversation_id)
+    return conversation_id
+
+def send_chat_message(headers, message, conversation_id):
+    chat_response = requests.post(
+        f"{BASE_URL}/chat",
+        headers=headers,
+        json={
+            "message": message,
+            "conversation_id": conversation_id
+        }
+    )
+    assert chat_response.status_code == 200
+    print("Chat response:", json.dumps(chat_response.json(), indent=2))
+    return chat_response.json()
+
+def get_conversation_history(headers, conversation_id):
+    history_response = requests.get(
+        f"{BASE_URL}/conversation/{conversation_id}",
+        headers=headers
+    )
+    print(f"Status code: {history_response.status_code}")
+    print(f"Response: {history_response.json()}")
+    assert history_response.status_code == 200
+    print("Conversation history:", json.dumps(history_response.json(), indent=2))
+    return history_response.json()
+
+def change_password(headers, email, old_password, new_password):
+    change_response = requests.post(
+        f"{BASE_URL}/change-password",
+        headers=headers,
+        json={"email": email, "old_password": old_password, "new_password": new_password}
+    )
+    print(f"Status code: {change_response.status_code}")
+    print(f"Response: {change_response.json()}")
+    assert change_response.status_code == 200
+    return change_response.json()
+
+def test_api():
+    # Login and setup
+    username = "trevorkinsey@gmail.com"
+    password = "ultimaterulesrag"
+    token = login(username, password)
+    headers = get_headers(token)
     
-    # Test getting chat history
-    print("3. Testing history retrieval...")
-    response = requests.get(f"{BASE_URL}/sessions/{session_id}/history")
-    if response.status_code == 200:
-        history = response.json()
-        print("Chat history:")
-        print(json.dumps(history, indent=2))
+    # # Create conversation
+    # conversation_id = create_conversation(headers)
     
-    # Test deleting the session
-    print("\n4. Testing session deletion...")
-    response = requests.delete(f"{BASE_URL}/sessions/{session_id}")
-    if response.status_code == 200:
-        print("Session successfully deleted")
+    # # Send messages
+    # send_chat_message(headers, "What is a callahan?", conversation_id)
+    # send_chat_message(headers, "What is a pull?", conversation_id)
+    
+    # # Get history
+    # get_conversation_history(headers, conversation_id)
+
+    # Change password
+    old_password = "ultimaterulesrag2"
+    new_password = "ultimaterulesrag"
+    change_password(headers, "trevorkinsey@gmail.com", old_password, new_password)
 
 if __name__ == "__main__":
-    test_chat_session()
+    test_api()

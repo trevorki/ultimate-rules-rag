@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS documents (
 CREATE TABLE IF NOT EXISTS users (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     email TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL CHECK (length(password) >= 8),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -241,8 +242,8 @@ $$ LANGUAGE plpgsql;
 
 -- INITIAL DATA INSERTION --
 
-INSERT INTO users (email) 
-VALUES ('trevorkinsey@gmail.com');
+INSERT INTO users (email, password) 
+VALUES ('trevorkinsey@gmail.com', 'ultimaterulesrag');
 
 INSERT INTO models (name, input_token_cost, output_token_cost) VALUES
     ('gpt-4o-mini', 0.15/1e6, 0.6/1e6),

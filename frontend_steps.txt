@@ -1,0 +1,20 @@
+# do this with a hotspot since home internet is bad
+
+# Install yarn if you don't have it
+npm install -g yarn
+
+# Create React app using yarn
+yarn create react-app ultimate-rules-chat --template typescript
+
+# Navigate to project
+cd ultimate-rules-chat
+
+# Install additional dependencies
+yarn add @headlessui/react @heroicons/react axios tailwindcss postcss autoprefixer
+yarn add @types/jwt-decode jwt-decode react-router-dom @types/react-router-dom
+yarn add react-router-dom @types/react-router-dom axios @headlessui/react @heroicons/react tailwindcss postcss autoprefixer jwt-decode @types/jwt-decode
+
+# Initialize Tailwind CSS
+npx tailwindcss init -p
+
+yarn start

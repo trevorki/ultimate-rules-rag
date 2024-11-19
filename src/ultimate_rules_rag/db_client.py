@@ -81,6 +81,23 @@ class DBClient(BaseModel):
         args = (email,)
         response = self.query_db_sql(sql_query, args)
         return response[0]['id'] if response else None
+    
+    def change_password(self, email, new_password):
+        sql_query = "UPDATE users SET password = %s WHERE email = %s"
+        args = (new_password, email)
+        response = self.query_db_sql(sql_query, args)
+        return response
+    
+    def check_password(self, email, password):
+        sql_query = "SELECT 1 FROM users WHERE email = %s AND password = %s"
+        args = (email, password)
+        response = self.query_db_sql(sql_query, args)
+        if len(response) > 0:
+            print("password is correct")
+            return True
+        else:
+            print("password is incorrect")
+            return False
 
     def create_conversation(self, user_email: str|None = None, user_id: str|None = None, conversation_id: str|None = None):
         if not user_id:
