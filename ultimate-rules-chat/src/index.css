@@ -1,3 +1,61 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities; 
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#f4ece2] text-[#2a332d] transition-colors duration-200 
+           dark:bg-[#2a332d] dark:text-[#f5f5f0];
+  }
+}
+
+@layer components {
+  /* Light mode */
+  .chat-background-light {
+    @apply bg-[#f4ece2];
+  }
+  
+  .message-user-light {
+    @apply bg-[#d3dcd1];
+  }
+  
+  .message-ai-light {
+    @apply bg-[#e8d3d1];
+  }
+  
+  .header-footer-light {
+    @apply bg-[#e2d6c8];
+  }
+
+  /* Dark mode */
+  .chat-background-dark {
+    @apply bg-[#2a332d];
+  }
+  
+  .message-user-dark {
+    @apply bg-[#4a5c4a];
+  }
+  
+  .message-ai-dark {
+    @apply bg-[#765450];
+  }
+  
+  .header-footer-dark {
+    @apply bg-[#1a231d] border-[#1a231d];
+  }
+
+  .text-dark-theme {
+    @apply text-[#f5f5f0];
+  }
+
+  .text-light-theme {
+    @apply text-[#2a332d];
+  }
+
+  /* Button styles */
+  .button-action {
+    @apply text-white transition-all duration-200
+           bg-[#a65d5b] hover:bg-[#955654]
+           dark:bg-[#8b4543] dark:hover:bg-[#734544];
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiClient, ChatMessage } from '../api/client';
 import ReactMarkdown from 'react-markdown';
@@ -16,26 +16,39 @@ export function Chat() {
   const [conversationId, setConversationId] = useState<string>('');
   const navigate = useNavigate();
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
-  useEffect(() => {
-    initializeConversation();
-  }, []);
+  const handleLogout = useCallback(() => {
+    localStorage.removeItem('token');
+    navigate('/login');
+  }, [navigate]);
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const initializeConversation = async () => {
+  const initializeConversation = useCallback(async () => {
     try {
       const { conversation_id } = await apiClient.createConversation();
       setConversationId(conversation_id);
     } catch (error) {
       console.error('Failed to create conversation:', error);
+      if (error instanceof Error && error.message.includes('401')) {
+        handleLogout();
+      }
     }
+  }, [handleLogout]);
+
+  useEffect(() => {
+    initializeConversation();
+  }, [initializeConversation]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDarkMode);
+  }, [isDarkMode]);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -52,12 +65,14 @@ export function Chat() {
       setMessages(prev => [...prev, aiMessage]);
     } catch (error) {
       console.error('Failed to send message:', error);
+      if (error instanceof Error && error.message.includes('401')) {
+        handleLogout();
+      }
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
+  const toggleTheme = () => {
+    setIsDarkMode(prev => !prev);
   };
 
   const markdownComponents: Components = {
@@ -65,13 +80,12 @@ export function Chat() {
       <p className="mb-4 last:mb-0">{children}</p>
     ),
     code: ({ inline, className, children }: CodeProps) => {
-      // const match = /language-(\w+)/.exec(className || '');
       return inline ? (
-        <code className="bg-gray-800 px-1.5 py-0.5 rounded text-sm">
+        <code className={`bg-opacity-20 ${isDarkMode ? 'bg-dark-surface' : 'bg-light-surface'} px-1.5 py-0.5 rounded text-sm`}>
           {children}
         </code>
       ) : (
-        <pre className="bg-gray-800 rounded-md p-4 my-4 overflow-x-auto">
+        <pre className={`${isDarkMode ? 'bg-dark-surface' : 'bg-light-surface'} rounded-md p-4 my-4 overflow-x-auto`}>
           <code className={className}>
             {children}
           </code>
@@ -79,11 +93,10 @@ export function Chat() {
       );
     },
     ul: ({ children }) => (
-      // <ul className="list-disc list-inside mb-4 space-y-2">{children}</ul>
-      <ul className="list-disc list-outside ml-0 mb-4 space-y-2">{children}</ul>
+      <ul className="list-disc list-outside ml-4 mb-4 space-y-2">{children}</ul>
     ),
     ol: ({ children }) => (
-      <ol className="list-decimal list-inside mb-4 space-y-2">{children}</ol>
+      <ol className="list-decimal list-outside ml-4 mb-4 space-y-2">{children}</ol>
     ),
     li: ({ children }) => (
       <li className="ml-2">{children}</li>
@@ -113,22 +126,36 @@ export function Chat() {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-gray-900">
-      {/* Fixed Header */}
-      <header className="h-14 bg-gray-800 shadow-md fixed top-0 left-0 right-0 z-50">
+    <div className={`h-screen flex flex-col ${isDarkMode ? 'chat-background-dark text-dark-theme' : 'chat-background-light text-light-theme'}`}>
+      <header className={`h-14 ${
+        isDarkMode ? 'header-footer-dark' : 'header-footer-light'
+      } shadow-md fixed top-0 left-0 right-0 z-50 border-b`}>
         <div className="h-full px-4 flex justify-between items-center">
-          <h1 className="text-xl font-semibold text-gray-50">Ultimate Rules Chat</h1>
-          <button
-            onClick={handleLogout}
-            className="bg-red-700 text-white px-4 py-1.5 rounded-md hover:bg-red-800 transition-all duration-200 text-sm"
-          >
-            Logout
-          </button>
+          <h1 className="text-xl font-semibold">
+            Ultimate Rules Chat
+          </h1>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={toggleTheme}
+              className={`h-8 w-8 rounded-md shadow-md transition-all duration-200
+                ${isDarkMode 
+                  ? 'bg-[#f4ece2] text-[#2a332d]'
+                  : 'bg-[#2a332d] text-[#f5f5f0]'
+                } hover:bg-opacity-80 flex items-center justify-center`}
+            >
+              {isDarkMode ? '☀️' : '🌙'}
+            </button>
+            <button
+              onClick={handleLogout}
+              className="button-action px-4 py-1.5 rounded-md text-sm"
+            >
+              Logout
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* Chat Container */}
-      <main className="flex-1 mt-14 mb-16 overflow-y-auto">
+      <main className={`flex-1 mt-14 mb-16 overflow-y-auto ${isDarkMode ? 'chat-background-dark' : 'chat-background-light'}`}>
         <div className="max-w-2xl mx-auto px-4 py-6">
           {messages.map((msg, index) => (
             <div
@@ -138,14 +165,20 @@ export function Chat() {
               <div
                 className={`max-w-[80%] px-4 py-2 shadow-md ${
                   msg.role === 'user'
-                    ? 'bg-blue-700 rounded-t-2xl rounded-l-2xl'
-                    : 'bg-gray-700 rounded-t-2xl rounded-r-2xl'
+                    ? isDarkMode 
+                      ? 'message-user-dark text-dark-theme'
+                      : 'message-user-light text-light-theme'
+                    : isDarkMode
+                      ? 'message-ai-dark text-dark-theme'
+                      : 'message-ai-light text-light-theme'
+                } rounded-t-2xl ${
+                  msg.role === 'user' ? 'rounded-l-2xl' : 'rounded-r-2xl'
                 }`}
               >
                 {msg.role === 'user' ? (
-                  <p className="text-white text-[15px] whitespace-pre-wrap">{msg.content}</p>
+                  <p className="text-[15px] whitespace-pre-wrap">{msg.content}</p>
                 ) : (
-                  <div className="text-white text-[15px] prose prose-invert max-w-none">
+                  <div className="text-[15px] prose max-w-none dark:prose-invert">
                     <ReactMarkdown components={markdownComponents}>
                       {msg.content}
                     </ReactMarkdown>
@@ -158,20 +191,27 @@ export function Chat() {
         </div>
       </main>
 
-      {/* Fixed Input Area */}
-      <footer className="fixed bottom-0 left-0 right-0 bg-gray-800 border-t border-gray-700 p-3">
+      <footer className={`fixed bottom-0 left-0 right-0 ${
+        isDarkMode 
+          ? 'header-footer-dark' 
+          : 'header-footer-light'
+      } border-t p-3`}>
         <div className="max-w-2xl mx-auto">
           <form onSubmit={handleSubmit} className="flex items-center gap-2">
             <input
               type="text"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="flex-1 bg-gray-700 text-white rounded-full px-4 py-2 text-[15px] focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={`flex-1 rounded-full px-4 py-2 text-[15px] focus:outline-none focus:ring-2 focus:ring-light-accent ${
+                isDarkMode 
+                  ? 'chat-background-dark text-dark-theme placeholder-gray-400' 
+                  : 'chat-background-light text-light-theme placeholder-gray-500'
+              }`}
               placeholder="Message"
             />
             <button
               type="submit"
-              className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-all duration-200 font-medium"
+              className="button-action px-6 py-2 rounded-full text-sm font-medium"
             >
               Send
             </button>

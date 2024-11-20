@@ -24,7 +24,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-DEFAULT_MODEL = "gpt-4o-mini"
+# DEFAULT_MODEL = "gpt-4o-mini"
+DEFAULT_MODEL = "claude-3-5-sonnet-20241022"
 DEFAULT_MEMORY_SIZE = 3
 
 # Initialize clients

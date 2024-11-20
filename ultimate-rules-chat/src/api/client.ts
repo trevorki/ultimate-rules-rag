@@ -18,6 +18,18 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+// Add response interceptor to handle 401 errors
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('token');
+      throw new Error('401 Unauthorized - Token expired');
+    }
+    throw error;
+  }
+);
+
 export interface LoginResponse {
   access_token: string;
   token_type: string;
@@ -72,5 +84,5 @@ export const apiClient = {
       new_password: newPassword,
     });
     return response.data;
-  },
+  }
 }; 
