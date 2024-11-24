@@ -1,16 +1,19 @@
 # Ultimate Rules RAG
 
-An AI-powered web application that answers questions about Ultimate rules using RAG (Retrieval Augmented Generation) technology.
+An AI-powered web application that answers questions about Ultimate Retrieval Augmented Generation (RAG). Meant to help you quickly find the rule you are looking for while on the field trying to resolve a dispute. It answers your question in plain text AND returns the full text of the relevant rule(s). Amazing!
 
-![Ultimate Rules Chat Interface](img/app_screenshot.png)
+**Note**: This project is a work in progress.
+
+<img src="img/app_screenshot.png" width="600" alt="Ultimate Rules Chat Interface">
 
 ## Features
 
-- 🤖 AI-powered chat interface for Ultimate rules questions
-- 🔒 Secure user authentication
-- 💾 Conversation history storage
-- 📱 Responsive, clean UI design
-- 🎯 Accurate responses based on official Ultimate rules
+- Chat interface for Ultimate rules questions
+- Secure user authentication
+- Conversation history storage
+- Responsive, clean UI design
+- Answers questions based on the official 2024 USAU rules, and returns the full text of the relevant rules
+
 
 ## Tech Stack
 
@@ -30,14 +33,3 @@ An AI-powered web application that answers questions about Ultimate rules using 
 
 - PostgreSQL with pgvector for embeddings storage
 - Stores user data, conversations, and vectorized rules
-
-## Getting Started
-
-### Prerequisites
-
-- Docker and Docker Compose
-- Git
-
-### Installation
-
-1. Clone the repository:
