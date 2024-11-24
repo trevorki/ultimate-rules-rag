@@ -1,5 +1,31 @@
+# Version control
+.git
+.gitignore
+
+# Environment files
+# .env
+*.env
+.sesskey
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# Development/IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Project specific
+_purgatory/
+*.log
 evals/
 prepare_vectorstore/
 texts/
-*__pycache__*
-*.egg-info

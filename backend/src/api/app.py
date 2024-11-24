@@ -1,12 +1,10 @@
-# for the api
-
 from fastapi import FastAPI, HTTPException, Depends, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from fastapi.middleware.cors import CORSMiddleware
-from .models import PasswordChange, ChatRequest, ChatResponse, ConversationHistory, ChatMessage
-from .db_client import DBClient
-from .rag_chat import RagChat
-from .clients.get_abstract_client import get_abstract_client
+from ..models import PasswordChange, ChatRequest, ChatResponse, ConversationHistory, ChatMessage
+from ..db_client import DBClient
+from ..rag_chat import RagChat
+from ..clients.get_abstract_client import get_abstract_client
 import jwt
 from datetime import datetime, timedelta
 import os

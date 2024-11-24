@@ -8,10 +8,12 @@ services:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
-      - ./postgres/setup_database.sql:/docker-entrypoint-initdb.d/setup_database.sql
+      - ./db/setup_database.sql:/docker-entrypoint-initdb.d/setup_database.sql
+
 
   backend:
-    build: .
+    build: 
+      context: ./backend
     container_name: backend
     env_file:
       - .env
@@ -20,7 +22,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - .:/app
+      - ./backend:/app
     depends_on:
       - db
     stdin_open: true
@@ -30,16 +32,16 @@ services:
       - -c
       - |
         echo "running app.py"
-        uvicorn src.ultimate_rules_rag.app:app --host 0.0.0.0 --port 8000 --reload
+        uvicorn src.api.app:app --host 0.0.0.0 --port 8000 --reload
 
   frontend:
     build: 
-      context: ./ultimate-rules-chat
+      context: ./frontend
     container_name: frontend
     ports:
       - "3000:3000"
     volumes:
-      - ./ultimate-rules-chat:/app
+      - ./frontend:/app
       - /app/node_modules
     environment:
       - NEXT_PUBLIC_API_URL=http://localhost:8000
