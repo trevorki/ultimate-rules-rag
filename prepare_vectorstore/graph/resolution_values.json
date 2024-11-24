@@ -1,0 +1,90 @@
+[
+    {
+        "entity_name": "disc position",
+        "entity_value": "goal line"
+    },
+    {
+      "entity_name": "disc position",
+      "entity_value": "spot of infraction"
+    },
+    {
+        "entity_name": "disc position",
+        "entity_value": "point on field nearest to where disc went out of bounds"
+    },
+    {
+        "entity_name": "disc position",
+        "entity_value": "point on goal line nearest to where foul occurred"
+    },
+    {
+        "entity_name": "disc position",
+        "entity_value": "brick mark"
+    },
+    {
+      "entity_name": "disc position",
+      "entity_value": "return to thrower"
+    },
+    {
+      "entity_name": "stall count",
+      "entity_value": "1"
+    },
+    {
+      "entity_name": "stall count",
+      "entity_value": "6"
+    },
+    {
+      "entity_name": "stall count",
+      "entity_value": "8"
+    },
+    {
+      "entity_name": "stall count",
+      "entity_value": "count reached plus 1, or 6 if over 5"
+    },
+    {
+      "entity_name": "stall count",
+      "entity_value": "count reached plus 1, or 9 if over 8"
+    },
+    {
+      "entity_name": "stall count",
+      "entity_value": "Count reached minus 1, no 'stalling'"
+    },
+    {
+      "entity_name": "player positioning",
+      "entity_value": "position at time of call"
+    },
+    {
+      "entity_name": "player positioning",
+      "entity_value": "position at time of throw"
+    },
+    {
+      "entity_name": "possession",
+      "entity_value": "offense"
+    },
+    {
+      "entity_name": "possession",
+      "entity_value": "defense"
+    },
+    {
+      "entity_name": "pivot location",
+      "entity_value": "establish at goal line"
+    },
+    {
+      "entity_name": "score",
+      "entity_value": "nullified"
+    },
+    {
+      "entity_name": "score",
+      "entity_value": "stands"
+    },
+    {
+      "entity_name": "card",
+      "entity_value": "yellow"
+    },
+    {
+      "entity_name": "card",
+      "entity_value": "blue"
+    },
+    {
+      "entity_name": "card",
+      "entity_value": "red"
+    }
+]

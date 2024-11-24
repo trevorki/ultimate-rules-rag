@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS conversations (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     user_id UUID NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
@@ -40,6 +41,7 @@ CREATE TABLE IF NOT EXISTS messages (
     model TEXT,
     input_tokens INTEGER,
     output_tokens INTEGER,
+    cost FLOAT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (conversation_id) REFERENCES conversations(id)
 );
@@ -239,6 +241,27 @@ BEGIN
     RETURN total_cost;
 END;
 $$ LANGUAGE plpgsql;
+
+-- Add after all the existing functions
+CREATE OR REPLACE FUNCTION calculate_message_cost()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Calculate and set the cost using the calculate_token_cost function
+    NEW.cost := calculate_token_cost(
+        NEW.model,
+        NEW.input_tokens,
+        NEW.output_tokens
+    );
+    
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Create the trigger
+CREATE TRIGGER set_message_cost
+    BEFORE INSERT ON messages
+    FOR EACH ROW
+    EXECUTE FUNCTION calculate_message_cost();
 
 -- INITIAL DATA INSERTION --
 

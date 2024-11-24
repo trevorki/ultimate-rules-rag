@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "name": "disc",
+      "type": "physical",
+      "alternatives": [
+        "frisbee"
+      ],
+      "description": "The game equipment used in Ultimate, must be acceptable to both team captains"
+    },
+    {
+      "name": "pivot",
+      "type": "physical",
+      "alternatives": [
+        "pivot point",
+        "pivot foot"
+      ],
+      "description": "The specific point of contact with the ground that a thrower must maintain when in possession"
+    },
+    {
+      "name": "marker",
+      "type": "role",
+      "alternatives": [
+        "defender"
+      ],
+      "description": "Defensive player within 10 feet of the thrower who may initiate a stall count"
+    },
+    {
+      "name": "stall count",
+      "type": "concept",
+      "alternatives": [
+        "count",
+        "stalling"
+      ],
+      "description": "10-second countdown initiated by marker to limit time thrower can hold disc"
+    },
+    {
+      "name": "pull",
+      "type": "action",
+      "alternatives": [
+        "opening throw"
+      ],
+      "description": "The throw from one team to the other that starts play after a point or half"
+    },
+    {
+      "name": "turnover",
+      "type": "concept",
+      "alternatives": [
+        "change of possession"
+      ],
+      "description": "When possession changes from one team to the other due to incomplete pass or violation"
+    },
+    {
+      "name": "foul",
+      "type": "violation",
+      "alternatives": [
+        "contact foul"
+      ],
+      "description": "Non-incidental contact between opposing players"
+    },
+    {
+      "name": "travel",
+      "type": "violation",
+      "alternatives": [
+        "traveling"
+      ],
+      "description": "When thrower fails to maintain pivot or moves illegally with disc"
+    },
+    {
+      "name": "pick",
+      "type": "violation",
+      "alternatives": [
+        "picking"
+      ],
+      "description": "When offensive player obstructs defender's path to player they are guarding"
+    },
+    {
+      "name": "strip",
+      "type": "violation",
+      "alternatives": [
+        "stripped disc"
+      ],
+      "description": "When a foul causes a player to lose possession of the disc"
+    }
+  ],
+  "relationships": [
+    {
+      "name": "causes turnover",
+      "description": "When one event directly results in a change of possession",
+      "example": "An incomplete pass causes a turnover"
+    },
+    {
+      "name": "stops play",
+      "description": "When an action requires play to halt until resolved",
+      "example": "A foul call stops play until resolved"
+    },
+    {
+      "name": "requires",
+      "description": "When one thing is necessary for another to occur",
+      "example": "A marker requires being within 10 feet to initiate stall count"
+    },
+    {
+      "name": "prevents",
+      "description": "When one thing makes another thing illegal or invalid",
+      "example": "A pick prevents defender from guarding their player"
+    },
+    {
+      "name": "resets",
+      "description": "When one event causes another to start over",
+      "example": "A marking violation resets the stall count"
+    }
+  ]
+}

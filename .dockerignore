@@ -1,0 +1,5 @@
+evals/
+prepare_vectorstore/
+texts/
+*__pycache__*
+*.egg-info

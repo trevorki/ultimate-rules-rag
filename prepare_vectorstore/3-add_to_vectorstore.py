@@ -80,13 +80,16 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process embeddings with specified chunk size')
     parser.add_argument('--chunk_size', type=int, default=2000,
                        help='Size of chunks to process (default: 2000)')
+    
     args = parser.parse_args()
 
     wait_for_db()
+
+    expurgated = True
     
     paths = {
         "glossary": f"texts/chunked_embedded/glossary_embeddings.json",
-        "rules": f"texts/chunked_embedded/rules_contextual_embeddings_chunk-{args.chunk_size}.json"
+        "rules": f"texts/chunked_embedded/rules_contextual_embeddings_chunk-{args.chunk_size}{'_expurgated' if expurgated else ''}.json"
     }
     for path in paths:
         print(f"Processing {path}...")

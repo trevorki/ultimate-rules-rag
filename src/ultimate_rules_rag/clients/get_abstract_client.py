@@ -69,36 +69,40 @@ def test_streaming(client, model):
 
 
 if __name__ == "__main__":
+    from dotenv import load_dotenv
+    import os
+    load_dotenv()
+    print(os.getenv("ANTHROPIC_API_KEY"))
     models = [
-        "gpt-4o-mini", 
+        # "gpt-4o-mini", 
         # "gpt-4o-2024-08-06", 
-        # "claude-3-5-haiku-20241022", 
-        "claude-3-5-sonnet-20241022"
+        "claude-3-5-sonnet-20241022", 
+        "claude-3-5-haiku-20241022", 
     ]
-    for model in models:
-        print(f"\n\n{'-'*50}\nTesting model: {model}\n{'-'*50}\n")
-        client = get_abstract_client(model=model)
+    # for model in models:
+    #     print(f"\n\n{'-'*50}\nTesting model: {model}\n{'-'*50}\n")
+    #     client = get_abstract_client(default_model=model)
 
-        class Country(BaseModel):
-            name: str = Field(description="The country name")
-            capital: str = Field(description="The capital city of the country")
-            language: str = Field(description="The official language of the country")
+    #     class Country(BaseModel):
+    #         name: str = Field(description="The country name")
+    #         capital: str = Field(description="The capital city of the country")
+    #         language: str = Field(description="The official language of the country")
             
-        response_formats = [
-            {
-                "name": "<the country name>",
-                "capital": "<the capital city of the country>",
-                "language": "<the official language of the country>"
-            },
-            Country,
-            None
-        ]
+    #     response_formats = [
+    #         {
+    #             "name": "<the country name>",
+    #             "capital": "<the capital city of the country>",
+    #             "language": "<the official language of the country>"
+    #         },
+    #         Country,
+    #         None
+    #     ]
         
-        for response_format in response_formats:
-            print(f"\n---------Response format: {type(response_format)}---------")
-            prompt = "Tell me about France?"
-            response, usage = client.invoke(prompt, response_format=response_format, return_usage=True)
-            print(f"response: {response}")
-            print(f"usage: {usage}")
+    #     for response_format in response_formats:
+    #         print(f"\n---------Response format: {type(response_format)}---------")
+    #         prompt = "Tell me about France?"
+    #         response, usage = client.invoke(prompt, response_format=response_format, return_usage=True)
+    #         print(f"response: {response}")
+    #         print(f"usage: {usage}")
 
 

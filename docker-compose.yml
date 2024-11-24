@@ -10,13 +10,15 @@ services:
       - db_data:/var/lib/postgresql/data
       - ./postgres/setup_database.sql:/docker-entrypoint-initdb.d/setup_database.sql
 
-  app:
+  backend:
     build: .
-    container_name: app
+    container_name: backend
     env_file:
       - .env
     environment:
-      - POSTGRES_HOST=db  # Override only for the app service
+      - POSTGRES_HOST=db
+    ports:
+      - "8000:8000"
     volumes:
       - .:/app
     depends_on:
@@ -27,9 +29,26 @@ services:
       - sh
       - -c
       - |
-        echo "running rag_basic.py"
-        python -m src.scripts.rag_basic
-        echo "done"
+        echo "running app.py"
+        uvicorn src.ultimate_rules_rag.app:app --host 0.0.0.0 --port 8000 --reload
+
+  frontend:
+    build: 
+      context: ./ultimate-rules-chat
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./ultimate-rules-chat:/app
+      - /app/node_modules
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - YARN_REGISTRY=https://registry.yarnpkg.com
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    depends_on:
+      - backend
 
 volumes:
   db_data:

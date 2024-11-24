@@ -97,6 +97,8 @@ class RagChat(BaseModel):
             answer = response
 
         # Save message to DB
+        print("saving to messages table")
+        logger.info(f"Saving message to DB: {query} -> {answer[0:50]}")
         self.db_client.add_message(
             conversation_id, query, answer,
             message_type="conversation",
@@ -119,7 +121,8 @@ class RagChat(BaseModel):
         rules_list_str = ""
         for rule_num, rule_body in rules_dict.items():
             if rule_body is not None:  # Only include rules that were found
-                rules_list_str += f"- **{rule_num}**: {rule_body.replace('\n- ', '\n  - ')}\n"
+                formatted_rule_body = rule_body.replace('\n- ', '\n  - ')
+                rules_list_str += f"- **{rule_num}**: {formatted_rule_body}" + "\n"
             else:
                 print(f"Rule {rule_num} not found in rules_dict")
                 print(f"rules_dict: {rules_dict.keys()}")

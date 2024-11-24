@@ -1,0 +1,296 @@
+{
+  "entities": [
+    {
+      "name": "Spirit of the Game",
+      "type": "concept",
+      "alternatives": [
+        "SOTG"
+      ],
+      "description": "A set of principles emphasizing fair play, respect, and joy in Ultimate."
+    },
+    {
+      "name": "goal",
+      "type": "concept",
+      "alternatives": [
+        "score"
+      ],
+      "description": "Achieved when a player catches a legal pass in the end zone they are attacking."
+    },
+    {
+      "name": "turnover",
+      "type": "concept",
+      "alternatives": [
+        "change of possession"
+      ],
+      "description": "Occurs when a pass is incomplete, intercepted, or goes out-of-bounds."
+    },
+    {
+      "name": "thrower",
+      "type": "role",
+      "alternatives": [
+        "player with the disc"
+      ],
+      "description": "The offensive player in possession of the disc."
+    },
+    {
+      "name": "marker",
+      "type": "role",
+      "alternatives": [
+        "defender"
+      ],
+      "description": "The defensive player within ten feet of the thrower, responsible for counting stalls."
+    },
+    {
+      "name": "receiver",
+      "type": "role",
+      "alternatives": [
+        "catcher"
+      ],
+      "description": "The player attempting to catch the disc."
+    },
+    {
+      "name": "foul",
+      "type": "violation",
+      "alternatives": [
+        "contact violation"
+      ],
+      "description": "Non-incidental contact between opposing players."
+    },
+    {
+      "name": "violation",
+      "type": "violation",
+      "alternatives": [
+        "infraction"
+      ],
+      "description": "Any infraction of the rules other than a foul."
+    },
+    {
+      "name": "pivot",
+      "type": "concept",
+      "alternatives": [
+        "pivot foot"
+      ],
+      "description": "The part of the body in continuous contact with a single spot on the field during possession."
+    },
+    {
+      "name": "pull",
+      "type": "action",
+      "alternatives": [
+        "initial throw"
+      ],
+      "description": "The throw that starts play at the beginning of a half or after a goal."
+    },
+    {
+      "name": "possession",
+      "type": "state",
+      "alternatives": [
+        "control of the disc"
+      ],
+      "description": "Sustained contact with and control of a non-spinning disc."
+    },
+    {
+      "name": "in-bounds",
+      "type": "state",
+      "alternatives": [
+        "inside the field"
+      ],
+      "description": "The status of a player or disc within the playing field boundaries."
+    },
+    {
+      "name": "out-of-bounds",
+      "type": "state",
+      "alternatives": [
+        "outside the field"
+      ],
+      "description": "The status of a player or disc outside the playing field boundaries."
+    },
+    {
+      "name": "end zone",
+      "type": "physical",
+      "alternatives": [
+        "scoring area"
+      ],
+      "description": "The area where goals are scored."
+    },
+    {
+      "name": "central zone",
+      "type": "physical",
+      "alternatives": [
+        "playing field proper"
+      ],
+      "description": "The playing field excluding the end zones."
+    },
+    {
+      "name": "stall count",
+      "type": "concept",
+      "alternatives": [
+        "countdown"
+      ],
+      "description": "The period within which a thrower must release a throw, counted by the marker."
+    },
+    {
+      "name": "check",
+      "type": "action",
+      "alternatives": [
+        "restart play"
+      ],
+      "description": "The action to resume play after a stoppage."
+    },
+    {
+      "name": "brick mark",
+      "type": "physical",
+      "alternatives": [
+        "central mark"
+      ],
+      "description": "A mark in the central zone used for starting play after certain stoppages."
+    },
+    {
+      "name": "live disc",
+      "type": "state",
+      "alternatives": [
+        "active disc"
+      ],
+      "description": "A disc that is subject to a turnover but cannot be legally passed yet."
+    },
+    {
+      "name": "dead disc",
+      "type": "state",
+      "alternatives": [
+        "inactive disc"
+      ],
+      "description": "A disc when play has stopped and can continue only with a check."
+    },
+    {
+      "name": "completed pass",
+      "type": "concept",
+      "alternatives": [
+        "successful pass"
+      ],
+      "description": "A catch that results in the team retaining possession of the disc."
+    },
+    {
+      "name": "best perspective",
+      "type": "concept",
+      "alternatives": [
+        "optimal view"
+      ],
+      "description": "The most complete view available by a player regarding a play."
+    },
+    {
+      "name": "dangerous play",
+      "type": "violation",
+      "alternatives": [
+        "reckless play"
+      ],
+      "description": "Actions demonstrating reckless disregard for safety, treated as a foul."
+    },
+    {
+      "name": "travel",
+      "type": "violation",
+      "alternatives": [
+        "illegal movement"
+      ],
+      "description": "Occurs when a thrower fails to establish or maintain a pivot."
+    },
+    {
+      "name": "pick",
+      "type": "violation",
+      "alternatives": [
+        "obstruction"
+      ],
+      "description": "Occurs when an offensive player obstructs a defender's path."
+    },
+    {
+      "name": "timeout",
+      "type": "action",
+      "alternatives": [
+        "pause"
+      ],
+      "description": "A stoppage of play for rest, injury, or technical reasons."
+    },
+    {
+      "name": "injury timeout",
+      "type": "action",
+      "alternatives": [
+        "medical timeout"
+      ],
+      "description": "A stoppage of play due to a player injury."
+    },
+    {
+      "name": "technical timeout",
+      "type": "action",
+      "alternatives": [
+        "equipment timeout"
+      ],
+      "description": "A stoppage of play for illegal equipment or dangerous conditions."
+    },
+    {
+      "name": "spirit timeout",
+      "type": "action",
+      "alternatives": [
+        "SOTG timeout"
+      ],
+      "description": "A stoppage of play to address Spirit of the Game issues."
+    },
+    {
+      "name": "observers",
+      "type": "role",
+      "alternatives": [
+        "game officials"
+      ],
+      "description": "Non-player officials who support players in implementing a fair game."
+    }
+  ],
+  "relationships": [
+    {
+      "name": "causes",
+      "description": "One concept leads to or results in another.",
+      "example": "A foul causes a stoppage of play."
+    },
+    {
+      "name": "prevents",
+      "description": "One concept stops another from occurring.",
+      "example": "A turnover prevents the offensive team from continuing their possession."
+    },
+    {
+      "name": "requires",
+      "description": "One concept needs another to occur or be valid.",
+      "example": "A completed pass requires possession of the disc."
+    },
+    {
+      "name": "invalidates",
+      "description": "One concept makes another void or ineffective.",
+      "example": "A travel invalidates a throw."
+    },
+    {
+      "name": "is part of",
+      "description": "One concept is a component or element of another.",
+      "example": "A stall count is part of the marker's responsibilities."
+    },
+    {
+      "name": "is opposite of",
+      "description": "One concept is the direct contrast to another.",
+      "example": "In-bounds is the opposite of out-of-bounds."
+    },
+    {
+      "name": "is a type of",
+      "description": "One concept is a specific instance or category of another.",
+      "example": "A spirit timeout is a type of timeout."
+    },
+    {
+      "name": "is determined by",
+      "description": "One concept is decided or defined by another.",
+      "example": "Best perspective is determined by the player's view of the play."
+    },
+    {
+      "name": "changes state to",
+      "description": "One concept alters the condition or status of another.",
+      "example": "A check changes a dead disc to a live disc."
+    },
+    {
+      "name": "is enforced by",
+      "description": "One concept is upheld or applied by another.",
+      "example": "Spirit of the Game is enforced by players and observers."
+    }
+  ]
+}

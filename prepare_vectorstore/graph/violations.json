@@ -1,0 +1,162 @@
+[
+    {
+        "name": "travel",
+        "definition": "When the thrower fails to establish or maintain a proper pivot point",
+        "synonyms": [
+        "traveling",
+        "pivot violation"
+        ]
+    },
+    {
+        "name": "double team",
+        "definition": "When more than one defensive player is within 10 feet of the thrower without guarding another offensive player",
+        "synonyms": [
+        "double teaming",
+        "double coverage"
+        ]
+    },
+    {
+        "name": "disc space",
+        "definition": "When the marker is closer than one disc diameter from the thrower's torso",
+        "synonyms": [
+        "marking too close",
+        "disc space violation"
+        ]
+    },
+    {
+        "name": "fast count",
+        "definition": "When the marker counts at intervals less than one second or skips numbers",
+        "synonyms": [
+        "quick count",
+        "rushed count"
+        ]
+    },
+    {
+        "name": "straddle",
+        "definition": "When the marker's feet are closer than one disc diameter from the thrower's pivot point",
+        "synonyms": [
+        "straddling",
+        "foot violation"
+        ]
+    },
+    {
+        "name": "vision blocking",
+        "definition": "When the marker deliberately blocks the thrower's vision",
+        "synonyms": [
+        "screening",
+        "sight obstruction"
+        ]
+    },
+    {
+        "name": "pick",
+        "definition": "When an offensive player obstructs a defender's path to the player they are guarding",
+        "synonyms": [
+        "screening",
+        "obstruction"
+        ]
+    },
+    {
+        "name": "spirit of the game violation",
+        "definition": "Occurs when actions violate the principles of fair play and respect",
+        "synonyms": [
+        "spirit infraction",
+        "spirit violation"
+        ]
+    },
+    {
+        "name": "receiving foul",
+        "definition": "When contact interferes with a player's attempt to make a play on the disc",
+        "synonyms": [
+        "catching foul",
+        "catch interference"
+        ]
+    },
+    {
+        "name": "throwing foul",
+        "definition": "When there is non-incidental contact between thrower and marker",
+        "synonyms": [
+        "marker foul",
+        "throwing contact"
+        ]
+    },
+    {
+        "name": "force-out foul",
+        "definition": "When contact causes an airborne player to land out-of-bounds instead of in-bounds",
+        "synonyms": [
+        "push out"
+        ]
+    },
+    {
+        "name": "blocking foul",
+        "definition": "When a player takes an unavoidable position or moves solely to prevent an opponent's path",
+        "synonyms": [
+        "obstruction foul"
+        ]
+    },
+    {
+        "name": "false start",
+        "definition": "When receiving team players change position after signaling readiness",
+        "synonyms": [
+        "early movement"
+        ]
+    },
+    {
+        "name": "delay of game",
+        "definition": "When a team takes more time than reasonably necessary to put the disc in play",
+        "synonyms": [
+        "delay"
+        ]
+    },
+    {
+        "name": "marking violation",
+        "definition": "Any illegal defensive marking behavior against the thrower",
+        "synonyms": [
+        "illegal mark",
+        "marking foul"
+        ]
+    },
+    {
+        "name": "stall",
+        "definition": "Occurs when the thrower fails to release the disc before the marker's count reaches ten.",
+        "synonyms": [
+        "stall count violation",
+        "stall down"
+        ]
+    },
+    {
+        "name": "wrapping",
+        "definition": "Occurs when the marker's arms are less than one disc diameter away from the thrower's torso or pivot.",
+        "synonyms": [
+        "arm violation"
+    ]
+    },
+    {
+        "name": "offside",
+        "definition": "Occurs when players are not in proper position before the pull.",
+        "synonyms": [
+        "offside violation"
+        ]
+    },
+    {
+        "name": "dangerous play",
+        "definition": "Occurs when a player demonstrates reckless disregard for safety.",
+        "synonyms": [
+        "reckless play",
+        "hazardous play"
+        ]
+    },
+    {
+        "name": "strip",
+        "definition": "Occurs when a foul causes a player to lose possession of the disc.",
+        "synonyms": [
+        "possession foul"
+        ]
+    },
+    {
+        "name": "out-of-bounds",
+        "definition": "Occurs when a player or disc is out of bounds.",
+        "synonyms": [
+        "boundary violation"
+        ]
+    }
+]
