@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, Depends, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from fastapi.middleware.cors import CORSMiddleware
-from ..models import PasswordChange, ChatRequest, ChatResponse, ConversationHistory, ChatMessage
+from ..response_formats import PasswordChange, ChatRequest, ChatResponse, ConversationHistory, ChatMessage
 from ..db_client import DBClient
 from ..rag_chat import RagChat
 from ..clients.get_abstract_client import get_abstract_client
@@ -22,14 +22,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-DEFAULT_MODEL = "gpt-4o-mini"
-# DEFAULT_MODEL = "claude-3-5-sonnet-20241022"
+# DEFAULT_CLIENT_TYPE = "openai"
+DEFAULT_CLIENT_TYPE = "cerebras"
 DEFAULT_MEMORY_SIZE = 3
 
 # Initialize clients
 db_client = DBClient()
-llm_client = get_abstract_client(default_model=DEFAULT_MODEL)
-rag_chat = RagChat(llm_client=llm_client, memory_size=DEFAULT_MEMORY_SIZE)
+rag_chat = RagChat(llm_client_type=DEFAULT_CLIENT_TYPE, memory_size=DEFAULT_MEMORY_SIZE)
 
 # JWT settings
 SECRET_KEY = os.getenv("JWT_SECRET_KEY", "your-secret-key")

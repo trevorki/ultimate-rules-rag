@@ -5,8 +5,10 @@ import re
 from .retriever import Retriever
 import json
 from pydantic import BaseModel, Field
-from typing import Optional, ClassVar, Dict, Tuple, Union, Iterator
+from typing import Optional, ClassVar, Dict, Tuple, Union, Iterator, Type
 from .clients.base_client import BaseClient
+from .clients.get_abstract_client import get_abstract_client
+from .clients.llm_models import CLIENT_MODEL_MAP
 from .prompts import get_rag_prompt, get_reword_query_prompt, RAG_SYSTEM_PROMPT
 from .db_client import DBClient
 import logging
@@ -20,18 +22,22 @@ class RagChat(BaseModel):
     retriever: Retriever
     db_client: DBClient  
     memory_size: int
+    default_model: str
+    light_model: str
 
     class Config:
         arbitrary_types_allowed = True
 
     def __init__(self, 
-                 llm_client: BaseClient,
+                 llm_client_type: str,
                  memory_size: int = 3):
         super().__init__(
-            llm_client=llm_client,
+            llm_client=get_abstract_client(llm_client_type),
             retriever=Retriever(),
             db_client=DBClient(),
-            memory_size=memory_size
+            memory_size=memory_size,
+            default_model=CLIENT_MODEL_MAP[llm_client_type]["default"],
+            light_model=CLIENT_MODEL_MAP[llm_client_type]["light"]
         )
 
     def _get_docs(self, query: str, **kwargs) -> list:
@@ -60,7 +66,7 @@ class RagChat(BaseModel):
         self.db_client.add_message(
             conversation_id, query, reworded_query,
             message_type="reword",
-            model=self.llm_client.default_model,
+            model=self.light_model,
             input_tokens=usage.get("input_tokens"), 
             output_tokens=usage.get("output_tokens") 
         )
@@ -80,7 +86,7 @@ class RagChat(BaseModel):
 
         response, usage = self.llm_client.invoke(
             messages=history + [{"role": "user", "content": prompt}],
-            config={"temperature": 0.1, "max_tokens": 1000},
+            config={"temperature": 0.1, "max_tokens": 1000, "model": self.default_model},
             response_format=Answer,
             return_usage=True
         )
@@ -178,3 +184,7 @@ class RagChat(BaseModel):
         conversation_id = self.db_client.create_conversation(user_email=user_email)
         return conversation_id
 
+
+if __name__ == "__main__":
+    rag_chat = RagChat(llm_client_type="openai")
+    print(rag_chat.answer_question("What is the rule about the goal circle?", "1234"))

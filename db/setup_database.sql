@@ -272,4 +272,6 @@ INSERT INTO models (name, input_token_cost, output_token_cost) VALUES
     ('gpt-4o-mini', 0.15/1e6, 0.6/1e6),
     ('gpt-4o-2024-08-06', 2.5/1e6, 10/1e6),
     ('claude-3-5-haiku-20241022', 0.25/1e6, 1.25/1e6),
-    ('claude-3-5-sonnet-20241022', 3/1e6, 15/1e6);
+    ('claude-3-5-sonnet-20241022', 3/1e6, 15/1e6),
+    ('llama3.1-70b', 0/1e6, 0/1e6),
+    ('llama3.1-8b', 0/1e6, 0/1e6);

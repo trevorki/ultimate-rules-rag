@@ -1,17 +1,18 @@
+anthropic
+cerebras_cloud_sdk
+fastapi
+langchain-text-splitters
+openai
+pgvector
+psycopg2-binary
+PyJWT
 pydantic
 pydantic[email]
-anthropic
-openai
-langchain-text-splitters
 python-dotenv
-psycopg2-binary
-pgvector
-sqlalchemy
-python-fasthtml
-fastapi
+python-multipart
 requests
+sqlalchemy
 uvicorn
-PyJWT
 
 # # to enable use in jupyter lab 
 # ipykernel
