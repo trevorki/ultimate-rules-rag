@@ -170,15 +170,19 @@ Please provide the corrected JSON that matches the format specification exactly.
         ]
         logger.info(f"Correcting JSON with prompt: {prompt}")
         try:
-            corrected = self.invoke(prompt)
+            corrected, usage = self.invoke(prompt, config={"model": self.light_model}, return_usage=True)
+
             # Clean the response to ensure we only get JSON
             corrected = re.sub(r'^[^{]*', '', corrected)  # Remove any text before the first {
             corrected = re.sub(r'}[^}]*$', '}', corrected)  # Remove any text after the last }
             # Validate that it's valid JSON
             json.loads(corrected)
             return corrected
+        
         except Exception as e:
             logger.error(f"Failed to correct JSON: {str(e)}")
+            if not usage:
+                usage = {"input_tokens": 0, "output_tokens": 0}
             return failed_json_string
 
     def load_dict(self, json_string: str, response_format: dict) -> dict:

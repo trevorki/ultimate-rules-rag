@@ -1,31 +1,37 @@
 from pydantic import BaseModel
+import json
 
 RAG_SYSTEM_PROMPT = """
-You are Cally, an helpful assistant for question-answering tasks about the sport of ultimate (ultimate frisbee).
-Your personality is friendly and just a little sassy when someone starts to stray from the topic.
+You are a Markus, a helpful assistant for question-answering tasks about the sport of ultimate (ultimate frisbee).
+Your personality is friendly but very business-like.
 The sport is called "ultimate" not "ultimate frisbee" so you refer to it as "ultimate".
 Your tasks are to:
 1. Answer questions directly based on the provided context, but don't say "based on the context".
 2. Respond to user follow-up questions based on the conversation history, as long as it is about ultimate
-"""
 
-RAG_PROMPT = """
-<context>
-{context}
-</context>
-
-<instructions>
-- Only use information from the provided context to answer the question
-- Say "I don't know" if the context doesn't contain the answer
+Rules:
+- Answer the question based on the provided context and/or conversation history.
+- Use information from the conversation history as context to help answer the question
+- Say "I don't know" you cannot answer the question based on the context and conversation history
 - Say "Sorry, I only know about ultimate" if the question is not about ultimate frisbee
 - Include the most relevant rules used to answer the question, identified by rule number, and sorted in alphanumeric order.
 - You don't have the rules for beach ultimate, ultimate 4's, or youth ultimate adaptations. If you are asked about them
 then say "Sorry, I only know about standard ultimate"
 </instructions>
+"""
 
-<question>
+RAG_PROMPT = """<conversation_history>
+{conversation_history}
+</conversation_history>
+
+<new_question>
 {query}
-</question>"""
+</new_question>
+
+<context>
+{context}
+</context>
+"""
 
 FORMAT_PROMPT = """
 <response_format>
@@ -43,8 +49,12 @@ Glossary entries are not considered rules so omit them.
 </response_format>
 """
 
-def get_rag_prompt(query: str, context: str, response_format: BaseModel|dict|None = None):
-    prompt = RAG_PROMPT.format(query=query, context=context)
+def get_rag_prompt(query: str, context: str, conversation_history: list[dict], response_format: BaseModel|dict|None = None):
+    prompt = RAG_PROMPT.format(
+        query=json.dumps(query, indent = 2), 
+        context=json.dumps(context, indent = 2), 
+        conversation_history=json.dumps(conversation_history, indent = 2)
+    )
     
     if not response_format:
         prompt += FORMAT_PROMPT.format(response_format=response_format)
@@ -52,33 +62,29 @@ def get_rag_prompt(query: str, context: str, response_format: BaseModel|dict|Non
     return prompt
 
 
-PROCESS_PROMPT = """You are an assistant for question-answering tasks about the sport of ultimate (ultimate frisbee). 
-All questions are in the context of ultimate frisbee.
+NEXT_STEP_PROMPT = """You are an assistant for question-answering tasks about the sport of ultimate (ultimate frisbee). 
+All questions are in the context of ultimate frisbee. 
 
-Given the following conversation history, retrieved context, and the current user input, decide whether to retrieve more information or use existing information in the context. 
-
-Retrieval rules:
-- If the user's question cannot answered by the context, then retrieve more information.
-- if there is no context you must retrieve more information
-
-Rewording rules:
-- If retrieve_more_info=True, then examine the past few questions and possibly reword the user input to make it suitable for document retrieval. This is just to ensure that anything previously discussed is referred to by name and not as "it".
-- If the question does not contain any references to previously discussed concepts, then do not reword it.
-- If the last few questions discuss a concept and the latest question refers to the concept as "it", make it clear what "it" is.
-- It is assumed we are talking about ultimate frisbee so DO NOT say "in ultimate frisbee" in the rewording
+Given the following conversation history and new question decide what the next set should be. The choices are:
+- RETRIEVE: retrieve information from the ultimate rule book or glossary.
+- ANSWER: answer the question directly based only on the conversation history. 
 
 Conversation History:
-{conversation_history}
+{history}
 
-Retrieved Context:
-{context}
-
-User Input: 
+New Question: 
 {user_input}
-"""
 
-def get_process_prompt(history: list[dict], context: str, query: str):
-    return PROCESS_PROMPT.format(conversation_history=history, context=context, user_input=query)
+Please answer with RETRIEVE or ANSWER and no other words"""
+
+def get_next_step_prompt(
+        conversation_history: list[dict], 
+        query: str):
+    prompt = NEXT_STEP_PROMPT.format(
+        history=json.dumps(conversation_history, indent = 2), 
+        user_input=query
+    )
+    return prompt
 
 
 
@@ -91,6 +97,7 @@ Rewording rules:
 - Examine the past few questions and possibly reword the user input to make it suitable for document retrieval. This is just to ensure that anything previously discussed is referred to by name and not as "it".
 - If the question does not contain any references to previously discussed concepts, then do not reword it.
 - If the last few questions discuss a concept and the latest question refers to the concept as "it", make it clear what "it" is.
+- If the question asks to elaborate on a concept, then formulate a new question that is more specific to the concept.
 - It is assumed we are talking about ultimate frisbee so DO NOT say "in ultimate frisbee" in the rewording
 - If rewording is not needed then return "NONE"
 - return just the reworded query, no other text
@@ -102,6 +109,31 @@ User Input:
 {user_input}
 """
 
-def get_reword_query_prompt(history: list[dict], query: str):
-    return REWORD_QUERY_PROMPT.format(conversation_history=history, user_input=query)
+def get_reword_query_prompt(conversation_history: list[dict], query: str):
+    return REWORD_QUERY_PROMPT.format(
+        conversation_history=json.dumps(conversation_history, indent = 2), 
+        user_input=json.dumps(query, indent = 2)
+    )
 
+SELECT_RULES_DEFINITIONS_PROMPT = """You are an assistant for question-answering tasks about the sport of ultimate (ultimate frisbee). 
+I have retrieved several rules and definitions from the ultimate rule book that may or may not be relevant to the question being asked.
+Please select:
+- the relevant rules (rule numbers only) that are needed to answer the current question.
+- the relevant definitions (definition names only) that are needed to answer the current question.
+
+Conversation History:
+{conversation_history}
+
+Current Question:
+{query}
+
+Retrieved Context:
+{context}
+"""
+
+def get_relevant_rules_definitions_prompt(query: str, conversation_history: list[dict], context: str):
+    return SELECT_RULES_DEFINITIONS_PROMPT.format(
+        conversation_history=json.dumps(conversation_history, indent = 2), 
+        context=json.dumps(context, indent = 2), 
+        query=json.dumps(query, indent = 2)
+    )

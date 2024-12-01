@@ -15,6 +15,6 @@ CLIENT_MODEL_MAP = {
     },
     "cerebras": {
         "default": "llama3.1-70b", 
-        "light": "llama3.1-8b"
+        "light": "llama3.1-70b"
     }
 }

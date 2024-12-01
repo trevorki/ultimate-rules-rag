@@ -55,7 +55,7 @@ Here is the chunk we want to situate within the section:
 
 Please give a short succinct context to situate this chunk within the overall document for the purposes of improving search retrieval of the chunk.
 If the chunk is a continuation of a rule definition, please summarize the rule as defined in the earlier section in a few words.
-Answer only with the succinct context and nothing else.
+Answer only with the succinct context and nothing else. 
 """
 
 def create_embedding(text):
@@ -102,7 +102,7 @@ def situate_context_openai(section: str, chunk: str) -> str:
 
 def process_rules_document(chunk_size):
     # Read the rules document
-    with open("texts/Official-Rules-of-Ultimate-2024-2025.md", "r", encoding="utf-8") as f:
+    with open("texts/Official-Rules-of-Ultimate-2024-2025_expurgated.md", "r", encoding="utf-8") as f:
         rules_text = f.read()
     
     # Extract sections
@@ -150,7 +150,7 @@ def main():
     items = process_rules_document(args.chunk_size)
     
     # Save the results
-    output_path = f"texts/chunked_embedded/rules_contextual_embeddings_chunk-{args.chunk_size}.json"
+    output_path = f"texts/chunked_embedded/rules_contextual_embeddings_chunk-{args.chunk_size}_expurgated.json"
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with open(output_path, "w") as f:
         json.dump(items, f, indent=2)

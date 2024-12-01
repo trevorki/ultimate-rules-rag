@@ -102,7 +102,12 @@ class Retriever:
         return retrieved_docs
     
 
-    def similarity_search(self, query: str, limit: int = 3, query_embedding: list|None = None) -> list[dict]:
+    def similarity_search(
+            self, 
+            query: str, 
+            limit: int = 3, 
+            query_embedding: list|None = None
+        ) -> list[dict]:
         """
         Retrieve documents similar to the input query, with optional context expansion.
 
@@ -126,7 +131,12 @@ class Retriever:
         return retrieved_docs
     
 
-    def fts_search(self, query: str, limit: int = 3, fts_operator: str = "OR") -> list[dict]:
+    def fts_search(
+            self, 
+            query: str, 
+            limit: int = 3, 
+            fts_operator: str = "OR"
+        ) -> list[dict]:
         """
         Perform full-text search on documents.
 
@@ -151,10 +161,16 @@ class Retriever:
         return retrieved_docs
 
 
-    def hybrid_search(self, query: str, limit: int = 3, fts_operator: str = "OR",
-        k: int = 60, semantic_weight: float = 0.5, 
-        fts_weight: float = 0.5,
-        query_embedding: list|None = None) -> list[dict]:
+    def hybrid_search(
+            self, 
+            query: str, 
+            limit: int = 3, 
+            fts_operator: str = "OR",
+            k: int = 60, 
+            semantic_weight: float = 0.5, 
+            fts_weight: float = 0.5,
+            query_embedding: list|None = None
+        ) -> list[dict]:
         """
         Perform hybrid search combining semantic similarity and full-text search.
 
@@ -283,14 +299,22 @@ if __name__ == "__main__":
     expand_context=0
     limit = 3
     
-    query = "how many stall counts?"
+    query = "what are the field dimensions as shown in appendix a?"
     query_embedding = retriever.create_embedding(query)
     print(f"\nQuery: '{query}'")
       
- 
+    search_types = [
+        "semantic", 
+        "fts", 
+        "hybrid"
+    ]
+    fts_operators = [
+        "OR", 
+        # "AND"
+    ]
 
-    for search_type in ["semantic", "fts", "hybrid"]:
-        for fts_operator in ["OR", "AND"]:
+    for search_type in search_types:
+        for fts_operator in fts_operators:
             print(f"\n{'*'*80}\n\n{search_type}{fts_operator if search_type in ['hybrid', 'fts'] else ''} search\n")
             retrieved_docs = retriever.search(
                 query, 
@@ -302,5 +326,5 @@ if __name__ == "__main__":
             )
             for doc in retrieved_docs:
                 print(f"ID: {doc['id']}")
-                # print(f"CONTENT:\n{doc['content']}")
-                # print("\n--------\n")
+                print(f"CONTENT:\n{doc['content']}")
+                print("\n--------\n")

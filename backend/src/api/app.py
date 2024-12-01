@@ -10,6 +10,11 @@ from datetime import datetime, timedelta
 import os
 from typing import Optional
 from uuid import UUID
+import traceback
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 app = FastAPI()
 
@@ -22,13 +27,24 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# DEFAULT_CLIENT_TYPE = "openai"
-DEFAULT_CLIENT_TYPE = "cerebras"
-DEFAULT_MEMORY_SIZE = 3
+DEFAULT_CLIENT_TYPE = "openai"
+# DEFAULT_CLIENT_TYPE = "anthropic"
+DEFAULT_MEMORY_SIZE = 4
+RETRIEVER_KWARGS = {
+    "search_type": "semantic",
+    "fts_operator": "OR",
+    "limit": 5,
+    "expand_context": 0,
+    "semantic_weight": 0.75,
+    "fts_weight": 0.25
+}
 
 # Initialize clients
 db_client = DBClient()
-rag_chat = RagChat(llm_client_type=DEFAULT_CLIENT_TYPE, memory_size=DEFAULT_MEMORY_SIZE)
+rag_chat = RagChat(
+    llm_client_type=DEFAULT_CLIENT_TYPE, 
+    memory_size=DEFAULT_MEMORY_SIZE
+)
 
 # JWT settings
 SECRET_KEY = os.getenv("JWT_SECRET_KEY", "your-secret-key")
@@ -86,32 +102,31 @@ async def chat(
         # Create new conversation if none exists
         conversation_id = chat_request.conversation_id or rag_chat.create_conversation(current_user)
         
+        
         # Get response from RAG system
         response = rag_chat.answer_question(
             chat_request.message,
             str(conversation_id),
-            retriever_kwargs={
-                "limit": 5,
-                "expand_context": 0,
-                "search_type": "hybrid",
-                "fts_operator": "OR"
-            }
+            retriever_kwargs=RETRIEVER_KWARGS
         )
         
         return ChatResponse(message=response, conversation_id=conversation_id)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-@app.get("/conversation/{conversation_id}", response_model=ConversationHistory)
-async def get_conversation(
-    conversation_id: UUID,
-):
-    try:
-        messages = db_client.get_conversation_history(str(conversation_id), rag_chat.memory_size)
-        chat_messages = [ChatMessage(role=msg["role"], content=msg["content"]) for msg in messages]
-        return ConversationHistory(messages=chat_messages)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        # Log the full error traceback
+        error_details = traceback.format_exc()
+        logger.error(f"Error in chat endpoint: {str(e)}\n{error_details}")
+        raise HTTPException(status_code=500, detail=f"Error: {str(e)}\n{error_details}")
+    
+# @app.get("/conversation/{conversation_id}", response_model=ConversationHistory)
+# async def get_conversation(
+#     conversation_id: UUID,
+# ):
+#     try:
+#         messages = db_client.get_conversation_history(str(conversation_id), rag_chat.memory_size)
+#         chat_messages = [ChatMessage(role=msg["role"], content=msg["content"]) for msg in messages]
+#         return ConversationHistory(messages=chat_messages)
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/conversation")
 async def create_conversation(
@@ -119,6 +134,7 @@ async def create_conversation(
 ) -> dict:
     try:
         conversation_id = rag_chat.create_conversation(user_email=current_user)
+        logger.info(f"Created conversation: {conversation_id}")
         return {"conversation_id": conversation_id}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

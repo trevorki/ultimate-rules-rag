@@ -3,7 +3,7 @@ CREATE EXTENSION IF NOT EXISTS vector;
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- Create message_type enum
-CREATE TYPE MESSAGE_TYPE AS ENUM ('conversation', 'reword');
+CREATE TYPE MESSAGE_TYPE AS ENUM ('conversation', 'reword', 'refine', 'correct', 'next_step');
 
 -- Create the documents table with added tsvector column
 CREATE TABLE IF NOT EXISTS documents (

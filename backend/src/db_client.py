@@ -53,7 +53,16 @@ class DBClient(BaseModel):
         
         return response
 
-    def add_message(self, conversation_uuid, user_msg, ai_msg, message_type="conversation", model=None, input_tokens=None, output_tokens=None):
+    def add_message(
+            self, 
+            conversation_uuid, 
+            user_msg, 
+            ai_msg, 
+            message_type="conversation", 
+            model=None, 
+            input_tokens=None, 
+            output_tokens=None
+        ):
         sql_query = """
         INSERT INTO messages 
         (conversation_id, user_msg, ai_msg, message_type, model, input_tokens, output_tokens) 
@@ -102,7 +111,6 @@ class DBClient(BaseModel):
     def create_conversation(self, user_email: str|None = None, user_id: str|None = None, conversation_id: str|None = None):
         if not user_id:
             user_id = self.get_user_id(user_email)
-            print(f"user_id: {user_id}")
             
         conversation_id = str(uuid4()) if conversation_id is None else conversation_id
         sql_query = """
@@ -119,3 +127,8 @@ class DBClient(BaseModel):
         response = self.query_db_sql(sql_query, args)
         return response[0]['calculate_token_cost'] if response else None
 
+    def calculate_conversation_cost(self, conversation_id):
+        conversation = self.get_conversation(conversation_id)
+        total_input_tokens = sum(message['input_tokens'] for message in conversation)
+        total_output_tokens = sum(message['output_tokens'] for message in conversation)
+        return self.calculate_token_cost(conversation[0]['model'], total_input_tokens, total_output_tokens)
