@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { apiClient, ChatMessage } from '../api/client';
 import ReactMarkdown from 'react-markdown';
 import type { Components } from 'react-markdown';
+import { TypingDots } from '../components/TypingDots';
 
 type CodeProps = {
   inline?: boolean;
@@ -17,6 +18,7 @@ export function Chat() {
   const navigate = useNavigate();
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogout = useCallback(() => {
     localStorage.removeItem('token');
@@ -58,6 +60,7 @@ export function Chat() {
     const newMessage: ChatMessage = { role: 'user', content: message };
     setMessages(prev => [...prev, newMessage]);
     setMessage('');
+    setIsLoading(true);
 
     try {
       const response = await apiClient.sendMessage(message, conversationId);
@@ -68,6 +71,8 @@ export function Chat() {
       if (error instanceof Error && error.message.includes('401')) {
         handleLogout();
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -187,6 +192,19 @@ export function Chat() {
               </div>
             </div>
           ))}
+          
+          {isLoading && (
+            <div className="flex justify-start mb-4">
+              <div className={`px-4 py-2 shadow-md ${
+                isDarkMode 
+                  ? 'message-ai-dark text-dark-theme' 
+                  : 'message-ai-light text-light-theme'
+              } rounded-t-2xl rounded-r-2xl`}>
+                <TypingDots />
+              </div>
+            </div>
+          )}
+          
           <div ref={messagesEndRef} />
         </div>
       </main>
