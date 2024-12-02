@@ -4,6 +4,8 @@ import { apiClient, ChatMessage } from '../api/client';
 import ReactMarkdown from 'react-markdown';
 import type { Components } from 'react-markdown';
 import { TypingDots } from '../components/TypingDots';
+import { useTheme } from '../contexts/ThemeContext';
+import ThemeToggle from '../components/ThemeToggle';
 
 type CodeProps = {
   inline?: boolean;
@@ -11,14 +13,15 @@ type CodeProps = {
   children?: React.ReactNode;
 };
 
-export function Chat() {
+const Chat: React.FC = () => {
+  const { isDarkMode, toggleTheme } = useTheme();
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [conversationId, setConversationId] = useState<string>('');
   const navigate = useNavigate();
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
-  const [isDarkMode, setIsDarkMode] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleLogout = useCallback(() => {
     localStorage.removeItem('token');
@@ -29,10 +32,19 @@ export function Chat() {
     try {
       const { conversation_id } = await apiClient.createConversation();
       setConversationId(conversation_id);
+      setError(null);
+      
+      setMessages([{
+        role: 'assistant',
+        content: "👋 Welcome to Ultimate Rules Chat! You can ask me questions about the rules of ultimate (USAU 2024-25), and I'll do my best to provide clear and accurate answers. What would you like to know?"
+      }]);
+
     } catch (error) {
       console.error('Failed to create conversation:', error);
       if (error instanceof Error && error.message.includes('401')) {
         handleLogout();
+      } else {
+        setError('Failed to start conversation. Please try refreshing the page.');
       }
     }
   }, [handleLogout]);
@@ -44,10 +56,6 @@ export function Chat() {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', isDarkMode);
-  }, [isDarkMode]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -61,6 +69,7 @@ export function Chat() {
     setMessages(prev => [...prev, newMessage]);
     setMessage('');
     setIsLoading(true);
+    setError(null);
 
     try {
       const response = await apiClient.sendMessage(message, conversationId);
@@ -70,14 +79,12 @@ export function Chat() {
       console.error('Failed to send message:', error);
       if (error instanceof Error && error.message.includes('401')) {
         handleLogout();
+      } else {
+        setError('Failed to send message. Please try again.');
       }
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const toggleTheme = () => {
-    setIsDarkMode(prev => !prev);
   };
 
   const markdownComponents: Components = {
@@ -132,36 +139,34 @@ export function Chat() {
 
   return (
     <div className={`h-screen flex flex-col ${isDarkMode ? 'chat-background-dark text-dark-theme' : 'chat-background-light text-light-theme'}`}>
-      <header className={`h-14 ${
-        isDarkMode ? 'header-footer-dark' : 'header-footer-light'
-      } shadow-md fixed top-0 left-0 right-0 z-50 border-b`}>
-        <div className="h-full px-4 flex justify-between items-center">
-          <h1 className="text-xl font-semibold">
-            Ultimate Rules Chat
-          </h1>
-          <div className="flex items-center gap-3">
-            <button
-              onClick={toggleTheme}
-              className={`h-8 w-8 rounded-md shadow-md transition-all duration-200
-                ${isDarkMode 
-                  ? 'bg-[#f4ece2] text-[#2a332d]'
-                  : 'bg-[#2a332d] text-[#f5f5f0]'
-                } hover:bg-opacity-80 flex items-center justify-center`}
-            >
-              {isDarkMode ? '☀️' : '🌙'}
-            </button>
-            <button
-              onClick={handleLogout}
-              className="button-action px-4 py-1.5 rounded-md text-sm"
-            >
-              Logout
-            </button>
-          </div>
+      <header className="header-footer-light dark:header-footer-dark p-4 flex justify-between items-center">
+        <div className="flex-1 flex justify-start">
+          <ThemeToggle isDarkMode={isDarkMode} onToggle={toggleTheme} />
+        </div>
+        
+        <h1 className="text-2xl font-bold text-center text-light-theme dark:text-dark-theme flex-1">
+          Ultimate Rules Chat
+        </h1>
+        
+        <div className="flex-1 flex justify-end">
+          <button
+            onClick={handleLogout}
+            className="px-4 py-2 rounded-md button-action hover:opacity-80"
+            aria-label="Logout"
+          >
+            Logout
+          </button>
         </div>
       </header>
 
       <main className={`flex-1 mt-14 mb-16 overflow-y-auto ${isDarkMode ? 'chat-background-dark' : 'chat-background-light'}`}>
         <div className="max-w-2xl mx-auto px-4 py-6">
+          {error && (
+            <div className="mb-4 p-3 rounded-md bg-red-100 border border-red-300 text-red-700">
+              {error}
+            </div>
+          )}
+          
           {messages.map((msg, index) => (
             <div
               key={index}
@@ -238,4 +243,6 @@ export function Chat() {
       </footer>
     </div>
   );
-} 
+};
+
+export default Chat; 

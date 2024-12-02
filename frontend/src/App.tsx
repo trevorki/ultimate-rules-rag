@@ -1,53 +1,29 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Login } from './pages/Login';
-import { Chat } from './pages/Chat';
-import { ChangePassword } from './pages/ChangePassword';
-import { useDarkMode } from './hooks/useDarkMode'
-
-const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const token = localStorage.getItem('token');
-  if (!token) {
-    return <Navigate to="/login" replace />;
-  }
-  return <>{children}</>;
-};
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './pages/Login';
+import Chat from './pages/Chat';
+import ChangePassword from './pages/ChangePassword';
+import SignUp from './pages/SignUp';
+import ForgotPassword from './pages/ForgotPassword';
+import Verify from './pages/Verify';
+import ResetPassword from './pages/ResetPassword';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 function App() {
-  const { isDarkMode, setIsDarkMode } = useDarkMode()
-
   return (
-    <div>
-      <button
-        onClick={() => setIsDarkMode(!isDarkMode)}
-        className="rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-800"
-      >
-        {isDarkMode ? '🌞' : '🌙'}
-      </button>
-      
-      <BrowserRouter>
+    <Router>
+      <ThemeProvider>
         <Routes>
+          <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/login" element={<Login />} />
-          <Route
-            path="/chat"
-            element={
-              <PrivateRoute>
-                <Chat />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/change-password"
-            element={
-              <PrivateRoute>
-                <ChangePassword />
-              </PrivateRoute>
-            }
-          />
-          <Route path="/" element={<Navigate to="/chat" replace />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/chat" element={<Chat />} />
+          <Route path="/verify" element={<Verify />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
-      </BrowserRouter>
-    </div>
+      </ThemeProvider>
+    </Router>
   );
 }
 

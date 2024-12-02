@@ -1,12 +1,9 @@
-
 evals/results/
 texts/
 development.ipynb
 zzz_misc/
 proj_descrition.txt
 _purgatory/
-
-
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -50,3 +47,8 @@ wheels/
 *.swo
 .DS_Store
 *node_modules/
+
+# Environment variables
+.env
+**/token.pickle
+**/client_secret_52205405262-3von0v3fjiagi6vh7ma20qf09fb3uhb7.apps.googleusercontent.com.json

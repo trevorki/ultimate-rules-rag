@@ -73,15 +73,15 @@ class DBClient(BaseModel):
         response = self.query_db_sql(sql_query, args)
         return response[0]['id'] if response else None
     
-    def create_user(self, email):
+    def create_user(self, email, password):
         
         # check if user exists
         if self.get_user_id(email):
             print("user already exists")
             return self.get_user_id(email)
         else:
-            sql_query = "INSERT INTO users (email) VALUES (%s) RETURNING id"
-            args = (email,)
+            sql_query = "INSERT INTO users (email, password) VALUES (%s, %s) RETURNING id"
+            args = (email,password,)
             response = self.query_db_sql(sql_query, args)
             return response[0]['id'] if response else None
 
@@ -132,3 +132,29 @@ class DBClient(BaseModel):
         total_input_tokens = sum(message['input_tokens'] for message in conversation)
         total_output_tokens = sum(message['output_tokens'] for message in conversation)
         return self.calculate_token_cost(conversation[0]['model'], total_input_tokens, total_output_tokens)
+
+    def verify_user_email(self, email: str) -> bool:
+        sql_query = """
+        UPDATE users 
+        SET is_verified = true 
+        WHERE email = %s 
+        RETURNING id
+        """
+        args = (email,)
+        response = self.query_db_sql(sql_query, args)
+        return bool(response)
+
+    def update_password(self, email: str, new_password: str) -> bool:
+        try:
+            sql_query = """
+            UPDATE users 
+            SET password = %s 
+            WHERE email = %s 
+            RETURNING id
+            """
+            args = (new_password, email)
+            response = self.query_db_sql(sql_query, args)
+            return bool(response)
+        except Exception as e:
+            print(f"Error updating password: {str(e)}")
+            return False

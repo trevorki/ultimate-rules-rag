@@ -49,7 +49,10 @@ Glossary entries are not considered rules so omit them.
 </response_format>
 """
 
-def get_rag_prompt(query: str, context: str, conversation_history: list[dict], response_format: BaseModel|dict|None = None):
+def get_rag_prompt(
+        query: str, context: str, 
+        conversation_history: list[dict], 
+        response_format: BaseModel|dict|None = None):
     prompt = RAG_PROMPT.format(
         query=json.dumps(query, indent = 2), 
         context=json.dumps(context, indent = 2), 
@@ -118,8 +121,15 @@ def get_reword_query_prompt(conversation_history: list[dict], query: str):
 SELECT_RULES_DEFINITIONS_PROMPT = """You are an assistant for question-answering tasks about the sport of ultimate (ultimate frisbee). 
 I have retrieved several rules and definitions from the ultimate rule book that may or may not be relevant to the question being asked.
 Please select:
-- the relevant rules (rule numbers only) that are needed to answer the current question.
+- the relevant rules (rule numbers only) that are needed to answer the current question. 
 - the relevant definitions (definition names only) that are needed to answer the current question.
+
+If a rule ends with a colon and is followed by sub-rules, include the sub-rules that follow. 
+Example:
+2.A.1. This rule applies in the following situations:
+2.A.1.a <situation 1>
+2.A.1.b <situation 2>
+
 
 Conversation History:
 {conversation_history}

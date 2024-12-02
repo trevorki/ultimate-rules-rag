@@ -233,7 +233,7 @@ class RagChat(BaseModel):
 
         class Answer(BaseModel):
             answer: str = Field(description="The answer to the question. It should be concise, preferably in one sentence. Exceptions are allowed if the answer includes a long list")
-            relevant_rules: list[str] = Field(description="All the rules used to answer the question (rule numbers only), sorted in alphanumeric order")
+            relevant_rules: list[str] = Field(description="All the rules used to answer the question (rule numbers only), sorted in alphanumeric order. If one rule ends in a colon indicating a lots of subrules follows, then include all the subrules in the list.")
             error: Optional[str] = Field(description="There is a problem formulating an answer, then this field should be the reason why. Otherwise, it should be None.")
         
         prompt = get_rag_prompt(query, context, conversation_history, response_format=Answer)
@@ -266,7 +266,7 @@ class RagChat(BaseModel):
             user_message += f"\nrules: {context['rules']}"
         if len(context.get("definitions", {})) > 0:
             user_message += f"\ndefinitions: {context['definitions']}"
-        logger.info(f"Saving message to DB: {user_message} -> {answer}")
+        logger.debug(f"Saving message to DB")
 
         self.db_client.add_message(
             conversation_id, 
@@ -350,21 +350,25 @@ class RagChat(BaseModel):
                 conversation_history,
                 light_model=True
             )
+            logger.info(f"reworded_query: {reworded_query[0:100]}")
             retrieved_docs = self._get_docs(
                 reworded_query, **retriever_kwargs
             )
             # logger.info(f"retrieved_docs: {json.dumps(retrieved_docs, indent=2)}")
             context = self._prepare_context(retrieved_docs)
-            logger.info(f"rules ({len(context['rules'])}): {list(context['rules'].keys())}\n")
+            logger.info(f"rules ({len(context['rules'])}): {list(context['rules'].keys())}")
+            logger.info(f"definitions ({len(context['definitions'])}): {list(context['definitions'].keys())}")
             
             relevant_rules_definitions = self._select_relevant_rules_definitions(
                 reworded_query, context, 
                 conversation_id, conversation_history, 
                 light_model=True
             )
-            logger.info(f"relevant_rules_definitions: {json.dumps(relevant_rules_definitions, indent=2)}")
+            
             context = self._filter_context(context, relevant_rules_definitions)
-            logger.info(f"filtered context: {json.dumps(context, indent=2)}")
+            logger.info(f"filtered rules ({len(context['rules'])}): {list(context['rules'].keys())}")
+            logger.info(f"filtered definitions ({len(context['definitions'])}): {list(context['definitions'].keys())}")
+            
         elif next_step.lower() == "answer":
             context = {}
         else:

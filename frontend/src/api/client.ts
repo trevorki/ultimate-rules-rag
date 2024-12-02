@@ -84,5 +84,29 @@ export const apiClient = {
       new_password: newPassword,
     });
     return response.data;
-  }
+  },
+
+  signup: async (email: string, password: string): Promise<void> => {
+    await api.post('/signup', {
+      email,
+      password,
+    });
+  },
+
+  forgotPassword: async (email: string): Promise<void> => {
+    await api.post('/forgot-password', {
+      email,
+    });
+  },
+
+  verifyEmail: async (token: string): Promise<void> => {
+    await api.get(`/verify?token=${token}`);
+  },
+
+  resetPassword: async (token: string, newPassword: string): Promise<void> => {
+    await api.post('/reset-password', {
+      token,
+      new_password: newPassword,
+    });
+  },
 }; 

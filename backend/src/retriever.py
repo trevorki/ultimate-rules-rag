@@ -299,7 +299,8 @@ if __name__ == "__main__":
     expand_context=0
     limit = 3
     
-    query = "what are the field dimensions as shown in appendix a?"
+    # query = "what are the field dimensions as shown in appendix a?"
+    query = "what is rule 10.H?"
     query_embedding = retriever.create_embedding(query)
     print(f"\nQuery: '{query}'")
       
