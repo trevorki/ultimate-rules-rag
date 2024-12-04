@@ -13,7 +13,7 @@ from ..db_client import DBClient
 from ..rag_chat import RagChat
 from ..simple_gmail_client import SimpleGmailClient
 import jwt
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, UTC
 import os
 import traceback
 import logging
@@ -39,7 +39,7 @@ FRONTEND_URL = "http://localhost:3000"
 
 DEFAULT_CLIENT_TYPE = "openai"
 # DEFAULT_CLIENT_TYPE = "anthropic"
-DEFAULT_MEMORY_SIZE = 4
+DEFAULT_MEMORY_SIZE = 5
 RETRIEVER_KWARGS = {
     "search_type": "semantic",
     "fts_operator": "OR",
@@ -68,10 +68,10 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 def create_access_token(data: dict, expires_delta: timedelta | None = None) -> str:
     to_encode = data.copy()
     if expires_delta:
-        expire = datetime.utcnow() + expires_delta
+        expire = datetime.now(UTC) + expires_delta
     else:
         # Default to 24 hours if not specified
-        expire = datetime.utcnow() + timedelta(hours=24)
+        expire = datetime.now(UTC) + timedelta(hours=24)
         
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)

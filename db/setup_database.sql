@@ -2,8 +2,8 @@
 CREATE EXTENSION IF NOT EXISTS vector;
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
--- Create message_type enum
-CREATE TYPE MESSAGE_TYPE AS ENUM ('conversation', 'reword', 'refine', 'correct', 'next_step');
+-- Create CONVERSATION_ROLE enum
+CREATE TYPE CONVERSATION_ROLE AS ENUM ('user', 'assistant', 'system');
 
 -- Create the documents table with added tsvector column
 CREATE TABLE IF NOT EXISTS documents (
@@ -36,15 +36,25 @@ CREATE TABLE IF NOT EXISTS conversations (
 CREATE TABLE IF NOT EXISTS messages (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     conversation_id UUID NOT NULL,
-    user_msg TEXT,
-    ai_msg TEXT,
-    message_type MESSAGE_TYPE DEFAULT 'conversation',
-    model TEXT,
+    conversation_role CONVERSATION_ROLE NOT NULL,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (conversation_id) REFERENCES conversations(id) ON DELETE CASCADE
+);
+
+-- create llm_calls table
+CREATE TABLE IF NOT EXISTS llm_calls (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    message_id UUID NOT NULL,
+    message_type TEXT NOT NULL,
+    prompt TEXT NOT NULL,
+    response TEXT NOT NULL,
+    model TEXT NOT NULL,
     input_tokens INTEGER,
     output_tokens INTEGER,
     cost FLOAT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (conversation_id) REFERENCES conversations(id)
+    FOREIGN KEY (message_id) REFERENCES messages(id) ON DELETE CASCADE
 );
 
 -- CREATE MODELS TABLE
@@ -62,6 +72,9 @@ CREATE INDEX IF NOT EXISTS documents_content_tsv_idx ON documents USING GiST (co
 -- Add index for faster message retrieval by conversation with timestamp ordering
 CREATE INDEX IF NOT EXISTS messages_conversation_id_created_at_idx 
     ON messages(conversation_id, created_at);
+
+-- Add after other indices
+CREATE INDEX IF NOT EXISTS users_email_idx ON users(email);
 
 --------- FUNCTIONS ---------
 
@@ -153,30 +166,21 @@ CREATE OR REPLACE FUNCTION get_conversation_history(
 )
 RETURNS TABLE(
     id UUID,
-    user_msg TEXT,
-    ai_msg TEXT,
+    conversation_role CONVERSATION_ROLE,
+    content TEXT,
     created_at TIMESTAMP WITH TIME ZONE
 ) AS $$
 BEGIN
     RETURN QUERY
     SELECT 
-        recent_messages.id,
-        recent_messages.user_msg,
-        recent_messages.ai_msg,
-        recent_messages.created_at
-    FROM (
-        SELECT 
-            messages.id,
-            messages.user_msg,
-            messages.ai_msg,
-            messages.created_at
-        FROM messages
-        WHERE messages.conversation_id = _conversation_id
-        AND messages.message_type = 'conversation'
-        ORDER BY messages.created_at DESC  -- Get the most recent messages first
-        LIMIT _message_limit
-    ) AS recent_messages
-    ORDER BY recent_messages.created_at ASC;  -- Order by created_at in the outer query
+        m.id,
+        m.conversation_role,
+        m.content,
+        m.created_at
+    FROM messages m
+    WHERE m.conversation_id = _conversation_id
+    ORDER BY m.created_at
+    LIMIT _message_limit;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -186,28 +190,31 @@ CREATE OR REPLACE FUNCTION get_conversation(
 )
 RETURNS TABLE(
     message_id UUID,
-    user_msg TEXT,
-    ai_msg TEXT,
-    message_type MESSAGE_TYPE,
+    conversation_role CONVERSATION_ROLE,
+    content TEXT,
+    message_type TEXT,
     model TEXT,
     input_tokens INTEGER,
     output_tokens INTEGER,
+    cost FLOAT,
     created_at TIMESTAMP WITH TIME ZONE
 ) AS $$
 BEGIN
     RETURN QUERY
     SELECT 
-        messages.id,
-        messages.user_msg,
-        messages.ai_msg,
-        messages.message_type,
-        messages.model,
-        messages.input_tokens,
-        messages.output_tokens,
-        messages.created_at
-    FROM messages
-    WHERE messages.conversation_id = _conversation_id
-    ORDER BY messages.created_at ASC;
+        m.id as message_id,
+        m.conversation_role,
+        m.content,
+        l.message_type,
+        l.model,
+        l.input_tokens,
+        l.output_tokens,
+        l.cost,
+        m.created_at
+    FROM messages m
+    LEFT JOIN llm_calls l ON m.id = l.message_id
+    WHERE m.conversation_id = _conversation_id
+    ORDER BY m.created_at ASC;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -243,8 +250,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Add after all the existing functions
-CREATE OR REPLACE FUNCTION calculate_message_cost()
+-- Modify the calculate_token_cost trigger function to work with llm_calls
+CREATE OR REPLACE FUNCTION calculate_llm_call_cost()
 RETURNS TRIGGER AS $$
 BEGIN
     -- Calculate and set the cost using the calculate_token_cost function
@@ -258,11 +265,12 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Create the trigger
-CREATE TRIGGER set_message_cost
-    BEFORE INSERT ON messages
+-- Drop and recreate the trigger correctly
+DROP TRIGGER IF EXISTS set_llm_call_cost ON llm_calls;
+CREATE TRIGGER set_llm_call_cost
+    BEFORE INSERT ON llm_calls
     FOR EACH ROW
-    EXECUTE FUNCTION calculate_message_cost();
+    EXECUTE FUNCTION calculate_llm_call_cost();
 
 -- INITIAL DATA INSERTION --
 

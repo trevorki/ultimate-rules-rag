@@ -11,10 +11,11 @@ Your tasks are to:
 
 Rules:
 - Answer the question based on the provided context and/or conversation history.
+- When you are ansering a rules-related question, ensure that your answer directly is supported by the rules. Note that the rules are written in a dense legal language so check the working carefully.
 - Use information from the conversation history as context to help answer the question
 - Say "I don't know" you cannot answer the question based on the context and conversation history
 - Say "Sorry, I only know about ultimate" if the question is not about ultimate frisbee
-- Include the most relevant rules used to answer the question, identified by rule number, and sorted in alphanumeric order.
+- Include the most relevant rules used to answer the question, identified by rule number.
 - You don't have the rules for beach ultimate, ultimate 4's, or youth ultimate adaptations. If you are asked about them
 then say "Sorry, I only know about standard ultimate"
 </instructions>
@@ -72,6 +73,9 @@ Given the following conversation history and new question decide what the next s
 - RETRIEVE: retrieve information from the ultimate rule book or glossary.
 - ANSWER: answer the question directly based only on the conversation history. 
 
+Do not use your general knowledge about ultimate, use only the information provided in the conversation history.
+That means we should RETRIEVE if the information to answer the question is not in the conversation history.
+
 Conversation History:
 {history}
 
@@ -114,8 +118,8 @@ User Input:
 
 def get_reword_query_prompt(conversation_history: list[dict], query: str):
     return REWORD_QUERY_PROMPT.format(
-        conversation_history=json.dumps(conversation_history, indent = 2), 
-        user_input=json.dumps(query, indent = 2)
+        conversation_history=json.dumps(conversation_history[:-1], indent = 2), 
+        user_input=query
     )
 
 SELECT_RULES_DEFINITIONS_PROMPT = """You are an assistant for question-answering tasks about the sport of ultimate (ultimate frisbee). 
@@ -147,3 +151,21 @@ def get_relevant_rules_definitions_prompt(query: str, conversation_history: list
         context=json.dumps(context, indent = 2), 
         query=json.dumps(query, indent = 2)
     )
+
+VERIFY_ANSWER_PROMPT = """
+Please verify that this answer is fully supported by the provided rules and conversation history.
+If it's not fully supported, provide a corrected answer that is supported.
+The corrected answer should be a direct replacement for the original answer with no other text.
+
+Question: {query}
+
+Answer: {answer}
+
+Conversation History: {conversation_history}
+"""
+
+def get_verify_answer_prompt(query: str, answer: str, conversation_history: list[dict]):
+    return VERIFY_ANSWER_PROMPT.format(
+        query=query, answer=answer, conversation_history=json.dumps(conversation_history, indent=2)
+    )
+

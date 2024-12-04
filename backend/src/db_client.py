@@ -34,45 +34,86 @@ class DBClient(BaseModel):
             print(f"Database connection error: {e}")
             raise
 
-    def get_conversation_history(self, conversation_uuid, message_limit):
-        sql_query = "SELECT user_msg, ai_msg FROM get_conversation_history(%s, %s)"
-        args = (conversation_uuid, message_limit)
+    def get_conversation_history(self, conversation_id, message_limit):
+        sql_query = """
+        SELECT * FROM get_conversation_history(%s, %s)
+        """
+        args = (conversation_id, message_limit)
 
         response = self.query_db_sql(sql_query, args)
         history = []
         for row in response:
-            history.append({"role": "user", "content": row['user_msg']}) 
-            history.append({"role": "assistant", "content": row['ai_msg']})
-        return history
+            history.append({
+                "role": row['conversation_role'],
+                "content": row['content']
+            })
+        return history[::-1]  # Reverse to get chronological order
     
-    def get_conversation(self, conversation_uuid):
-        sql_query = "SELECT * FROM get_conversation(%s)"
-        args = (conversation_uuid,)
-
-        response = self.query_db_sql(sql_query, args)
-        
-        return response
+    def get_conversation(self, conversation_id):
+        sql_query = """SELECT * FROM get_conversation(%s)"""
+        args = (conversation_id,)
+        return self.query_db_sql(sql_query, args)
 
     def add_message(
             self, 
-            conversation_uuid, 
-            user_msg, 
-            ai_msg, 
-            message_type="conversation", 
-            model=None, 
-            input_tokens=None, 
-            output_tokens=None
+            conversation_id, 
+            conversation_role,
+            content,
+            created_at=None
         ):
         sql_query = """
         INSERT INTO messages 
-        (conversation_id, user_msg, ai_msg, message_type, model, input_tokens, output_tokens) 
-        VALUES (%s, %s, %s, %s, %s, %s, %s)
+        (conversation_id, conversation_role, content, created_at) 
+        VALUES (%s, %s, %s, COALESCE(%s, CURRENT_TIMESTAMP))
         RETURNING id
         """
-        args = (conversation_uuid, user_msg.strip(), ai_msg.strip(), message_type, model, input_tokens, output_tokens)
+        args = (conversation_id, conversation_role, content.strip(), created_at)
         response = self.query_db_sql(sql_query, args)
         return response[0]['id'] if response else None
-    
+
+    def add_llm_call(
+            self,
+            message_id,
+            message_type,
+            prompt,
+            response,
+            model,
+            usage
+        ):
+        """
+        Add an LLM call to the database.
+        
+        Args:
+            message_id: UUID of the associated message
+            message_type: Type of the message (e.g., 'next_step', 'reword', 'answer', 'verify')
+            prompt: The prompt sent to the LLM
+            response: The response received from the LLM
+            model: The model name used
+            usage: Dictionary containing 'input_tokens' and 'output_tokens'
+        """
+        sql_query = """
+        INSERT INTO llm_calls 
+        (message_id, message_type, prompt, response, model, input_tokens, output_tokens) 
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
+        RETURNING id, cost
+        """
+        # Ensure we're getting integer values for tokens, defaulting to 0 if not found
+        input_tokens = int(usage.get('input_tokens', 0))
+        output_tokens = int(usage.get('output_tokens', 0))
+        
+        args = (
+            message_id, 
+            message_type, 
+            prompt.strip(), 
+            response.strip(), 
+            model, 
+            input_tokens,
+            output_tokens
+        )
+        
+        response = self.query_db_sql(sql_query, args)
+        return response[0] if response else None
+
     def create_user(self, email, password):
         
         # check if user exists
@@ -111,7 +152,7 @@ class DBClient(BaseModel):
     def create_conversation(self, user_email: str|None = None, user_id: str|None = None, conversation_id: str|None = None):
         if not user_id:
             user_id = self.get_user_id(user_email)
-            
+
         conversation_id = str(uuid4()) if conversation_id is None else conversation_id
         sql_query = """
         INSERT INTO conversations (id, user_id) 
@@ -119,6 +160,7 @@ class DBClient(BaseModel):
         RETURNING id"""
         args = (conversation_id, user_id)
         response = self.query_db_sql(sql_query, args)
+        print(f"create_conversation response: {response}")
         return response[0]['id'] if response else None
     
     def calculate_token_cost(self, model_name, input_tokens, output_tokens):
@@ -136,7 +178,7 @@ class DBClient(BaseModel):
     def verify_user_email(self, email: str) -> bool:
         sql_query = """
         UPDATE users 
-        SET is_verified = true 
+        SET verified = true 
         WHERE email = %s 
         RETURNING id
         """
@@ -158,3 +200,5 @@ class DBClient(BaseModel):
         except Exception as e:
             print(f"Error updating password: {str(e)}")
             return False
+
+

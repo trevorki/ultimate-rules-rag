@@ -4,6 +4,7 @@ development.ipynb
 zzz_misc/
 proj_descrition.txt
 _purgatory/
+*deployment_plan*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

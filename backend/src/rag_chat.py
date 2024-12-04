@@ -9,7 +9,7 @@ from typing import Optional, Union, Iterator
 from .clients.base_client import BaseClient
 from .clients.get_abstract_client import get_abstract_client
 from .clients.llm_models import CLIENT_MODEL_MAP
-from .prompts import get_next_step_prompt, get_rag_prompt, get_reword_query_prompt, get_relevant_rules_definitions_prompt, RAG_SYSTEM_PROMPT
+from .prompts import *
 from .db_client import DBClient
 import logging
 
@@ -41,6 +41,78 @@ class RagChat(BaseModel):
             light_model=CLIENT_MODEL_MAP[llm_client_type]["light"]
         )
 
+    def answer_question(
+            self, 
+            query: str, 
+            conversation_id: str, 
+            retriever_kwargs: dict = {}
+        ) -> Union[str, Iterator[str]]:
+        """Answers the user's question by deciding whether to retrieve more information or use existing history."""
+        # Log the user's question at the start
+        message_id = self.db_client.add_message(
+            conversation_id,
+            "user",
+            query
+        )
+        print(f"message created with message_id: {message_id}")
+
+        conversation_history = self._get_conversation_history(
+            conversation_id, 
+            message_limit=self.memory_size, 
+            system_prompt=False
+        )
+        next_step = self._get_next_step(message_id, conversation_history, query)
+        logger.info(f"next_step: '{next_step}' ")
+        if next_step.lower() == "retrieve":
+            reworded_query = self._reword_query(
+                query,
+                message_id,
+                conversation_history,
+                light_model=True
+            )
+            logger.info(f"reworded_query: '{reworded_query[0:75]}...'")
+            retrieved_docs = self._get_docs(
+                reworded_query, **retriever_kwargs
+            )
+            context = self._prepare_context(retrieved_docs)
+            logger.info(f"{len(context['rules'])} raw rules, {len(context['definitions'])} raw definitions")
+            
+            relevant_rules_definitions = self._select_relevant_rules_definitions(
+                reworded_query, 
+                context, 
+                conversation_id,
+                message_id,
+                conversation_history, 
+                light_model=True
+            )
+            context = self._filter_context(context, relevant_rules_definitions)
+            logger.info(f"{len(context['rules'])} filtered rules, {len(context['definitions'])} filtered definitions")
+            
+        elif next_step.lower() == "answer":
+            context = {}
+        else:
+            logger.warning(f"Invalid next step: {next_step}")
+            context = {}
+        
+        answer = self._get_llm_answer(
+            query, 
+            context, 
+            conversation_id,
+            message_id,
+            conversation_history, 
+            light_model=False,
+            verify=True
+        )
+
+        # Log the final answer
+        self.db_client.add_message(
+            conversation_id,
+            "assistant",
+            answer
+        )
+        
+        return answer
+
     def _get_conversation_history(
             self, 
             conversation_id: str, 
@@ -54,7 +126,7 @@ class RagChat(BaseModel):
         return history
     
     def _get_docs(self, query: str, **kwargs) -> list:
-        logger.info(f"Getting similar documents for query: {query}")
+        logger.debug(f"Getting similar documents for query: {query[0:100]}")
         return self.retriever.search(query, **kwargs)
 
     def _prepare_context(self, documents: list[dict]) -> list[dict]:
@@ -88,6 +160,98 @@ class RagChat(BaseModel):
         return context
     
 
+    def _get_next_step(
+            self,
+            message_id: str,
+            conversation_history: list[dict], 
+            query: str
+        ) -> str:
+        """Get the next step for the conversation."""
+        prompt = get_next_step_prompt(conversation_history, query)
+        response, usage = self.llm_client.invoke(
+            prompt, 
+            config={"model": self.light_model, "temperature": 0.1, "max_tokens": 10},
+            return_usage=True
+        )
+
+        # Log LLM call
+        self.db_client.add_llm_call(
+            message_id=message_id,
+            message_type="next_step",
+            prompt=prompt,
+            response=response,
+            model=self.light_model,
+            usage=usage
+        )
+        return response.lower()
+
+    def _reword_query(
+            self, 
+            query: str, 
+            message_id: str,
+            conversation_history: list[dict],
+            light_model: bool = True
+        ) -> str:
+        """Reword the query if needed."""
+        model = self.light_model if light_model else self.default_model
+        prompt = get_reword_query_prompt(conversation_history, query)
+        response, usage = self.llm_client.invoke(
+            prompt, 
+            config={"model": model, "temperature": 0.1, "max_tokens": 100},
+            return_usage=True
+        )
+
+        if response.lower() == "none":
+            reworded_query = query
+        else:
+            logger.debug(f"reworded_query: {response}")
+            reworded_query = response
+
+        self.db_client.add_llm_call(
+            message_id=message_id,
+            message_type="reword",
+            prompt=prompt,
+            response=reworded_query,
+            model=model,
+            usage=usage
+        )
+        return reworded_query
+    
+    def _select_relevant_rules_definitions(
+            self, 
+            query: str, 
+            context: list[dict], 
+            conversation_id: str,
+            message_id: str,
+            conversation_history: list[dict],
+            light_model: bool = True
+        ) -> list[str]:
+        """Select relevant rules based on the query."""
+        model = self.light_model if light_model else self.default_model
+        prompt = get_relevant_rules_definitions_prompt(query, conversation_history, context)
+
+        class RulesDefinitions(BaseModel):
+            rules: list[str] = Field(description="The relevant rules (rule numbers only) that are needed to answer the current question.")
+            definitions: list[str] = Field(description="The relevant definitions (term names only) that are needed to answer the current question.")
+
+        relevant_rules_definitions, usage = self.llm_client.invoke(
+            prompt, 
+            config={"temperature": 0.1, "max_tokens": 1000, "model": model},
+            return_usage=True, 
+            response_format=RulesDefinitions
+        )
+
+        self.db_client.add_llm_call(
+            message_id=message_id,
+            message_type="select_rules",
+            prompt=prompt,
+            response=repr(relevant_rules_definitions),
+            model=model,
+            usage=usage
+        )
+        
+        return relevant_rules_definitions.model_dump()
+    
     def _extract_rules_dict(self, rules_text: str) -> dict[str, str]:
         """
         Convert rules text into a dictionary with rule numbers as keys and rule text as values.
@@ -124,162 +288,125 @@ class RagChat(BaseModel):
         
         return sorted_rules
     
-    def _get_next_step(
-            self, 
-            conversation_id: str,
-            conversation_history: list[dict], 
-            query: str
-        ) -> str:
-        """Get the next step for the conversation."""
-        prompt = get_next_step_prompt(conversation_history, query)
-        response, usage = self.llm_client.invoke(
-            prompt, 
-            config={"model": self.light_model, "temperature": 0.1, "max_tokens": 10},
-            return_usage=True
-        )
 
-        # save message to DB
-        self.db_client.add_message(
-            conversation_id, 
-            query, 
-            response,
-            message_type="next_step",
-            model=self.light_model,
-            input_tokens=usage.get("input_tokens"), 
-            output_tokens=usage.get("output_tokens") 
-        )
-        return response.lower()
-
-    def _reword_query(
-            self, 
-            query: str, 
-            conversation_id: str, 
-            conversation_history: list[dict],
-            light_model: bool = True
-        ) -> str:
-        """Reword the query if needed."""
-        model = self.light_model if light_model else self.default_model
-        prompt = get_reword_query_prompt(conversation_history, query)
-        response, usage = self.llm_client.invoke(
-            prompt, 
-            config={"model": model, "temperature": 0.1, "max_tokens": 100},
-            return_usage=True
-        )
-
-        if response.lower() == "none":
-            reworded_query = query
-        else:
-            logger.info(f"reworded_query: {response}")
-            reworded_query = response
-
-        self.db_client.add_message(
-            conversation_id, query, reworded_query,
-            message_type="reword",
-            model=model,
-            input_tokens=usage.get("input_tokens"), 
-            output_tokens=usage.get("output_tokens") 
-        )
-        return reworded_query
-    
-    def _select_relevant_rules_definitions(
-            self, 
-            query: str, 
-            context: list[dict], 
-            conversation_id: str, 
-            conversation_history: list[dict],
-            light_model: bool = True
-        ) -> list[str]:
-        """Select relevant rules based on the query."""
-        model = self.light_model if light_model else self.default_model
-        prompt = get_relevant_rules_definitions_prompt(query, conversation_history, context)
-
-
-        class RulesDefinitions(BaseModel):
-            rules: list[str] = Field(description="The relevant rules (rule numbers only) that are needed to answer the current question.")
-            definitions: list[str] = Field(description="The relevant definitions (term names only) that are needed to answer the current question.")
-
-        relevant_rules_definitions, usage = self.llm_client.invoke(
-            prompt, 
-            config={"temperature": 0.1, "max_tokens": 1000, "model": model},
-            return_usage=True, 
-            response_format=RulesDefinitions
-        )
-        rules_numbers = relevant_rules_definitions.rules
-        definitions = relevant_rules_definitions.definitions
-
-        self.db_client.add_message(
-            conversation_id, 
-            query, 
-            f"rules: {rules_numbers}, definitions: {definitions}",
-            message_type="refine",
-            model=model,
-            input_tokens=usage.get("input_tokens"), 
-            output_tokens=usage.get("output_tokens") 
-        )  
-        
-        return relevant_rules_definitions.model_dump()
-    
     def _get_llm_answer(
-            self, 
-            query: str, 
-            context: list[dict], 
-            conversation_id: str, 
+            self,
+            query: str,
+            context: list[dict],
+            conversation_id: str,
+            message_id: str,
             conversation_history: list[dict],
-            light_model: bool = False
+            light_model: bool = False,
+            verify: bool = True
         ) -> str:
-        """Get answer from LLM without streaming support."""
+        """Get answer to question from llm."""
+
         model = self.light_model if light_model else self.default_model
         logger.debug(f"Getting answer with LLM for query: {query}")     
 
         class Answer(BaseModel):
             answer: str = Field(description="The answer to the question. It should be concise, preferably in one sentence. Exceptions are allowed if the answer includes a long list")
             relevant_rules: list[str] = Field(description="All the rules used to answer the question (rule numbers only), sorted in alphanumeric order. If one rule ends in a colon indicating a lots of subrules follows, then include all the subrules in the list.")
-            error: Optional[str] = Field(description="There is a problem formulating an answer, then this field should be the reason why. Otherwise, it should be None.")
         
-        prompt = get_rag_prompt(query, context, conversation_history, response_format=Answer)
-
         messages = [
             {"role": "system", "content": RAG_SYSTEM_PROMPT},
-            {"role": "user", "content": prompt}
+            {"role": "user", "content": get_rag_prompt(query, context, conversation_history, response_format=Answer)}
         ]
-
         response, usage = self.llm_client.invoke(
             messages=messages,
             config={"temperature": 0.2, "max_tokens": 1000, "model": model},
             response_format=Answer,
             return_usage=True
         )
+        logger.info(f"raw answer: '{response.answer}'")
+        # Format answer with rules loaded from context
         try:
             answer = response.answer
-            if len(response.relevant_rules) > 0:
+            if len(response.relevant_rules) > 0 and "rules" in context:
                 rules_list_str = self._extract_rules_list(response.relevant_rules, context["rules"])
                 if len(rules_list_str) > 0:
-                    answer += f"\n\n**Relevant rules:**\n\n{rules_list_str}"
+                    answer += f"\n\n**Relevant rules:**\n\n{rules_list_str}" 
         except Exception as e:
             logger.error(f"Error formatting answer: {e}")
             logger.error(f"Using plain response: {response}")
+            import traceback
+            traceback.print_exc()
             answer = response
 
-        # Save message to DB
-        user_message = query
-        if len(context.get("rules", {})) > 0:
-            user_message += f"\nrules: {context['rules']}"
-        if len(context.get("definitions", {})) > 0:
-            user_message += f"\ndefinitions: {context['definitions']}"
-        logger.debug(f"Saving message to DB")
+        # format user query with context
+        user_query = query + f"\n\ncontext: {json.dumps(context, indent=2)}"
 
-        self.db_client.add_message(
-            conversation_id, 
-            json.dumps(user_message),
-            answer,
-            message_type="conversation",
+        logger.debug(f"Saving initial LLM response to DB")
+        self.db_client.add_llm_call(
+            message_id=message_id,
+            message_type="answer",
+            prompt=user_query,
+            response=answer,
             model=model,
-            input_tokens=usage.get("input_tokens"), 
-            output_tokens=usage.get("output_tokens") 
-        )  
+            usage=usage
+        )
+
+        if verify:
+            answer = self._verify_answer(
+                answer,
+                query,
+                message_id,
+                conversation_history,
+                light_model=light_model
+            )
         return answer
 
     
+    def _verify_answer(
+            self,
+            answer_with_rules: str,
+            query: str,
+            message_id: str,
+            conversation_history: list[dict],
+            light_model: bool = True
+        ) -> str:
+        """Verify that the answer is supported by the rules and conversation history."""
+        model = self.light_model if light_model else self.default_model
+
+        if "\n\n**Relevant rules:**\n\n" in answer_with_rules:
+            answer, rules = answer_with_rules.split("\n\n**Relevant rules:**\n\n")
+        else:
+            answer = answer_with_rules
+            rules = ""
+
+        class Verification(BaseModel):
+            is_correct: bool = Field(description="Whether the answer is fully supported by the rules and conversation history (do not include the rules in your answer)")
+            revised_answer: Optional[str] = Field(description="If is_correct is False, provide the corrected answer, omitting the rules. Otherwise, leave as None.")
+
+        prompt = get_verify_answer_prompt(query, answer, conversation_history)
+
+        response, usage = self.llm_client.invoke(
+            prompt,
+            config={"temperature": 0.1, "max_tokens": 1000, "model": model},
+            response_format=Verification,
+            return_usage=True,
+        )
+
+        if not response.is_correct:
+            logger.info(f"Revised answer: {response.revised_answer}")
+            verified_answer_with_rules = response.revised_answer + f"\n\n**Relevant rules:**\n\n{rules}"
+        else:
+            logger.info(f"Original answer verified")
+            verified_answer_with_rules = answer_with_rules
+
+    
+        # Then log the LLM call with the message_id
+        self.db_client.add_llm_call(
+            message_id=message_id,
+            message_type="verify",
+            prompt=prompt,
+            response=repr(response),
+            model=model,
+            usage=usage
+        )
+
+        return verified_answer_with_rules
+
     def _extract_rules_list(self, rule_numbers: list[str], rules_dict: dict[str, str]) -> dict[str, str]:
         """Extracts full text of rules based on rule numbers from the context and returns a dictionary."""
         rules_list_str = ""
@@ -317,85 +444,47 @@ class RagChat(BaseModel):
         rules_dict = {num: temp_dict.get(num) for num in rule_numbers}
         return rules_dict
     
-    
 
-    def answer_question(
-            self, 
-            query: str, 
-            conversation_id: str, 
-            retriever_kwargs: dict = {}
-        ) -> Union[str, Iterator[str]]:
-        """
-        Answers the user's question by deciding whether to retrieve more information or use existing history.
-        
-        Parameters:
-            query (str): The user's question.
-            conversation_id (str): Unique identifier for the conversation
-            retriever_kwargs (dict): Optional arguments for the retriever
-        
-        Returns:
-            Union[str, Iterator[str]]: Either a string response or a stream of text chunks
-        """
-        conversation_history = self._get_conversation_history(
-            conversation_id, 
-            message_limit=self.memory_size, 
-            system_prompt=False
-        )
-        
-        next_step = self._get_next_step(conversation_id, conversation_history, query)
-        logger.info(f"next_step: '{next_step}' ")
-        if next_step.lower() == "retrieve":
-            reworded_query = self._reword_query(
-                query, conversation_id, 
-                conversation_history,
-                light_model=True
-            )
-            logger.info(f"reworded_query: {reworded_query[0:100]}")
-            retrieved_docs = self._get_docs(
-                reworded_query, **retriever_kwargs
-            )
-            # logger.info(f"retrieved_docs: {json.dumps(retrieved_docs, indent=2)}")
-            context = self._prepare_context(retrieved_docs)
-            logger.info(f"rules ({len(context['rules'])}): {list(context['rules'].keys())}")
-            logger.info(f"definitions ({len(context['definitions'])}): {list(context['definitions'].keys())}")
-            
-            relevant_rules_definitions = self._select_relevant_rules_definitions(
-                reworded_query, context, 
-                conversation_id, conversation_history, 
-                light_model=True
-            )
-            
-            context = self._filter_context(context, relevant_rules_definitions)
-            logger.info(f"filtered rules ({len(context['rules'])}): {list(context['rules'].keys())}")
-            logger.info(f"filtered definitions ({len(context['definitions'])}): {list(context['definitions'].keys())}")
-            
-        elif next_step.lower() == "answer":
-            context = {}
-        else:
-            logger.warning(f"Invalid next step: {next_step}")
-            context = {}
-        
-        return self._get_llm_answer(
-            query, context, 
-            conversation_id, conversation_history, 
-            light_model=False
-        )
+    
     
     def _filter_context(self, context: list[dict], relevant_rules_definitions: dict) -> list[dict]:
         """Focus the context on the relevant rules."""
+        # select relevant rules
         rules_list = relevant_rules_definitions["rules"]
         focused_rules = {k:v for k,v in context["rules"].items() if k in rules_list}
         context["rules"] = focused_rules
 
+        # select relevant definitions
         definitions_list = relevant_rules_definitions["definitions"]
         focused_definitions = {k:v for k,v in context["definitions"].items() if k in definitions_list}
         context["definitions"] = focused_definitions
+        
         return context
 
     def create_conversation(self, user_email: str):
-        conversation_id = self.db_client.create_conversation(user_email=user_email)
+        """Create a new conversation entry in database."""
+        # First get or create user
+        user_id = self.db_client.get_user_id(user_email)
+        if not user_id:
+            logger.warning(f"User {user_email} not found, creating new user")
+        
+        # Then create conversation with user_id
+        conversation_id = self.db_client.create_conversation(user_id=user_id)
         logger.info(f"Created conversation: {conversation_id}")
         return conversation_id
+
+    def calculate_conversation_cost(self, conversation_id):
+        """Calculate the total cost of a conversation by summing all LLM call costs."""
+        sql_query = """
+        SELECT COALESCE(SUM(cost), 0) as total_cost
+        FROM llm_calls
+        WHERE message_id IN (
+            SELECT id FROM messages WHERE conversation_id = %s
+        )
+        """
+        args = (conversation_id,)
+        response = self.db_client.query_db_sql(sql_query, args)
+        return response[0]['total_cost'] if response else 0
 
 
 if __name__ == "__main__":
@@ -403,6 +492,7 @@ if __name__ == "__main__":
     client_type = "openai"
     rag_chat = RagChat(llm_client_type=client_type)
     conversation_id = rag_chat.create_conversation(user_email)
+    print(f"created conversation_id: {conversation_id}")
     retriever_kwargs = {
         "search_type": "hybrid",
         "fts_operator": "OR",
@@ -417,10 +507,10 @@ if __name__ == "__main__":
         # "What are the dimensions of the playing field in yards?"
         # "what is a double team?",
         # "how do you resolve it when it is called?",
-        # "what is a callahan?",
-        # "tell me more",
+        "what is a callahan?",
+        "tell me more",
         # "what does the stall count resume at after a contested foul?"
-        "what are the field dimensions as shown in appendix a?"
+        # "what are the field dimensions as shown in appendix a?"
 
 
     ]
@@ -437,5 +527,5 @@ if __name__ == "__main__":
     for entry in history:
         print(f"\n{'-'*40} {entry['role'].upper()} {'-'*40}\n{entry['content']}\n")
 
-    cost = rag_chat.db_client.calculate_conversation_cost(conversation_id)
-    print(f"\ncost: {cost:.5f}\n")
+    cost = rag_chat.calculate_conversation_cost(conversation_id)
+    print(f"\ncost: ${cost:.5f}\n")
