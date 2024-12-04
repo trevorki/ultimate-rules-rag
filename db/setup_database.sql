@@ -193,6 +193,8 @@ RETURNS TABLE(
     conversation_role CONVERSATION_ROLE,
     content TEXT,
     message_type TEXT,
+    prompt TEXT,
+    response TEXT,
     model TEXT,
     input_tokens INTEGER,
     output_tokens INTEGER,
@@ -201,20 +203,42 @@ RETURNS TABLE(
 ) AS $$
 BEGIN
     RETURN QUERY
-    SELECT 
-        m.id as message_id,
-        m.conversation_role,
-        m.content,
-        l.message_type,
-        l.model,
-        l.input_tokens,
-        l.output_tokens,
-        l.cost,
-        m.created_at
-    FROM messages m
-    LEFT JOIN llm_calls l ON m.id = l.message_id
-    WHERE m.conversation_id = _conversation_id
-    ORDER BY m.created_at ASC;
+    (
+        -- Get all messages
+        SELECT 
+            m.id as message_id,
+            m.conversation_role,
+            m.content,
+            NULL as message_type,
+            NULL as prompt,
+            NULL as response,
+            NULL as model,
+            NULL as input_tokens,
+            NULL as output_tokens,
+            NULL as cost,
+            m.created_at
+        FROM messages m
+        WHERE m.conversation_id = _conversation_id
+        
+        UNION ALL
+        
+        -- Get all LLM calls
+        SELECT 
+            l.message_id,
+            NULL as conversation_role,
+            NULL as content,
+            l.message_type,
+            l.prompt,
+            l.response,
+            l.model,
+            l.input_tokens,
+            l.output_tokens,
+            l.cost,
+            l.created_at
+        FROM llm_calls l
+        WHERE l.message_id IN (SELECT id FROM messages WHERE conversation_id = _conversation_id)
+    )
+    ORDER BY created_at ASC;
 END;
 $$ LANGUAGE plpgsql;
 

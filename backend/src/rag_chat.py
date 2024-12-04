@@ -307,10 +307,10 @@ class RagChat(BaseModel):
         class Answer(BaseModel):
             answer: str = Field(description="The answer to the question. It should be concise, preferably in one sentence. Exceptions are allowed if the answer includes a long list")
             relevant_rules: list[str] = Field(description="All the rules used to answer the question (rule numbers only), sorted in alphanumeric order. If one rule ends in a colon indicating a lots of subrules follows, then include all the subrules in the list.")
-        
+        prompt = get_rag_prompt(query, context, conversation_history, response_format=Answer)
         messages = [
             {"role": "system", "content": RAG_SYSTEM_PROMPT},
-            {"role": "user", "content": get_rag_prompt(query, context, conversation_history, response_format=Answer)}
+            {"role": "user", "content": prompt}
         ]
         response, usage = self.llm_client.invoke(
             messages=messages,
@@ -318,7 +318,7 @@ class RagChat(BaseModel):
             response_format=Answer,
             return_usage=True
         )
-        logger.info(f"raw answer: '{response.answer}'")
+        # logger.info(f"raw answer: '{response.answer}'")
         # Format answer with rules loaded from context
         try:
             answer = response.answer
@@ -332,6 +332,7 @@ class RagChat(BaseModel):
             import traceback
             traceback.print_exc()
             answer = response
+        logger.info(f"formatted answer: '{answer}'")
 
         # format user query with context
         user_query = query + f"\n\ncontext: {json.dumps(context, indent=2)}"
@@ -340,8 +341,8 @@ class RagChat(BaseModel):
         self.db_client.add_llm_call(
             message_id=message_id,
             message_type="answer",
-            prompt=user_query,
-            response=answer,
+            prompt=prompt,
+            response=repr(response),
             model=model,
             usage=usage
         )
@@ -352,7 +353,7 @@ class RagChat(BaseModel):
                 query,
                 message_id,
                 conversation_history,
-                light_model=light_model
+                light_model=True
             )
         return answer
 
@@ -369,16 +370,16 @@ class RagChat(BaseModel):
         model = self.light_model if light_model else self.default_model
 
         if "\n\n**Relevant rules:**\n\n" in answer_with_rules:
-            answer, rules = answer_with_rules.split("\n\n**Relevant rules:**\n\n")
+            rules = answer_with_rules.split("\n\n**Relevant rules:**\n\n")[1]
         else:
-            answer = answer_with_rules
-            rules = ""
+            rules = None
 
         class Verification(BaseModel):
             is_correct: bool = Field(description="Whether the answer is fully supported by the rules and conversation history (do not include the rules in your answer)")
             revised_answer: Optional[str] = Field(description="If is_correct is False, provide the corrected answer, omitting the rules. Otherwise, leave as None.")
+            explanation: Optional[str] = Field(description="If is_correct is False, provide an explanation for why the answer is incorrect. Otherwise, leave as None.")
 
-        prompt = get_verify_answer_prompt(query, answer, conversation_history)
+        prompt = get_verify_answer_prompt(query, answer_with_rules, conversation_history)
 
         response, usage = self.llm_client.invoke(
             prompt,
@@ -389,7 +390,9 @@ class RagChat(BaseModel):
 
         if not response.is_correct:
             logger.info(f"Revised answer: {response.revised_answer}")
-            verified_answer_with_rules = response.revised_answer + f"\n\n**Relevant rules:**\n\n{rules}"
+            verified_answer_with_rules = response.revised_answer
+            if rules:
+                verified_answer_with_rules += f"\n\n**Relevant rules:**\n\n{rules}"
         else:
             logger.info(f"Original answer verified")
             verified_answer_with_rules = answer_with_rules

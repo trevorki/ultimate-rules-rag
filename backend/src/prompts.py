@@ -66,10 +66,28 @@ def get_rag_prompt(
     return prompt
 
 
+# NEXT_STEP_PROMPT = """You are an assistant for question-answering tasks about the sport of ultimate (ultimate frisbee). 
+# All questions are in the context of ultimate frisbee. 
+
+# Given the following conversation history and new question decide what the next set should be. The choices are:
+# - RETRIEVE: retrieve information from the ultimate rule book or glossary.
+# - ANSWER: answer the question directly based only on the conversation history. 
+
+# Do not use your general knowledge about ultimate, use only the information provided in the conversation history.
+# That means we should RETRIEVE if the information to answer the question is not in the conversation history.
+
+# Conversation History:
+# {history}
+
+# New Question: 
+# {user_input}
+
+# Please answer with RETRIEVE or ANSWER and no other words"""
+
 NEXT_STEP_PROMPT = """You are an assistant for question-answering tasks about the sport of ultimate (ultimate frisbee). 
 All questions are in the context of ultimate frisbee. 
 
-Given the following conversation history and new question decide what the next set should be. The choices are:
+Given the following conversation history decide what the next set should be. The choices are:
 - RETRIEVE: retrieve information from the ultimate rule book or glossary.
 - ANSWER: answer the question directly based only on the conversation history. 
 
@@ -79,9 +97,6 @@ That means we should RETRIEVE if the information to answer the question is not i
 Conversation History:
 {history}
 
-New Question: 
-{user_input}
-
 Please answer with RETRIEVE or ANSWER and no other words"""
 
 def get_next_step_prompt(
@@ -89,7 +104,7 @@ def get_next_step_prompt(
         query: str):
     prompt = NEXT_STEP_PROMPT.format(
         history=json.dumps(conversation_history, indent = 2), 
-        user_input=query
+        # user_input=query
     )
     return prompt
 
@@ -153,16 +168,15 @@ def get_relevant_rules_definitions_prompt(query: str, conversation_history: list
     )
 
 VERIFY_ANSWER_PROMPT = """
-Please verify that this answer is fully supported by the provided rules and conversation history.
-If it's not fully supported, provide a corrected answer that is supported.
+Please verify that this answer is fully supported by its provided rules and the conversation history.
+If it's not fully supported, provide a corrected answer that is supported. Please interpret the rules carefully.
 The corrected answer should be a direct replacement for the original answer with no other text.
+
+Conversation History: {conversation_history}
 
 Question: {query}
 
-Answer: {answer}
-
-Conversation History: {conversation_history}
-"""
+Answer with rules: {answer}"""
 
 def get_verify_answer_prompt(query: str, answer: str, conversation_history: list[dict]):
     return VERIFY_ANSWER_PROMPT.format(
