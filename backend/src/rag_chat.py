@@ -75,7 +75,7 @@ class RagChat(BaseModel):
                 reworded_query, **retriever_kwargs
             )
             context = self._prepare_context(retrieved_docs)
-            logger.info(f"{len(context['rules'])} raw rules, {len(context['definitions'])} raw definitions")
+            logger.info(f"{len(context['rules'])} raw rules,    {len(context['definitions'])} raw definitions")
             
             relevant_rules_definitions = self._select_relevant_rules_definitions(
                 reworded_query, 
@@ -97,7 +97,6 @@ class RagChat(BaseModel):
         answer = self._get_llm_answer(
             query, 
             context, 
-            conversation_id,
             message_id,
             conversation_history, 
             light_model=False,
@@ -293,7 +292,6 @@ class RagChat(BaseModel):
             self,
             query: str,
             context: list[dict],
-            conversation_id: str,
             message_id: str,
             conversation_history: list[dict],
             light_model: bool = False,
@@ -332,10 +330,6 @@ class RagChat(BaseModel):
             import traceback
             traceback.print_exc()
             answer = response
-        logger.info(f"formatted answer: '{answer}'")
-
-        # format user query with context
-        user_query = query + f"\n\ncontext: {json.dumps(context, indent=2)}"
 
         logger.debug(f"Saving initial LLM response to DB")
         self.db_client.add_llm_call(
@@ -379,6 +373,12 @@ class RagChat(BaseModel):
             revised_answer: Optional[str] = Field(description="If is_correct is False, provide the corrected answer, omitting the rules. Otherwise, leave as None.")
             explanation: Optional[str] = Field(description="If is_correct is False, provide an explanation for why the answer is incorrect. Otherwise, leave as None.")
 
+        # Remove the last message from conversation history
+        if len(conversation_history) > 1:
+            conversation_history = conversation_history[:-1]
+        else:
+            conversation_history = []
+
         prompt = get_verify_answer_prompt(query, answer_with_rules, conversation_history)
 
         response, usage = self.llm_client.invoke(
@@ -387,7 +387,9 @@ class RagChat(BaseModel):
             response_format=Verification,
             return_usage=True,
         )
+        logger.info(f"raw verification response:\n{repr(response)}")
 
+        # If the answer is not supported, revise it and insert the rules
         if not response.is_correct:
             logger.info(f"Revised answer: {response.revised_answer}")
             verified_answer_with_rules = response.revised_answer
@@ -397,7 +399,6 @@ class RagChat(BaseModel):
             logger.info(f"Original answer verified")
             verified_answer_with_rules = answer_with_rules
 
-    
         # Then log the LLM call with the message_id
         self.db_client.add_llm_call(
             message_id=message_id,

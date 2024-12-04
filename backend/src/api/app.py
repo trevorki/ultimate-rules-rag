@@ -84,7 +84,9 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> str:
         if email is None:
             raise HTTPException(status_code=401, detail="Invalid authentication credentials")
         return email
-    except jwt.JWTError:
+    except jwt.exceptions.ExpiredSignatureError:
+        raise HTTPException(status_code=401, detail="Token has expired")
+    except jwt.exceptions.InvalidTokenError:
         raise HTTPException(status_code=401, detail="Invalid authentication credentials")
 
 @app.post("/token")

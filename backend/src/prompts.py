@@ -169,7 +169,7 @@ def get_relevant_rules_definitions_prompt(query: str, conversation_history: list
 
 VERIFY_ANSWER_PROMPT = """
 Please verify that this answer is fully supported by its provided rules and the conversation history.
-If it's not fully supported, provide a corrected answer that is supported. Please interpret the rules carefully.
+If it's not fully supported, provide a corrected answer that is supported. Please interpret the rules carefully and apply logic and common sense.
 The corrected answer should be a direct replacement for the original answer with no other text.
 
 Conversation History: {conversation_history}
