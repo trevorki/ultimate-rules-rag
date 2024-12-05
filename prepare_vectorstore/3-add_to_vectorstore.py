@@ -5,36 +5,17 @@ import os
 import psycopg2
 from pgvector.sqlalchemy import Vector
 
-from openai import OpenAI
 import json
 import time
 from psycopg2 import OperationalError
 import argparse
-
-
-client = OpenAI()
-
-def create_embedding(text):
-    response = client.embeddings.create(input=text, model="text-embedding-3-small")
-    return response.data[0].embedding
 
 # Database connection parameters from environment variables
 DB_NAME = os.getenv('POSTGRES_DB')
 DB_USER = os.getenv('POSTGRES_USER')
 DB_PASSWORD = os.getenv('POSTGRES_PASSWORD')
 DB_HOST = os.getenv('POSTGRES_HOST')
-DB_PORT = os.getenv('POSTGRES_PORT')
-
-# # Establish connection to the PostgreSQL database
-# conn = psycopg2.connect(
-#     dbname=DB_NAME,
-#     user=DB_USER,
-#     password=DB_PASSWORD,
-#     host=DB_HOST,
-#     port=DB_PORT
-# )
-# cursor = conn.cursor()
-
+DB_PORT = os.getenv('POSTGRES_LOCAL_PORT')
 
 # Example: Insert a document with its embedding
 def insert_document(content, context, source, embedding):
