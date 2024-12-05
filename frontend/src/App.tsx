@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Chat from './pages/Chat';
-import ChangePassword from './pages/ChangePassword';
+// import ChangePassword from './pages/ChangePassword';
 import SignUp from './pages/SignUp';
 import ForgotPassword from './pages/ForgotPassword';
 import Verify from './pages/Verify';
