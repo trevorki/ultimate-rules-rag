@@ -17,11 +17,25 @@ from datetime import datetime, timedelta, UTC
 import os
 import traceback
 import logging
-import secrets
-from pydantic import BaseModel
+from dotenv import load_dotenv
 
+load_dotenv()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+
+# FRONTEND_URL = "http://localhost:3000"
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://192.168.0.163:3000")
+
+DEFAULT_CLIENT_TYPE = "openai"
+DEFAULT_MEMORY_SIZE = 5
+RETRIEVER_KWARGS = {
+    "search_type": "semantic",
+    "fts_operator": "OR",
+    "limit": 3,
+    "expand_context": 1,
+    "semantic_weight": 0.8,
+    "fts_weight": 0.2
+}
 
 app = FastAPI()
 gmail_client = SimpleGmailClient()
@@ -32,28 +46,13 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",
         "http://172.18.0.4:3000",
-        "http://192.168.0.163:3000",
+        FRONTEND_URL
         "http://192.168.0.163"
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# FRONTEND_URL = "http://localhost:3000"
-FRONTEND_URL = "http://192.168.0.163:3000"
-
-DEFAULT_CLIENT_TYPE = "openai"
-# DEFAULT_CLIENT_TYPE = "anthropic"
-DEFAULT_MEMORY_SIZE = 5
-RETRIEVER_KWARGS = {
-    "search_type": "semantic",
-    "fts_operator": "OR",
-    "limit": 3,
-    "expand_context": 1,
-    "semantic_weight": 0.8,
-    "fts_weight": 0.2
-}
 
 # Initialize clients
 db_client = DBClient()
