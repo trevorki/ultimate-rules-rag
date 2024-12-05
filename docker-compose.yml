@@ -6,6 +6,9 @@ services:
       - .env
     ports:
       - "5431:5432"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
     volumes:
       - db_data:/var/lib/postgresql/data
       - ./db/1-setup_database.sql:/docker-entrypoint-initdb.d/1-setup_database.sql
