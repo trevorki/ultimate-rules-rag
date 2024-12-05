@@ -1,24 +1,21 @@
-anthropic
-cerebras_cloud_sdk
-fastapi
-google-auth 
-google-auth-oauthlib 
-google-api-python-client
-langchain-text-splitters
-openai
-pgvector
-psycopg2-binary
-PyJWT
-pydantic
-pydantic[email]
-python-dotenv
-python-multipart
-requests
-sqlalchemy
-uvicorn
-
-# # to enable use in jupyter lab 
-# ipykernel
-
-
-
+anthropic
+cerebras_cloud_sdk
+fastapi
+langchain-text-splitters
+openai
+pgvector
+psycopg2-binary
+PyJWT
+pydantic
+pydantic[email]
+python-dotenv
+python-multipart
+requests
+sqlalchemy
+uvicorn
+
+# # to enable use in jupyter lab 
+# ipykernel
+
+
+
