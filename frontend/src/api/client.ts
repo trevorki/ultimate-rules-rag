@@ -1,6 +1,9 @@
 import axios from 'axios';
 
+console.log('API_URL environment variable:', process.env.NEXT_PUBLIC_API_URL);
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+console.log('Final API_URL being used:', API_URL);
 
 const api = axios.create({
   baseURL: API_URL,
