@@ -1,9 +1,8 @@
 import axios from 'axios';
 
-console.log('API_URL environment variable:', process.env.NEXT_PUBLIC_API_URL);
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-console.log('Final API_URL being used:', API_URL);
+// Force the API URL to your server IP for testing
+const API_URL = 'http://192.168.0.163:8000';
+console.log('Using API_URL:', API_URL);
 
 const api = axios.create({
   baseURL: API_URL,
