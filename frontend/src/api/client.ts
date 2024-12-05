@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-// Force the API URL to your server IP for testing
-const API_URL = 'http://192.168.0.163:8000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 console.log('Using API_URL:', API_URL);
 
 const api = axios.create({
