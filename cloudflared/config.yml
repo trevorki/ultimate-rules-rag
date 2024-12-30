@@ -1,0 +1,10 @@
+tunnel: 1780083b-25aa-4e9b-a4c0-a77a6e8767dd
+credentials-file: /home/trevor/.cloudflared/cert.pem
+
+ingress:
+  - hostname: ultimateruleschat.com
+    service: http://localhost:3000  # Frontend
+  - hostname: ultimateruleschat.com
+    path: /api/.*
+    service: http://localhost:8000  # Backend
+  - service: http_status:404

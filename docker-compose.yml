@@ -50,8 +50,11 @@ services:
       - ./.env:/app/.env
     environment:
       - YARN_REGISTRY=https://registry.yarnpkg.com
+      - HOST=0.0.0.0
+      - WDS_SOCKET_HOST=0.0.0.0
     env_file:
       - .env
+    command: yarn start --host 0.0.0.0
     dns:
       - 8.8.8.8
       - 8.8.4.4

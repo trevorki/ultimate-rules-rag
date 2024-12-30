@@ -319,3 +319,7 @@ async def reset_password(request: ResetPasswordRequest):
     except Exception as e:
         logger.error(f"Error in reset password: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/health")
+async def health_check():
+    return {"status": "healthy", "service": "ultimate-rules-api"}
